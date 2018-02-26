@@ -1,0 +1,23 @@
+/*.wxy .title{*/
+	/*border-bottom: 2px solid red;*/
+	/*line-height: 50px;*/
+	/*font-size: 20px;*/
+/*}*/
+/*.content,li{*/
+	/*list-style: none;*/
+/*}*/
+/*.content li{*/
+	/*height: 126px;*/
+	/*padding: 0;*/
+	/*border-bottom: 1px dashed #dcdcdc;*/
+	/*line-height: 126px;*/
+/*}*/
+/*.content li .img{*/
+	/*width: 20%;*/
+/*}*/
+/*.content li .msg{*/
+	/*width: 80%;*/
+/*}*/
+/*.content li>div{*/
+	/*float: left;*/
+/*}*/

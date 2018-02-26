@@ -1,0 +1,140 @@
+<style>
+    .weixinyuan1{
+    position: absolute;
+    font-size: 16px;
+    top: 28%;
+    left: 36%;
+    width: 235px;
+      color: #000;
+  }
+    .weixinyuan2{
+      position: absolute;
+      font-size: 16px;
+      top: 38%;
+      left: 40%;
+      height: 96px;
+      overflow: hidden;
+      color: #000;
+      width: 500px;
+    }
+    .weixinyuan2 div{
+      position: absolute;
+      font-size: 16px;
+      width: 500px;
+      line-height: 48px;
+      color: #000;
+    }
+    .weixinyuan3{
+      position: absolute;
+      font-size: 16px;
+      top: 53%;
+      left: 40%;
+      color: #000;
+      width: 500px;
+    }
+    .weixinyuan4{
+      position: absolute;
+      font-size: 16px;
+      top: 53%;
+      left: 58%;
+      color: #000;
+    }
+    .weixinyuan5{
+      position: absolute;
+      font-size: 16px;
+      top: 59%;
+      left: 40%;
+      color: #000;
+    }
+    .weixinyuan6{
+      position: absolute;
+      font-size: 16px;
+      top: 59%;
+      left: 58%;
+      color: #000;
+    }
+    .weixinyuan7{
+      position: absolute;
+      font-size: 16px;
+      top: 65%;
+      left: 40%;
+      color: #000;
+    }
+    .weixinyuan8{
+      height: 159px;
+      overflow: hidden;
+      width: 300px;
+      position: absolute;
+      top: 70%;
+      left: 46%;
+    }
+    .weixinyuan8 div{
+      position: absolute;
+      font-size: 16px;
+      width: 200px;
+      line-height: 53px;
+      color: #000;
+    }
+</style>
+<section class="home-view view-backgroupd xiangqingbg" ng-style="styles" style="position: relative;background: url('/modules/page/client/img/xiangmu/微心愿.png')">
+    <div class="weixinyuan1">{{vm.weixingyuan.littleTitle}}</div>
+    <div class="weixinyuan2"><div>{{vm.weixingyuan.littleContent}}</div></div>
+    <div class="weixinyuan3">{{vm.weixingyuan.littlePerson}}</div>
+  <div class="weixinyuan4">{{vm.weixingyuan.littleDate | date: 'yyyy-MM-dd'}}</div>
+  <div class="weixinyuan5">{{vm.weixingyuan.createUserId}}</div>
+  <div class="weixinyuan6">{{vm.weixingyuan.littleClaimDate | date: 'yyyy-MM-dd'}}</div>
+  <div class="weixinyuan7">{{vm.weixingyuan.littleStatus}}</div>
+  <div class="weixinyuan8"><div>{{vm.weixingyuan.littltCon}}</div></div>
+    <!--<div style="text-align: center">
+      <img src="{{vm.weixingyuan.littlePhoto}}">
+    </div>-->
+   <!-- <div>
+    <ul class="wenti">
+      <li><span>微心愿：</span></li>
+      <li>{{vm.weixingyuan.littleContent}}</li>
+    </ul>
+    <ul class="wenti">
+      <li><span>微心愿回复：</span></li>
+      <li>{{vm.weixingyuan.littltCon}}</li>
+    </ul>
+    <P>
+      <span>回复时间：{{vm.wenti.createData | date: 'yyyy-mm-dd'}}</span>
+    </P>
+    </div>/-->
+
+  <!--<div ng-include="'/modules/core/client/views/footers.client.view.html'" class="footers" ng-show="vm.show"></div>-->
+</section>
+<script>
+  var leijia = 0;
+  $('.weixinyuan8 >div').mousewheel(function (event, delta, deltaX, deltaY) {
+    var num = parseInt($(this).css('height'));
+    (num - 159)/159
+    if (delta > 0) {
+      leijia += 10;
+    } else {
+      leijia += -10;
+    }
+    if (leijia <= -100*(num - 159)/159) {
+      leijia = -100*(num - 159)/159;
+    } else if (leijia >= 0) {
+      leijia = 0;
+    }
+    $(this).css('top', leijia + '%');
+  });
+  var leijia1 = 0;
+  $('.weixinyuan2 >div').mousewheel(function (event, delta, deltaX, deltaY) {
+    var num = parseInt($(this).css('height'));
+    console.log(delta,event);
+    if (delta > 0) {
+      leijia1 += 10;
+    } else {
+      leijia1 += -10;
+    }
+    if (leijia1 <= -100*(num - 96)/96) {
+      leijia1 = -100*(num - 96)/96;
+    } else if (leijia1 >= 0) {
+      leijia1 = 0;
+    }
+    $(this).css('top', leijia1 + '%');
+  });
+</script>

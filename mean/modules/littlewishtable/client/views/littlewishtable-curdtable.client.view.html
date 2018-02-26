@@ -1,0 +1,41 @@
+<style>
+  .container-fluid.page-content{
+    background-image: url('/modules/core/client/img/houtaibg.png')
+  }
+</style>
+<section>
+  <div class="view-header">
+    <h3>
+      微心愿之{{vm.littleStatus}}
+      <div class="btn-group pull-right" role="group" aria-label="oper">
+        <a class="btn btn-primary" ng-click="vm.add()"
+           tooltip-placement="top" uib-tooltip="新增"
+        >
+          <i class="glyphicon glyphicon-plus"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.update()" ng-show="!!vm.selectedRow"
+           tooltip-placement="top" uib-tooltip="修改"
+        >
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.remove()" ng-show="!!vm.selectedRow"
+           tooltip-placement="top" uib-tooltip="删除"
+        >
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.view()" ng-show="!!vm.selectedRow"
+           tooltip-placement="top" uib-tooltip="查看"
+        >
+          <i class="glyphicon glyphicon-eye-open"></i>
+        </a>
+      </div>
+    </h3>
+  </div>
+
+  <div ui-grid="vm.gridOptions"
+       ui-grid-selection
+       ui-grid-pagination
+       ui-grid-resize-columns
+       ui-grid-exporter
+       class="littleWishTable-grid" ></div>
+</section>

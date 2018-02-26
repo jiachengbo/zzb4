@@ -1,0 +1,177 @@
+<div class="committeeTable-modal">
+  <div class="modal-header">
+    <h3>{{vm.method}} 委员会</h3>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.committeeTableForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <!--第1行-->
+        <div class="row clearfix">
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="CommitteeName">姓名</label>
+                <input name="CommitteeName"
+                       type="text"
+                       ng-model="vm.committeeTableData.CommitteeName"
+                       id="CommitteeName"
+                       class="form-control"
+                       placeholder=""
+                       required autofocus>
+                <div ng-messages="vm.committeeTableForm.CommitteeName.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入姓名.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="CommitteePostion">职务</label>
+                <input name="CommitteePostion"
+                       type="text"
+                       ng-model="vm.committeeTableData.CommitteePostion"
+                       id="CommitteePostion"
+                       class="form-control"
+                       placeholder=""
+                       required autofocus>
+                <div ng-messages="vm.committeeTableForm.CommitteePostion.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入职务.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--第2行-->
+        <div class="row clearfix">
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="CommitteeWork">单位</label>
+                <input name="CommitteeWork"
+                       type="text"
+                       ng-model="vm.committeeTableData.CommitteeWork"
+                       id="CommitteeWork"
+                       class="form-control"
+                       placeholder=""
+                       required autofocus>
+                <div ng-messages="vm.committeeTableForm.CommitteeWork.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入单位.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="state">委员类型</label>
+                <select class="form-control"
+                        id="state"
+                        ng-model="vm.committeeTableData.CommitteeType"
+
+                        required
+                >
+                  <option data-ng-repeat="tt in vm.type">
+                  {{tt}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--第四行-->
+        <div class="row clearfix">
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="community">所在社区</label>
+                <select class="form-control"
+                        id="community"
+                        ng-model="vm.committeeTableData.community"
+                        ng-options="cv_community.communityId as cv_community.communityName for cv_community in cvs_communitys"
+                        ng-change="vm.selectCommunityIdChange(vm.committeeTableData.community)"
+                        required
+                >
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="gridId">所在网格</label>
+                <select class="form-control"
+                        id="gridId"
+                        ng-model="vm.appealData.gridId"
+                        ng-options="cv_grid.gridId as cv_grid.gridNum for cv_grid in cvs_grids"
+                        required
+                >
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--第五行-->
+        <div class="row clearfix">
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="Remark">备注</label>
+                <input name="Remark"
+                       type="text"
+                       ng-model="vm.committeeTableData.Remark"
+                       id="Remark"
+                       class="form-control"
+                       placeholder=""
+                       required autofocus>
+                <div ng-messages="vm.committeeTableForm.Remark.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入备注.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row clearfix">
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <label class="control-label">图片一</label>
+              <div class="form-group text-center">
+                <img ngf-src="vm.fileSelected ? vm.picFile1 : vm.committeeTableData.CommitteePhotoPath"
+                     alt="" class="img-thumbnail project-profile-picture" ngf-drop>
+              </div>
+              <div ng-show="vm.loading" class="form-group text-center">
+                <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                     height="80" width="40" alt="Loading image...">
+              </div>
+              <div class="text-center form-group">
+                <button class="btn btn-default btn-file"
+                        ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                        ng-model="vm.picFile1" accept="image/*"
+                        ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
+                        ngf-resize-if="$width > 400 || $height > 400">点击选择图片
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.committeeTableForm.$valid)">提交</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

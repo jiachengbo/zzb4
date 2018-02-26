@@ -1,0 +1,62 @@
+/*模态窗口*/
+.regionalization-modal {
+	margin: 10px;
+}
+
+/*表格*/
+.regionalization-grid {
+	height: 750px;
+}
+
+.regionalization-progress-grid {
+	height: 300px;
+}
+
+/*图片*/
+.project-profile-picture {
+	max-height: 140px;
+	min-height: 140px;
+}
+
+/*图片*/
+.progress-profile-picture {
+	max-height: 140px;
+	min-height: 140px;
+}
+
+/*图片*/
+.djdynamic-profile-picture {
+	max-height: 200px;
+	min-height: 200px;
+}
+.checklabel{
+	margin-top: 7px;
+}
+.check {
+	width: 20px;
+	height: 20px;
+	float: left;
+	cursor: pointer;
+	margin-left: 20px;
+	margin-top: 10px;
+	text-align: center;
+	background-image: url(/modules/core/client/img/anniu1.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+.on_check {
+	width: 20px;
+	height: 20px;
+	float: left;
+	cursor: pointer;
+	margin-left: 20px;
+	margin-top: 10px;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-image: url(/modules/core/client/img/anniu.png);
+}
+.autoscroll{
+	height: 325px;
+	overflow-y: auto;
+}

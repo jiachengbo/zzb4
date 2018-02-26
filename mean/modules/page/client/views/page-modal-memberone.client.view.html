@@ -1,0 +1,198 @@
+<div class="regionalization-modal">
+  <div class="modal-header">
+    <h3>详细党员信息</h3>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.PartyMemberForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="PartyName">姓名</label>
+              <input readonly name="PartyName" type="text" ng-model="vm.pageData.PartyName" id="PartyName" class="form-control" >
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">性别</label>
+              <input readonly class="form-control" ng-model="vm.pageData.PartySex">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-12 form-group" show-errors>
+                  <label class="control-label" for="IDNumber">身份证号码</label>
+                  <input readonly name="IDNumber" type="text" ng-model="vm.pageData.IDNumber" id="IDNumber" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">民族</label>
+              <input readonly class="form-control" ng-model="vm.pageData.PartyNation">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">籍贯</label>
+              <input readonly class="form-control" ng-model="vm.pageData.PartyPlace">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="PartyBirth">出生日期</label>
+              <p class="input readonly-group">
+                <input readonly name="PartyBirth" type="text" class="form-control" id="PartyBirth" ng-model="vm.pageData.PartyBirth"/>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">是否在职</label>
+              <input readonly class="form-control" ng-model="vm.pageData.isJob">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">党员类型</label>
+              <input readonly class="form-control" ng-model="vm.pageData.Category">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="JoinTime">入党时间</label>
+              <p class="input readonly-group">
+                <input readonly name="JoinTime" type="text" class="form-control" id="JoinTime" ng-model="vm.pageData.JoinTime"/>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="TelNumber">联系电话</label>
+              <input readonly name="TelNumber" type="text" ng-model="vm.pageData.TelNumber" class="form-control" id="TelNumber">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">学历</label>
+              <input readonly class="form-control" ng-model="vm.pageData.education">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">人员类别</label>
+              <input readonly class="form-control" ng-model="vm.pageData.preson_category">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="WorkPlace">工作单位</label>
+              <input readonly name="WorkPlace" type="text" ng-model="vm.pageData.WorkPlace" id="WorkPlace" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在党组织</label>
+              <input readonly class="form-control" ng-model="vm.pageData.workbranch">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在党支部</label>
+              <input readonly class="form-control" ng-model="vm.branchName">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在街道</label>
+              <input readonly id="select_ssjd" class="form-control" name="STREETID" ng-model="vm.pageData.streetIDname">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在社区</label>
+              <input readonly id="select_sssq" class="form-control" name="COMMUNITYID" ng-model="vm.pageData.communityIdname">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在网格</label>
+              <input readonly id="select_sswg" class="form-control" name="CELLID" ng-model="vm.pageData.BelongGridname">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">网格编号</label>
+              <input readonly id="select_gridnum" class="form-control" name="GRIDNUM" ng-model="vm.pageData.gridNum">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">是否流动党员</label>
+              <input readonly type="text" class="form-control" ng-model="vm.pageData.isFlow_party">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">是否失联党员</label>
+              <input readonly class="form-control" ng-model="vm.pageData.isConcat">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="Specialty">个人特长</label>
+              <input readonly name="Specialty" type="text" ng-model="vm.pageData.Specialty" id="Specialty" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="col-md-12 form-group" show-errors>
+                  <label class="control-label" for="Income">个人收入（月）</label>
+                  <input readonly name="Income" type="text" ng-model="vm.pageData.Income" id="Income" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-12 form-group" show-errors>
+                  <label class="control-label" for="PartyMoney">每月党费</label>
+                  <input readonly name="PartyMoney" type="text" ng-model="vm.pageData.PartyMoney" id="PartyMoney" class="form-control" >
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="col-md-12 form-group" show-errors>
+                  <label class="control-label" for="ToPay">缴纳比例</label>
+                  <input readonly name="ToPay" type="text" ng-model="vm.pageData.ToPay" id="ToPay" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group">
+              <label class="control-label" for="ThePartyfor">党内表彰</label>
+              <textarea name="ThePartyfor" data-ng-model="vm.pageData.ThePartyfor" id="ThePartyfor" class="form-control" style="resize: none" readonly></textarea>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning" ng-click="vm.cancel()">关闭</button>
+  </div>
+</div>

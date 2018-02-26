@@ -1,0 +1,1 @@
+"use strict";var path=require("path"),router=require("express").Router();module.exports=function(e){var r=require(path.resolve("./config/private/socket.io"));if(r.getIoServer()){require(path.resolve("./modules/private/server/sockets/server.server.socket"))}if(r.getConnSocket()){require(path.resolve("./modules/private/server/sockets/client.server.socket"))}};

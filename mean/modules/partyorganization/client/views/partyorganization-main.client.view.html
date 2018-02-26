@@ -1,0 +1,36 @@
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group pull-right" role="group" aria-label="oper">
+        <a class="btn btn-primary" ng-click="vmo.tj()"
+           tooltip-placement="top" uib-tooltip="统计">
+          <i class="glyphicon glyphicon-signal"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vmo.add()"
+           tooltip-placement="top" uib-tooltip="新增" ng-if="vmo.show">
+          <i class="glyphicon glyphicon-plus"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vmo.update()" ng-show="!!vmo.selectedRow"
+           tooltip-placement="top" uib-tooltip="修改">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <!--<a class="btn btn-primary" ng-click="vmo.remove()" ng-show="!!vmo.selectedRow"
+           tooltip-placement="top" uib-tooltip="删除">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>-->
+        <a class="btn btn-primary" ng-click="vmo.view()" ng-show="!!vmo.selectedRow"
+           tooltip-placement="top" uib-tooltip="查看">
+          <i class="glyphicon glyphicon-eye-open"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div ui-grid="vmo.gridOptions"
+           ui-grid-selection
+           ui-grid-pagination
+           ui-grid-resize-columns
+           class="regionalization-grid">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,241 @@
+<section class="home-view view-backgroupd">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 citystr_wxy">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>微心愿</span>
+          </a>
+          <a href="/weixinyuanlist" style="float: right;color: red"><span>查看详情>></span></a>
+        </div>
+        <div class="media" data-ng-repeat="litter in  vm.litterxin track by $index" ng-click="vm.weixingyuan($index)" >
+          <a class="media-left" href="#">
+            <img class="media-object" src="/modules/global/client/img/citybuild/xylogo.png"
+                 alt="微心愿">
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading">{{litter.littleTitle}}</h4>
+            <p>
+              {{litter.littleContent}}
+            </p>
+            <span style="float: right;margin-right: 20px">{{litter.littleDate | date: "yyyy-MM-dd"}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-4">
+          <a href="/page/citybasicparty" class="partyjc" style="height: 417px;display: block"></a>
+      </div>
+      <div class="col-md-4 col-lg-4" style="border: 1px solid #ddd;height: 418px;">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>组织设置</span>
+          </a>
+          <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 qitem button" style="margin-top: 40px;height: 60px;line-height: 60px;"><a href="/page/org-set-details?orgId=1" style="font-size: 18px">区委党建领导小组</a></div>
+          <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 qitem button" style="margin-top: 40px;height: 60px;line-height: 60px;"><a href="/page/org-set-details?orgId=2" style="font-size: 18px">区城市基层党建联席会</a></div>
+          <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 qitem button" style="margin-top: 40px;height: 60px;line-height: 60px;"><a href="/page/org-set-details?orgId=3" style="font-size: 18px">区城市基层党建指挥平台</a></div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-4">
+        <div class="biglogo">
+          <img src="/modules/global/client/img/citybuild/wxybig.png" alt="" width="100%;">
+        </div>
+      </div>
+      <!--组织设置-->
+      <!--<div class="col-md-4 col-lg-4">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>区平台</span>
+          </a>
+          &lt;!&ndash;<a href="#" style="float: right"><span>查看详情>></span></a>&ndash;&gt;
+        </div>
+        <div class="strbox" style="overflow: hidden;">
+          <div class="stritem">
+            <a href="/page/citybasicpartydgw" >党工委</a>
+          </div>
+          <div class="stritem">
+            <a href="/page/citybasicparty-other" >党委</a>
+          </div>
+        </div>
+      </div>-->
+      <div class="col-md-6 col-lg-6" style="border: 1px solid #ddd;">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>党建项目</span>
+          </a>
+          <a href="/page/partyprojectlist?grade={{user_grade}}" style="float: right;color: red"><span >查看更多>></span></a>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-2 col-lg-2">logo</div>
+              <div class="col-md-5 col-lg-7">项目介绍</div>
+              <div class="col-md-5 col-lg-3">项目结束时间</div>
+            </div>
+            <div class="row shou caitiao" data-ng-repeat="project in vm.project track by $index" ng-click="vm.projects($index)" >
+              <div class="col-md-2 col-lg-2 qdjitem"><img src="{{project.ProjectLogo}}" style="width: 40px;height: 40px;"></div>
+              <div class="col-md-5 col-lg-6 qdjitem">{{project.ProjectName}}</div>
+              <div class="col-md-5 col-lg-4 qdjitem">{{project.createDate | date:'yyyy-MM-dd HH:mm'}}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-2 col-lg-2">logo</div>
+              <div class="col-md-5 col-lg-7">项目介绍</div>
+              <div class="col-md-5 col-lg-3">项目结束时间</div>
+            </div>
+            <div class="row shou caitiao" data-ng-repeat="project in vm.project1 track by $index" ng-click="vm.projects1($index)" >
+              <div class="col-md-2 col-lg-2 qdjitem"><img src="{{project.ProjectLogo}}" style="width: 40px;height: 40px;"></div>
+              <div class="col-md-5 col-lg-6 qdjitem">{{project.ProjectName}}</div>
+              <div class="col-md-5 col-lg-4 qdjitem">{{project.createDate | date:'yyyy-MM-dd HH:mm'}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--党建项目-->
+      <div class="col-md-2 col-lg-2" >
+        <div class="strbox">
+          <div class="stritem button" style="margin: 65px auto;float: none;text-align: center;padding-left: 0">
+            <a href="/dgwordw?party=1" >其他党(工)委</a>
+          </div>
+        </div>
+        <div class="strbox">
+          <div class="stritem button" style="margin: 45px auto;float: none;text-align: center;padding-left: 0">
+            <a href="javascript:void(0)" ng-click="sidebtn()">街道联席会</a>
+          </div>
+        </div>
+      </div>
+      <!--<div class="col-md-4 col-lg-4" style="border: 1px solid #ddd;">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>党建项目</span>
+          </a>
+          &lt;!&ndash;<a href="#" style="float: right"><span>查看详情>></span></a>&ndash;&gt;
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-lg-2">logo</div>
+          <div class="col-md-5 col-lg-7">项目介绍</div>
+          <div class="col-md-5 col-lg-3">项目结束时间</div>
+        </div>
+        <div class="row shou" data-ng-repeat="project in vm.project track by $index" ng-click="vm.projects($index)" >
+          <div class="col-md-2 col-lg-2 qdjitem"><img src="{{project.ProjectLogo}}" style="width: 40px;height: 40px;"></div>
+          <div class="col-md-5 col-lg-7 qdjitem">{{project.ProjectName}}</div>
+          <div class="col-md-5 col-lg-3 qdjitem">{{project.createDate | date:'yyyy-MM-dd HH:mm'}}</div>
+        </div>
+      </div>-->
+    </div>
+    <div class="row">
+      <!--共驻共建-->
+      <div class="col-md-6 col-lg-6">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>共驻共建</span>
+          </a>
+          <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-6">
+            <div id="slider">
+              <div style="height: 400px">
+                <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                  <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                    <img ng-src="{{slide.image}}" style="margin:auto;height: 400px;width: 100%;">
+                    <div class="carousel-caption">
+                      <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{slide.text}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6">
+            <ul class="inform">
+              <li data-ng-repeat="gongzhu  in  vm.gongzhu track by $index" ng-click="vm.gongj($index)" class="shou caitiao1">
+                <span class="informtitle">{{gongzhu.title}}</span>
+                <span style="float: right">{{gongzhu.sbtime}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--问题墙-->
+      <div class="col-md-6 col-lg-6">
+          <div class="patitle" style="padding-bottom: 15px;">
+            <a href="#" style="float: left">
+              <i></i>
+              <span>问题墙</span>
+            </a>
+            <a  href="/wentixq?grade={{user_grade}}"  style="float: right;color: red"><span>查看详情>></span></a>
+          </div>
+          <div class="citystr_wtq">
+            <table class="table table-hover" style="overflow: hidden">
+              <thead>
+              <tr>
+                <th>标题</th>
+                <th>问题内容</th>
+                <th>上报组织</th>
+                <th>处理平台</th>
+              </tr>
+              </thead>
+              <tbody style="position: relative;" class="prowalllnbo" ng-click="vm.proll($event)">
+              <tr data-ng-repeat="prowall in vm.prowall track by $index" id="{{$index}}" class="caitiao1" style="text-align: center">
+                <td><a href=""><p>{{prowall.wtTitle}}</p></a></td>
+                <td><a href=""><p>{{prowall.wtContent}}</p></a></td>
+                <td><a href=""><span>{{prowall.superName}}</span></a></td>
+                <td><a href=""><span>{{prowall.pt}}</span></a></td>
+              </tr>
+              </tbody>
+            </table>
+            <!--<div class="row tabledata1">
+              <div class="col-md-2 col-lg-2">标题</div>
+              <div class="col-md-6 col-lg-6">问题内容</div>
+              <div class="col-md-2 col-lg-2">上报组织</div>
+              <div class="col-md-2 col-lg-2">处理平台</div>
+            </div>
+            <div class="tablebox">
+              <div class="tableboxinner">
+                <div class="row tabledata" data-ng-repeat="prowall in vm.prowall track by $index" ng-click="vm.proll($index)" class="caitiao1"style="cursor: pointer;text-align: center">
+                  <div class="col-md-2 col-lg-2"><a href=""><p>{{prowall.wtTitle}}</p></a></div>
+                  <div class="col-md-6 col-lg-6"><a href=""><p>{{prowall.wtContent}}</p></a></div>
+                  <div class="col-md-2 col-lg-2"><a href=""><span>{{prowall.superName}}</span></a></div>
+                  <div class="col-md-2 col-lg-2"><a href=""><span>{{prowall.pt}}</span></a></div>
+                </div>
+              </div>
+            </div>-->
+      </div>
+        </div>
+    </div>
+    <div class="row" ng-show="false">
+      <div class="col-md-offset-4 col-md-4">
+        <button class="btn btn-info" ng-click="vm.getchart('WorkPlace')">党员职业分类</button>
+        <button class="btn btn-info" ng-click="vm.getchart('PartyBirth')">党员年龄分类</button>
+        <button class="btn btn-info" ng-click="vm.getchart('preson_category')">党员类型分类</button>
+        <button class="btn btn-info" ng-click="vm.getchart('education')">党员学历分类</button>
+      </div>
+    </div>
+    <div class="row" ng-show="false">
+      <div id="main" style="width: 800px;height:600px;margin: 20px auto"></div>
+      <div id="main1" style="width: 800px;height:600px; margin: 20px auto"></div>
+    </div>
+  </div>
+  <div class="sidebarbtn" data-ng-if="vm.sidebarbtn">
+    <!--<a href="/page/citybasicparty-str?id={{street_info.streetID}}" data-ng-repeat="street_info in vm.arr">{{street_info.streetName}}</a>-->
+    <a href="/page/citybasicparty-str?id=3" >青年路街道</a>
+    <a href="/page/citybasicparty-str?id=4" >北院门街道</a>
+    <a href="/page/citybasicparty-str?id=1" >环西街道</a>
+    <a href="/page/citybasicparty-str?id=6" >西关街道</a>
+    <a href="/page/citybasicparty-str?id=7" >土门街道</a>
+    <a href="/page/citybasicparty-str?id=9" >红庙坡街道</a>
+    <a href="/page/citybasicparty-str?id=2" >桃园路街道</a>
+    <a href="/page/citybasicparty-str?id=8" >枣园街道</a>
+    <a href="/page/citybasicparty-str?id=5" >北关街道</a>
+  </div>
+</section>

@@ -1,0 +1,18 @@
+<style>
+  .page-content{
+    padding: 0;
+  }
+  .container-fluid.page-content{
+    background-image: url('/modules/core/client/img/houtaibg.png');
+  }
+</style>
+<section style="padding: 0 15px;">
+  <div class="view-header">
+    <h1>
+      任务进度列表
+      <button class="btn btn-warning" ng-click="vm.goback()">返回</button>
+    </h1>
+  </div>
+  <div ui-grid="vm.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-resize-columns ui-grid-exporter class="task-grid" ></div>
+</section>
+

@@ -1,0 +1,119 @@
+<style>
+  li {
+    list-style: none;
+  }
+
+  .mainul {
+    padding-left: 0;
+  }
+</style>
+<div class="mask" close-pic>
+  <div class="mask-box"></div>
+  <div class="big-pic-wrap">
+    <img src="" alt="" class="bigPic"/>
+    <span class="close-pic"><i class="glyphicon glyphicon-remove"></i></span>
+  </div>
+</div>
+<div class="task-modal">
+  <div class="modal-header">
+    <h1>上传任务进度</h1>
+  </div>
+  <div class="modal-body col-md-12">
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2"></div>
+      <div class="col-md-2" style="text-align: center;">
+        <div class="form-group">
+          <div>
+            <button class="btn btn-default btn-file"
+                    ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                    ng-model="vm.create_photoPicFile" accept="image/*" ngf-before-model-change="vm.loading = true"
+                    ngf-resize="{width: 400}" ngf-resize-if="$width > 400 || $height > 400">图片一
+            </button>
+          </div>
+          <div class="text-center" style="margin-top: 10px;">
+            <img id="create_photo" ngf-src="vm.fileSelected ? vm.create_photoPicFile : vm.torectestData.create_photo"
+                 alt="没有图片" class="img-thumbnail" ngf-drop>
+          </div>
+        </div>
+        <div ng-show="vm.loading" class="form-group text-center">
+          <img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">
+        </div>
+      </div>
+      <div class="col-md-2" style="text-align: center;">
+        <div class="form-group">
+          <div>
+            <button class="btn btn-default btn-file"
+                    ngf-select="(vm.fileSelected2 = true) && (vm.loading2 = false)"
+                    ng-model="vm.create_photoPicFile2" accept="image/*" ngf-before-model-change="vm.loading2 = true"
+                    ngf-resize="{width: 400}" ngf-resize-if="$width > 400 || $height > 400">图片二
+            </button>
+          </div>
+          <div class="text-center" style="margin-top: 10px;">
+            <img id="create_photo1"
+                 ngf-src="vm.fileSelected2 ? vm.create_photoPicFile2 : vm.torectestData.create_photo1"
+                 alt="没有图片" class="img-thumbnail" ngf-drop>
+          </div>
+        </div>
+        <div ng-show="vm.loading2" class="form-group text-center">
+          <img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">
+        </div>
+      </div>
+      <div class="col-md-2" style="text-align: center;">
+        <div class="form-group">
+          <div>
+            <button class="btn btn-default btn-file"
+                    ngf-select="(vm.fileSelected3 = true) && (vm.loading3 = false)"
+                    ng-model="vm.create_photoPicFile3" accept="image/*" ngf-before-model-change="vm.loading3 = true"
+                    ngf-resize="{width: 400}" ngf-resize-if="$width > 400 || $height > 400">图片三
+            </button>
+          </div>
+          <div class="text-center" style="margin-top: 10px;">
+            <img id="create_photo2"
+                 ngf-src="vm.fileSelected3 ? vm.create_photoPicFile3 : vm.torectestData.create_photo2"
+                 alt="没有图片" class="img-thumbnail" ngf-drop>
+          </div>
+        </div>
+        <div ng-show="vm.loading3" class="form-group text-center">
+          <img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">
+        </div>
+      </div>
+      <div class="col-md-4 column">
+        <div class="col-xs-2 column text-right">
+          <button class="btn btn-default btn-file"
+                  ngf-select="(vm.fileSelect = true) && (vm.loading = false)"
+                  ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
+                  ng-model="vm.fileFile"
+                  accept="application/msword">点击选择文件
+          </button>
+        </div>
+        <div class="col-xs-12 column text-left" style="margin-top: 10px;">
+          <label>{{vm.fileSelect ? vm.fileFile.name: vm.task.file_path}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2" style="font-size: 20px;">进度描述:</div>
+      <div class="col-md-10">
+        <textarea class="form-control" rows="3" style="resize: none;overflow-y: auto;height: 100px;" ng-model="vm.progressContent">
+        </textarea>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2" style="font-size: 20px;">完成任务:</div>
+      <div class="col-md-10">
+        <input type="checkbox" value="isend" ng-model="vm.isend">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="mask" close-pic style="display: none;">
+      <div class="mask-box"></div>
+      <div class="big-pic-wrap">
+        <img src="" alt="" class="bigPic"/>
+        <span class="close-pic"><i class="glyphicon glyphicon-remove"></i></span>
+      </div>
+    </div>
+    <button class="btn btn-primary" ng-click="vm.ok()">确定</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">关闭</button>
+  </div>
+</div>

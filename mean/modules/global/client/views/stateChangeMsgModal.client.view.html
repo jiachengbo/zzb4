@@ -1,0 +1,22 @@
+<div class="statechanged-modal">
+  <div class="modal-header">
+    <h4>你总共有{{vm.data[0].djdt + vm.data[1].problemwall}}条未读消息</h4>
+  </div>
+  <div class="modal-body">
+    <ul class="list-group" style="overflow-y: auto;max-height: 200px;">
+      <li class="list-group-item">
+        <span>{{vm.data[0].name}}</span>
+        <span>共{{vm.data[0].djdt}}条数据</span>
+      </li>
+      <li class="list-group-item">
+        <span>{{vm.data[1].name}}</span>
+        <span>共{{vm.data[1].problemwall}}条数据</span>
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer" style="text-align: right">
+    <div class="btn-group" role="group" aria-label="..." ng-click="vm.close()">
+      <button type="button" class="btn btn-default">关闭</button>
+    </div>
+  </div>
+</div>

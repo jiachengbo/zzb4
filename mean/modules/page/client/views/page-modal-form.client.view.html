@@ -1,0 +1,26 @@
+<div class="page-modal">
+  <div class="modal-header">
+    <h1>{{vm.method}} Page</h1>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.pageForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Title</label>
+          <input name="title" type="text" ng-model="vm.pageData.title" id="title" class="form-control" placeholder="Title" required autofocus>
+          <div ng-messages="vm.pageForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Page title is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">Content</label>
+          <textarea name="content" data-ng-model="vm.pageData.content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.pageForm.$valid)">OK</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
+  </div>
+</div>

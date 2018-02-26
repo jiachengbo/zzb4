@@ -1,0 +1,153 @@
+<div class="problemWall-modal">
+  <div class="modal-header">
+    <h3>{{vm.method}}问题</h3>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.problemWallForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="form-group col-md-12" show-errors>
+          <label class="control-label" for="wtTitle">问题标题</label>
+          <textarea name="wtTitle"
+                    type="text"
+                    data-ng-model="vm.problemWallData.wtTitle"
+                    id="wtTitle"
+                    class="form-control"
+                    placeholder=""
+                    cols="30"
+                    rows="1"
+                    maxlength="250"
+                    ng-readonly="vm.isCreateUser === '否'"
+                    required autofocus></textarea>
+          <div ng-messages="vm.problemWallForm.wtTitle.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">请输入标题.</p>
+          </div>
+          <div ng-messages="vm.problemWallForm.wtTitle.$error" role="alert">
+            <p class="help-block error-text" ng-message="maxlength">字数在250字以内.</p>
+          </div>
+        </div>
+
+        <div class="form-group col-md-12" show-errors>
+          <label class="control-label" for="wtContent">问题内容</label>
+          <textarea name="wtContent"
+                    data-ng-model="vm.problemWallData.wtContent"
+                    maxlength="4000"
+                    id="wtContent"
+                    class="form-control"
+                    cols="30"
+                    rows="4"
+                    placeholder=""
+                    required
+                    ng-readonly="vm.isCreateUser === '否'"
+          ></textarea>
+          <div ng-messages="vm.problemWallForm.wtContent.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">请输入问题内容.</p>
+          </div>
+          <div ng-messages="vm.problemWallForm.wtContent.$error" role="alert">
+            <p class="help-block error-text" ng-message="maxlength">字数在4000字以内.</p>
+          </div>
+        </div>
+
+        <div class="form-group col-md-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+          <div class="form-group col-md-12">
+            <label>问题照片</label>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group text-center">
+              <img ngf-src="vm.fileSelected1 ? vm.picFile1 : vm.problemWallData.photoPath1" alt=""
+                   class="img-thumbnail person-profile-picture" ngf-drop>
+            </div>
+            <div ng-show="vm.loading1" class="form-group text-center">
+              <img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">
+            </div>
+            <div class="text-center form-group">
+              <button ng-disabled="vm.isCreateUser === '否'" class="btn btn-default btn-file"
+                      ngf-select="(vm.fileSelected1 = true) && (vm.loading1 = false)"
+                      ng-model="vm.picFile1" accept="image/*" ngf-before-model-change="vm.loading1 = true"
+                      ngf-resize="{width: 400}" ngf-resize-if="$width > 400 || $height > 400">选择照片
+              </button>
+            </div>
+          </div>
+          <!--<div class="col-md-6" >-->
+          <!--<div class="form-group text-center">-->
+          <!--<img ngf-src="vm.fileSelected2 ? vm.picFile2 : vm.problemWallData.photoPath2" alt=""-->
+          <!--class="img-thumbnail person-profile-picture" ngf-drop>-->
+          <!--</div>-->
+          <!--<div ng-show="vm.loading2" class="form-group text-center">-->
+          <!--<img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">-->
+          <!--</div>-->
+          <!--<div class="text-center form-group">-->
+          <!--<button ng-disabled="vm.picPhoto2" class="btn btn-default btn-file" ngf-select="(vm.fileSelected2 = true) && (vm.loading2 = false)"-->
+          <!--ng-model="vm.picFile2" accept="image/*" ngf-before-model-change="vm.loading2 = true"-->
+          <!--ngf-resize="{width: 400}" ngf-resize-if="$width > 400 || $height > 400">处理后照片-->
+          <!--</button>-->
+          <!--</div>-->
+          <!--</div>-->
+        </div>
+        <!-- 上报选择区域 -->
+        <div class="form-group col-md-12">
+          <label class="control-label">上报问题</label>
+          <div class="col-xs-12">
+            <ul>
+              <li class="sbxf_li" ng-repeat="v in vm.sbs track by $index">
+                <input type="checkbox"
+                       value="vm.sb{{$index}}"
+                       ng-model="$parent.sb[$index]"
+                       ng-disabled="false">
+                {{v.sbUserName}}
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <!-- 下发选择区域 -->
+        <div class="form-group col-md-12">
+          <label class="control-label">下发问题</label>
+          <div class="col-xs-12">
+            <ul>
+              <li class="sbxf_li" ng-repeat="v in vm.xfs track by $index">
+                <input type="checkbox"
+                       value="vm.xf{{$index}}"
+                       ng-model="$parent.xf[$index]"
+                       ng-disabled="false">
+                {{v.xfUserName}}
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <!-- <div class="form-group col-md-12" ng-show="vm.showissb">-->
+        <div class="form-group col-md-12" ng-show="false">
+          <label class="control-label"
+                 for="issb">是否上报上级党组织</label>
+          <select class="form-control"
+                  id="issb"
+                  ng-model="vm.problemWallData.issb"
+                  ng-options="v.id as v.name for v in cvs_issb"
+          >
+          </select>
+        </div>
+
+        <!--<div class="form-group col-md-12" ng-show="vm.ishowHf">-->
+        <div class="form-group col-md-12">
+          <label class="control-label">回复记录</label>
+          <textarea data-ng-model="vm.problemWallData.hfContent" class="form-control"
+                    cols="30" rows="4" placeholder="" ng-readonly="true"></textarea>
+        </div>
+        <div class="form-group col-md-12">
+          <label class="control-label">新增回复</label>
+          <textarea name="hfContent" data-ng-model="vm.hfContent" class="form-control"
+                    cols="30" rows="1" placeholder="字数小于200字" maxlength="200"></textarea>
+          <div ng-messages="vm.hfContent.$error" role="alert">
+            <p class="help-block error-text" ng-message="maxlength">字数在200字以内.</p>
+          </div>
+        </div>
+
+
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.problemWallForm.$valid)">确定</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

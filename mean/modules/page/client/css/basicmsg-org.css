@@ -1,0 +1,22 @@
+.dzb{
+	width: 49%;
+	float: left;
+	border: 1px solid #ddd;
+	background: #eee;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-top: 5px;
+	margin-left: 1%;
+	padding: 0 10px;
+	box-sizing: border-box;
+}
+.dzbitem{
+	height: 30px;
+	width: 100%;;
+	line-height: 30px;
+	padding-left: 15px;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	float: left;
+	margin-top: 10px;
+}

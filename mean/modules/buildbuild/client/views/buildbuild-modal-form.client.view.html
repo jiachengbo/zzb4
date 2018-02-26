@@ -1,0 +1,196 @@
+<div class="buildbuild-modal">
+  <div class="modal-header">
+    <div class="col-md-2">
+       <h3>{{vm.method}}活动</h3>
+    </div>
+    <div class="col-md-10" style="text-align: right;margin-top: 20px;font-size: large" ng-show="vm.method==='修改'">
+      <button class="btn btn-primary"  ng-click="vm.updateBbpIshow()">{{vm.ts}}</button>
+      <button class="btn btn-primary" ng-if="vm.showss"  ng-click="vm.updatebuildP()">获取</button>
+    </div>
+
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.buildbuildForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+
+        <div class="form-group col-md-12" show-errors>
+          <label class="control-label">活动标题</label>
+          <input name="title"
+                 type="text"
+                 ng-model="vm.buildbuildData.title"
+                 class="form-control"
+                 placeholder=""
+                 ng-maxlength="200"
+                 required autofocus>
+          <div ng-messages="vm.buildbuildForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">请输入标题.</p>
+          </div>
+          <div ng-messages="vm.buildbuildForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="maxlength">字数在200字以内.</p>
+          </div>
+        </div>
+
+        <div class="form-group col-md-12" show-errors>
+          <label class="control-label">活动内容</label>
+          <!--<textarea name="details"
+                    data-ng-model="vm.buildbuildData.details"
+                    class="form-control"
+                    style="height: auto;min-height: 80px"
+                    placeholder=""
+                    required autofocus
+          ></textarea>-->
+          <div contenteditable="true" style="width: 100%;min-height:100px;border:1px solid #ddd" class="fenhang" name="details">
+          </div>
+          <div ></div>
+          <div ng-messages="vm.buildbuildForm.details.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">请输入内容.</p>
+          </div>
+          <div ng-show="vm.buildbuildData.details.length > 4000" class="has-error" role="alert">
+            <p class="help-block error-text" ng-show="vm.buildbuildData.details.length > 4000">4000字以内.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-6">
+            <label class="control-label">活动图片</label>
+            <div class="form-group text-center">
+              <img ngf-src="vm.fileSelected ? vm.photo : vm.buildbuildData.photo"
+                   alt="" class="img-thumbnail project-profile-picture" ngf-drop enlarge-pic>
+            </div>
+            <div ng-show="vm.loading" class="form-group text-center">
+              <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                   height="80" width="40" alt="Loading image...">
+            </div>
+            <div class="text-center form-group">
+              <button class="btn btn-default btn-file"
+                      ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                      ng-model="vm.photo" accept="image/*"
+                      ngf-before-model-change="vm.loading = true" ngf-resize="{width: 900, quality:1}"
+                      ngf-resize-if="$width > 900 || $height > 900">点击选择活动图片
+              </button>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="control-label">活动文件</label>
+            <div class="form-group text-center">
+              <div class="col-md-12">
+                <label style="font-size: larger">
+                  {{vm.docfileSelected ? vm.docFile.name : vm.buildbuildData.docFile}}
+                </label>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-default btn-file "
+                        ngf-select="(vm.docfileSelected = true) && (vm.loadingfile = false)"
+                        ng-model="vm.docFile" accept="application/msword"
+                        ngf-before-model-change="vm.loadingfile = true">
+                  点击选择活动Word文件
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+       <!-- 需求：新增-显示成员列表，修改删除-只针对活动信息操作-->
+        <div ng-show="vm.showMembers">
+          <label class="control-label" style="margin-bottom: 10px;">参与成员</label>
+
+          <div class="form-group">
+            <div class="col-md-6">
+              <label class="control-label" style="margin-bottom: 10px;">党委/党工委</label>
+
+              <select class="form-control"
+                      ng-model="vm.dwdgw"
+                      ng-init="vm.dwdgw = dwdgws[0].id"
+                      ng-options="dwdgw.id as dwdgw.name for dwdgw in dwdgws"
+                      ng-change="vm.selectDwdgwChange(vm.dwdgw)">
+
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label" style="margin-bottom: 10px;">街道/部门</label>
+
+              <select class="form-control"
+                      ng-model="vm.jdbm"
+                      ng-init="vm.jdbm = jdbms[0].roleID"
+                      ng-options="jdbm.roleID as jdbm.typeName for jdbm in jdbms"
+                      ng-change="vm.selectJdbmChange(vm.jdbm)">
+              </select>
+            </div>
+            <div class="col-md-4" ng-show="false">
+              <label class="control-label" style="margin-bottom: 10px;">党支部</label>
+              <select class="form-control"
+                      ng-model="vm.dzb"
+                      ng-init="vm.dzb = dzbs[0].OrganizationId"
+                      ng-options="dzb.OrganizationId as dzb.simpleName for dzb in dzbs"
+              >
+
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <!--根据选择 显示不同的CheckBox列表-->
+            <div class="col-md-6">
+              <label class="control-label" style="margin-bottom: 10px;">成员列表</label>
+              <ul style="height: 220px;overflow-y: scroll;">
+               <li data-ng-repeat="dzzname in vm.dzzname track by $index" ng-show="vm.dzzname" class="dangzongzhi">
+                 <input type="checkbox" ng-model="$parent.dzzmember[$index]" ng-change="vm.changedzz($index)">{{dzzname.name.simpleName}}
+                 <ul>
+                   <li data-ng-repeat="dzzzb in dzzname.arr track by $index"><input type="checkbox" value="{{dzzzb.OrganizationId}}" ng-click="vm.isSelected(dzzzb)" ng-checked="ischecked(dzzzb)">{{dzzzb.simpleName}}</li>
+                 </ul>
+               </li>
+                <li ng-repeat="v in vm.members track by $index">
+                  <input type="checkbox" value="vm.xmembers{{$index}}" ng-model="$parent.xmembers[$index]"
+                         ng-change="vm.changMembers(vm.members[$index])">{{v.simpleName}}
+                </li>
+              </ul>
+            </div>
+            <!--选择的 CheckBox列表-->
+            <div class="col-md-6">
+              <label class="control-label" style="margin-bottom: 10px;">已选成员</label>
+
+              <textarea style="overflow-y: scroll;height: 220px;width: 100%;" disabled
+                        ng-model="vm.sbmebs"
+              > </textarea>
+              <!--
+                          <ul style="height: 220px;overflow-y: scroll;">
+
+                            <li ng-repeat="v in vm.mebs track by $index">
+                              <input type="" value="vm.xmebs{{$index}}" ng-model="$parent.xmebs[$index]"
+                                     ng-change="vm.changMebs()">{{v.simpleName}}
+                            </li>
+                          </ul>-->
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-6">
+            申报时间
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup
+                     ng-model="sbtime" is-open="popup1.opened"
+                     datepicker-options="inlineOptions" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </p>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="mask" close-pic style="display: none;">
+      <div class="mask-box"></div>
+      <div class="big-pic-wrap">
+        <img src="" alt="" class="bigPic mybigPic"/>
+        <span class="close-pic"><i class="glyphicon glyphicon-remove"></i></span>
+      </div>
+    </div>
+    <button class="btn btn-primary" style="width: 100px;" ng-if="!vm.disabled" ng-click="vm.ok(vm.buildbuildForm.$valid)">确定</button>
+    <button class="btn btn-warning" style="width: 100px;" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

@@ -1,0 +1,199 @@
+<div class="orgset-modal">
+  <div class="modal-header">
+    <h1>{{vm.method}} 组织设置</h1>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.orgsetForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <!--
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Title</label>
+          <input name="title" type="text" ng-model="vm.orgsetData.title" id="title" class="form-control" placeholder="Title" required autofocus>
+          <div ng-messages="vm.orgsetForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Orgset title is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">Content</label>
+          <textarea name="content" data-ng-model="vm.orgsetData.content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
+        </div>-->
+        <!--第1行-->
+        <div class="row clearfix">
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;" >
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label">领导机构</label>
+                <select class="form-control"
+                        name="orgId"
+                        ng-model="vm.orgsetData.orgId"
+                        ng-options="cv_org.orgId as cv_org.orgName for cv_org in cvs_org"
+                        required
+                        ng-disabled="true"
+                >
+                </select>
+                <div ng-messages="vm.orgsetForm.orgId.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请选择领导机构.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 会议时间-->
+
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label">会议召开时间</label>
+                <p class="input-group">
+                  <input name="createTime"
+                         type="text"
+                         ng-model="vm.orgsetData.createTime"
+                         class="form-control"
+                         uib-datepicker-popup
+                         is-open="popup1.opened"
+                         datepicker-options="inlineOptions"
+                         ng-required="true"
+                         current-text="今天"
+                         clear-text="清空"
+                         close-text="关闭"
+                         placeholder=""
+                         required autofocus/>
+                  <span class="input-group-btn">
+                      <button type="button"
+                              class="btn btn-default"
+                              ng-click="open1()">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                      </button>
+                 </span>
+                </p>
+
+                <div ng-messages="vm.orgsetForm.createTime.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请选择时间.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label">标题</label>
+                <textarea name="duty"
+                       type="text"
+                       ng-model="vm.orgsetData.duty"
+                       class="form-control"
+                       placeholder=""
+                       style="min-height: 50px;height: auto"
+                          maxlength="1000"
+                          required autofocus></textarea>
+                <div ng-messages="vm.orgsetForm.duty.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输标题.</p>
+                </div>
+                <div ng-messages="vm.orgsetForm.duty.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="maxlength">字数在1000字以内.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 解决问题-->
+          <div class="col-md-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label">内容</label>
+                <textarea name="quest"
+                       type="text"
+                       ng-model="vm.orgsetData.quest"
+                       class="form-control"
+                       placeholder=""
+                       style="height: auto;min-height: 80px;"
+                          maxlength="5000"
+                       required autofocus></textarea>
+                <div ng-messages="vm.orgsetForm.quest.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入内容.</p>
+                </div>
+                <div ng-messages="vm.orgsetForm.quest.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="maxlength">字数在5000字以内.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 会议照片-->
+          <div class="col-md-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-4">
+                <label class="control-label">会议图片1</label>
+                <div class="form-group text-center">
+                  <img ngf-src="vm.fileSelected ? vm.meetingPhoto : vm.orgsetData.meetingPhoto"
+                       alt="" class="img-thumbnail project-profile-picture" ngf-drop>
+                </div>
+                <div ng-show="vm.loading" class="form-group text-center">
+                  <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                       height="80" width="40" alt="Loading image...">
+                </div>
+                <div class="text-center form-group">
+                  <button class="btn btn-default btn-file"
+                          ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                          ng-model="vm.meetingPhoto" accept="image/*"
+                          ngf-before-model-change="vm.loading = true" ngf-resize="{width: 900, quality: 1}"
+                          >点击选择图片
+                  </button>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label class="control-label">会议图片2</label>
+                <div class="form-group text-center">
+                  <img ngf-src="vm.fileSelected2 ? vm.meetingPhoto2 : vm.orgsetData.meetingPhoto2"
+                       alt="" class="img-thumbnail project-profile-picture" ngf-drop>
+                </div>
+                <div ng-show="vm.loading2" class="form-group text-center">
+                  <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                       height="80" width="40" alt="Loading image...">
+                </div>
+                <div class="text-center form-group">
+                  <button class="btn btn-default btn-file"
+                          ngf-select="(vm.fileSelected2 = true) && (vm.loading2 = false)"
+                          ng-model="vm.meetingPhoto2" accept="image/*"
+                          ngf-before-model-change="vm.loading2 = true" ngf-resize="{width: 900, quality: 1}"
+                          ngf-resize-if="$width > 900 || $height > 900">点击选择图片
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="control-label">活动文件</label>
+                <div class="form-group text-center">
+                  <div class="col-md-12">
+                    <span style="display: inline-block;height: 160px;font-size: 14px;text-align: left">
+                      {{vm.docfileSelected ? vm.docFile.name : vm.orgsetData.file_path}}
+                    </span>
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-default btn-file "
+                            ngf-select="(vm.docfileSelected = true) && (vm.loadingfile = false)"
+                            ng-model="vm.docFile" accept="application/msword"
+                            ngf-before-model-change="vm.loadingfile = true">
+                      点击选择活动Word文件
+                    </button>
+                    <a href="{{vm.orgsetData.file_path}}" target="_blank" ng-if="vm.orgsetData.file_path">查看文件</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.orgsetForm.$valid)">确定</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

@@ -1,0 +1,467 @@
+<style>
+  li {
+    list-style: none;
+  }
+
+  .mainul {
+    padding-left: 0;
+  }
+</style>
+<div class="task-modal">
+  <div class="modal-header">
+    <h1>{{vm.headTitle}}</h1>
+  </div>
+  <div class="modal-body col-md-12" ng-show="vm.addF">
+    <div class="row">
+      <div class="col-md-2" style="font-size: 20px;">标题:</div>
+      <div class="col-md-10">
+        <input type="text" class="form-control" ng-model="vm.title" required>
+        <div style="color:red;padding-top: 5px;" ng-show="vm.titleR">
+          <span>请输入标题！</span>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2" style="font-size: 20px;">内容:</div>
+      <div class="col-md-10">
+        <textarea class="form-control" rows="3"
+                  style="resize: none;overflow-y: auto;height: 100px;"
+                  ng-model="vm.content"></textarea>
+        <div style="color:red;padding-top: 5px;" ng-show="vm.contentR">
+          <span>请输入内容！</span>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2" style="font-size: 20px;">完成时限:</div>
+      <div class="col-md-5">
+        开始时间
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup
+                 ng-model="dt1" is-open="popup1.opened"
+                 datepicker-options="inlineOptions" ng-required="true" close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+      <div class="col-md-5">
+        结束时间
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup
+                 ng-model="dt2" is-open="popup2.opened"
+                 datepicker-options="inlineOptions" ng-required="true" close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open2()"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2" style="font-size: 20px;">任务类型:</div>
+      <div class="col-md-10">
+        <select name="" id="" class="form-control" ng-model="vm.tasktype">
+          <option value="1">日常党务工作</option>
+          <option value="2">城市基层党建</option>
+          <option value="3">临时性安排</option>
+        </select>
+        <!--<div style="color:red;padding-top: 5px;">-->
+        <!--<span >请选择任务类型！</span>-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2"></div>
+      <div class="col-md-2" style="text-align: center;">
+        <div class="form-group">
+          <div>
+            <button class="btn btn-default btn-file"
+                    ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                    ng-model="vm.create_photoPicFile" accept="image/*" ngf-before-model-change="vm.loading = true"
+                    ngf-resize="{width: 900 ,quality: 1}" ngf-resize-if="$width > 900 || $height > 900">图片一
+            </button>
+          </div>
+          <div class="text-center" style="margin-top: 10px;">
+            <img id="create_photo" ngf-src="vm.fileSelected ? vm.create_photoPicFile : vm.torectestData.create_photo"
+                 alt="没有图片" class="img-thumbnail" ngf-drop>
+          </div>
+        </div>
+        <div ng-show="vm.loading" class="form-group text-center">
+          <img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">
+        </div>
+      </div>
+      <div class="col-md-2" style="text-align: center;">
+        <div class="form-group">
+          <div>
+            <button class="btn btn-default btn-file"
+                    ngf-select="(vm.fileSelected2 = true) && (vm.loading2 = false)"
+                    ng-model="vm.create_photoPicFile2" accept="image/*" ngf-before-model-change="vm.loading2 = true"
+                    ngf-resize="{width: 900 ,quality: 1}" ngf-resize-if="$width > 900 || $height > 900">图片二
+            </button>
+          </div>
+          <div class="text-center" style="margin-top: 10px;">
+            <img id="create_photo1"
+                 ngf-src="vm.fileSelected2 ? vm.create_photoPicFile2 : vm.torectestData.create_photo1"
+                 alt="没有图片" class="img-thumbnail" ngf-drop>
+          </div>
+        </div>
+        <div ng-show="vm.loading2" class="form-group text-center">
+          <img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">
+        </div>
+      </div>
+      <div class="col-md-2" style="text-align: center;">
+        <div class="form-group">
+          <div>
+            <button class="btn btn-default btn-file"
+                    ngf-select="(vm.fileSelected3 = true) && (vm.loading3 = false)"
+                    ng-model="vm.create_photoPicFile3" accept="image/*" ngf-before-model-change="vm.loading3 = true"
+                    ngf-resize="{width: 900 ,quality: 1}" ngf-resize-if="$width > 900 || $height > 900">图片三
+            </button>
+          </div>
+          <div class="text-center" style="margin-top: 10px;">
+            <img id="create_photo2"
+                 ngf-src="vm.fileSelected3 ? vm.create_photoPicFile3 : vm.torectestData.create_photo2"
+                 alt="没有图片" class="img-thumbnail" ngf-drop>
+          </div>
+        </div>
+        <div ng-show="vm.loading3" class="form-group text-center">
+          <img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">
+        </div>
+      </div>
+      <div class="col-md-4 column">
+        <div class="col-xs-2 column text-right">
+          <button class="btn btn-default btn-file"
+                  ngf-select="(vm.fileSelect = true) && (vm.loading = false)"
+                  ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
+                  ng-model="vm.fileFile"
+                  accept="application/msword">点击选择文件
+          </button>
+        </div>
+        <div class="col-xs-12 column text-left" style="margin-top: 10px;">
+          <label>{{vm.fileSelect ? vm.fileFile.name: vm.task.file_path}}</label>
+        </div>
+        <div class="col-xs-12 column text-left" style="margin-top: 10px;" ng-show="vm.grade === 1">
+          <input type="checkbox" value="vm.toNotice" ng-model="vm.toNotice" ng-change="vm.changeNotice(vm.toNotice)"> 将所选文件推送到通知文件
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2" style="font-size: 20px;">推送单位:</div>
+      <!--区委账号-->
+      <div class="col-md-10" ng-show="vm.quwei">
+        <ul class="mainul">
+          <li><input type="checkbox" value="vm.dw" ng-model="vm.dw" ng-change="vm.changeDW(vm.dw)">党委
+            <ul>
+              <li ng-repeat="v in vm.bmDW">
+                <input type="checkbox" value="vm.qubmdw{{$index}}" ng-model="$parent.qubmdw[$index]"
+                       ng-disabled="vm.dw">{{v.name}}
+              </li>
+            </ul>
+        </ul>
+        </li>
+        <li><input type="checkbox" value="vm.dgw" ng-model="vm.dgw" ng-change="vm.changeDGW(vm.dgw)">党工委
+          <ul>
+            <li ng-repeat="v in vm.strDGW track by $index">
+              <input type="checkbox" value="vm.qustrdgw{{$index}}" ng-model="$parent.qustrdgw[$index]"
+                     ng-disabled="vm.dgw">{{v.name}}
+            </li>
+          </ul>
+        </li>
+        </ul>
+        <div style="color:red;padding-top: 5px;" ng-show="vm.relationFlag">
+          <span>请选择推送单位！</span>
+        </div>
+      </div>
+      <!--党委账号-->
+      <div class="col-md-10" ng-show="vm.dangwei">
+        <ul class="allselect" style="padding: 0;">
+          <li class="allselectlist">
+            <input type="checkbox" value="vm.alldw" ng-model="vm.alldw" ng-change="vm.changealldw(vm.alldw)"
+                   ng-disabled="vm.disAlldw">全部党委
+          </li>
+          <li class="allselectlist">
+            <input type="checkbox" value="vm.alldwson" ng-model="vm.alldwson" ng-change="vm.changealldwson(vm.alldwson)"
+                   ng-disabled="vm.disAlldwson">全部党委及下属
+          </li>
+        </ul>
+        <ul class="mainul">
+          <li ng-repeat="v in vm.bmDW track by $index">
+            <input type="checkbox" value="vm.bmdw{{$index}}" ng-model="$parent.bmdw[$index]"
+                   ng-change="vm.changBMDW($index)">{{v.name}}
+            <ul>
+              <li><input type="checkbox" value="vm.bmdw1{{$index}}" ng-model="$parent.bmdw1[$index]"
+                         ng-disabled="!$parent.bmdw[$index]">全部党委党支部
+              </li>
+            </ul>
+            <ul ng-if="v.dzz">
+              <li><input type="checkbox" value="vm.bmdw2{{$index}}" ng-model="$parent.bmdw2[$index]"
+                         ng-disabled="!$parent.bmdw[$index]">全部党委党总支
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div style="color:red;padding-top: 5px;" ng-show="vm.relationFlag">
+          <span>请选择推送单位！</span>
+        </div>
+      </div>
+      <!--党工委账号-->
+      <div class="col-md-10" ng-show="vm.danggongwei">
+        <ul class="allselect" style="padding: 0;">
+          <li class="allselectlist">
+            <input type="checkbox" value="vm.alldgw" ng-model="vm.alldgw" ng-change="vm.changealldgw(vm.alldgw)"
+                   ng-disabled="vm.disAlldgw">全部党工委
+          </li>
+          <li class="allselectlist">
+            <input type="checkbox" value="vm.alldgwson" ng-model="vm.alldgwson"
+                   ng-change="vm.changealldgwson(vm.alldgwson)" ng-disabled="vm.disAlldgwson">全部党工委及下属
+          </li>
+        </ul>
+        <ul class="mainul">
+          <li ng-repeat="v in vm.strDGW track by $index">
+            <input type="checkbox" value="vm.strdgw{{$index}}" ng-model="$parent.strdgw[$index]"
+                   ng-change="vm.changStrDGW($index)">{{v.name}}
+            <ul>
+              <li><input type="checkbox" value="vm.strdgw1{{$index}}" ng-model="$parent.strdgw1[$index]"
+                         ng-disabled="!$parent.strdgw[$index]">全部党工委党支部
+              </li>
+            </ul>
+            <ul ng-if="v.dzz">
+              <li><input type="checkbox" type="checkbox" value="vm.strdgw2{{$index}}" ng-model="$parent.strdgw2[$index]"
+                         ng-disabled="!$parent.strdgw[$index]">全部党工委党总支
+              </li>
+            </ul>
+          </li>
+          <!--<li>-->
+          <!--<ul>-->
+          <!--<li><input type="checkbox" value="vm.dgwdzb" ng-model="vm.dgwdzb" ng-disabled="vm.seletDGWDZB">党工委党支部</li>-->
+          <!--</ul>-->
+          <!--<ul>-->
+          <!--<li><input type="checkbox" value="vm.strdgwdzz" ng-model="vm.strdgwdzz" ng-disabled="vm.seletDGWDZZ">党工委党总支-->
+          <!--</li>-->
+          <!--</ul>-->
+          <!--</li>-->
+        </ul>
+        <div style="color:red;padding-top: 5px;" ng-show="vm.relationFlag">
+          <span>请选择推送单位！</span>
+        </div>
+      </div>
+      <!--xx街道党工委账号-->
+      <div class="col-md-10" ng-show="vm.xxDGW">
+        <div class="row">
+          <div class="col-lg-3 col-md-3" ng-if="vm.strDzzData.length !== 0">
+            <!--党总支-->
+            <ul class="allselect" style="padding: 0;">
+              <input type="checkbox" value="vm.xxDGWAlldzz" ng-model="vm.xxDGWAlldzz"
+                     ng-change="vm.changexxDGWAlldzz(vm.xxDGWAlldzz)"> 全部
+            </ul>
+            <ul class="mainul">
+              <li ng-repeat="v in vm.strDzzData track by $index">
+                <input type="checkbox" value="vm.xxstrdgwdzz{{$index}}" ng-model="$parent.xxstrdgwdzz[$index]"
+                       ng-change="vm.changeStrDZZ($index)">{{v}}
+                <ul>
+                  <li>
+                    <input type="checkbox" value="vm.xxstrdgwdzz1{{$index}}" ng-model="$parent.xxstrdgwdzz1[$index]"
+                           ng-disabled="!$parent.xxstrdgwdzz[$index]">全部党支部
+                  </li>
+                </ul>
+              </li>
+              <!--<ul>-->
+              <!--<li><input type="checkbox" value="vm.strDzzAlldzb" ng-model="vm.strDzzAlldzb"-->
+              <!--ng-disabled="vm.seletStrDzzAlldzb">全部党支部-->
+              <!--</li>-->
+              <!--</ul>-->
+            </ul>
+          </div>
+          <div class="col-lg-7 col-md-7">
+            <!--党支部-->
+            <ul class="allselect" style="padding: 0;">
+              <input type="checkbox" value="vm.xxDGWAlldzb" ng-model="vm.xxDGWAlldzb"
+                     ng-change="vm.changexxDGWAlldzb(vm.xxDGWAlldzb)"> 全部
+            </ul>
+            <ul class="mainul">
+              <li ng-repeat="v in vm.strDzbData track by $index">
+                <input type="checkbox" value="vm.xxstrdgwdzb{{$index}}" ng-model="$parent.xxstrdgwdzb[$index]">{{v}}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div style="color:red;padding-top: 5px;" ng-show="vm.relationFlag">
+          <span>请选择推送单位！</span>
+        </div>
+      </div>
+      <!--xx部门党委账号-->
+      <div class="col-md-10 col-lg-10" ng-show="vm.xxDW">
+        <div class="row">
+
+          <ul class="allselect" style="padding: 0;">
+            <input type="checkbox" value="vm.xxDWAlldzz" ng-model="vm.xxDWAlldzz"
+                   ng-change="vm.changexxDWAlldzz(vm.xxDWAlldzz)"> 全部
+          </ul>
+          <!--党总支-->
+          <ul class="mainul col-md-6 col-lg-6" ng-if="vm.bmDwDzzData.length === 0 ? false : true">
+            <li ng-repeat="v in vm.bmDwDzzData track by $index">
+              <input type="checkbox" value="vm.xxbmdwdzz{{$index}}" ng-model="$parent.xxbmdwdzz[$index]"
+                     ng-change="vm.changeBmDZZ()">{{v}}
+              <ul>
+                <li>
+                  <input type="checkbox" value="vm.xxbmdwdzz1{{$index}}" ng-model="$parent.xxbmdwdzz1[$index]"
+                         ng-disabled="!$parent.xxbmdwdzz[$index]" ng-checked="$parent.xxbmdwdzz[$index]">全部党支部
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <!--党支部-->
+          <div class="col-md-6 col-lg-6">
+            <ul class="allselect" style="padding: 0;">
+              <input type="checkbox" value="vm.xxDWAlldzb" ng-model="vm.xxDWAlldzb"
+                     ng-change="vm.changexxDWAlldzb(vm.xxDWAlldzb)"> 全部
+            </ul>
+            <ul class="mainul">
+              <li ng-repeat="v in vm.bmDwData track by $index">
+                <input type="checkbox" value="vm.xxbmdw{{$index}}" ng-model="$parent.xxbmdw[$index]">{{v}}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div style="color:red;padding-top: 5px;" ng-show="vm.relationFlag">
+          <span>请选择推送单位！</span>
+        </div>
+      </div>
+      <!--xx部门党委党总支账号-->
+      <div class="col-md-10 col-lg-10" ng-show="vm.xxDWDZZ">
+        <ul class="allselect" style="padding: 0;">
+          <input type="checkbox" value="vm.DWdzz" ng-model="vm.DWdzz"
+                 ng-change="vm.changeDWdzz(vm.DWdzz)"> 全部
+        </ul>
+        <ul class="mainul">
+          <li ng-repeat="v in vm.xxDWDZZSon track by $index">
+            <input type="checkbox" value="vm.xxbmdwdzzson{{$index}}" ng-model="$parent.xxbmdwdzzson[$index]">{{v.name}}
+          </li>
+        </ul>
+        <div style="color:red;padding-top: 5px;" ng-show="vm.relationFlag">
+          <span>请选择推送单位！</span>
+        </div>
+      </div>
+      <!--xx街道党工委党总支账号-->
+      <div class="col-md-10 col-lg-10" ng-show="vm.xxDGWDZZ">
+        <ul class="allselect" style="padding: 0;">
+          <input type="checkbox" value="vm.DGWdzz" ng-model="vm.DGWdzz"
+                 ng-change="vm.changeDGWdzz(vm.DGWdzz)"> 全部
+        </ul>
+        <ul class="mainul">
+          <li ng-repeat="v in vm.xxDGWDZZSon track by $index">
+            <input type="checkbox" value="vm.xxstrdgwdzzson{{$index}}" ng-model="$parent.xxstrdgwdzzson[$index]">{{v.name}}
+          </li>
+        </ul>
+        <div style="color:red;padding-top: 5px;" ng-show="vm.relationFlag">
+          <span>请选择推送单位！</span>
+        </div>
+      </div>
+    </div>
+    <!--<div class="row" style="margin-top: 20px;">-->
+    <!--<div class="col-md-2" style="font-size: 20px;">回复:</div>-->
+    <!--<div class="col-md-10"><textarea class="form-control" rows="3" style="resize: none;overflow-y: auto;height: 100px;" ng-model="vm.reply"></textarea></div>-->
+    <!--</div>-->
+  </div>
+  <div class="modal-body col-md-12" ng-show="vm.seek">
+    <div class="row">
+      <div class="col-md-2" style="font-size: 20px;">标题:</div>
+      <div class="col-md-10"><input type="text" class="form-control" value="{{vm.seekData.AssignedTitle}}" readonly>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2" style="font-size: 20px;">内容:</div>
+      <div class="col-md-10">
+        <textarea class="form-control" style="resize: none;overflow-y: auto;height: 100px;text-indent:0;" readonly>
+        {{vm.seekData.AssignedContent}}
+        </textarea>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2"></div>
+      <div class="col-md-2" style="text-align: center;">
+        <div class="form-group">
+          <div>
+            <button class="btn btn-default btn-file">图片一
+            </button>
+          </div>
+          <div class="text-center" style="margin-top: 10px;">
+            <img src="{{vm.seekData.img1}}" alt="没有图片" class="img-thumbnail" ngf-drop enlarge-pic>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2" style="text-align: center;">
+        <div class="form-group">
+          <div>
+            <button class="btn btn-default btn-file">图片二</button>
+          </div>
+          <div class="text-center" style="margin-top: 10px;">
+            <img src="{{vm.seekData.img2}}" alt="没有图片" class="img-thumbnail" ngf-drop enlarge-pic>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2" style="text-align: center;">
+        <div class="form-group">
+          <div>
+            <button class="btn btn-default btn-file">图片三</button>
+          </div>
+          <div class="text-center" style="margin-top: 10px;">
+            <img src="{{vm.seekData.img3}}" alt="没有图片" class="img-thumbnail" ngf-drop enlarge-pic>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 column">
+        <div class="col-xs-6 btn btn-default btn-file" style="position: relative;">{{vm.fileF}}
+          <a href="{{vm.seekData.file}}" target="_Blank" ng-show="!!vm.seekData.file"
+             style="display: block;width:100%;height: 34px;position: absolute;left: 0;top: 0;">
+          </a>
+        </div>
+        <div class="btn btn-default" ng-show="!!vm.seekData.file && vm.type" ng-click="vm.download(vm.seekData.file)">下载</div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2" style="font-size: 20px;">完成时限:</div>
+      <div class="col-md-5">
+        开始时间
+        <input type="text" class="form-control" value="{{vm.seekData.starttime | date:'yyyy-MM-dd'}}" readonly/>
+      </div>
+      <div class="col-md-5">
+        结束时间
+        <input type="text" class="form-control" value="{{vm.seekData.endtime | date:'yyyy-MM-dd'}}" readonly/>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2" style="font-size: 20px;">任务类型:</div>
+      <div class="col-md-10">
+        <input type="text" class="form-control" value="{{vm.seekData.tasktype}}" readonly/>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;" ng-show="!vm.type">
+      <div class="col-md-2" style="font-size: 20px;">推送单位:</div>
+      <div class="col-md-10">
+        {{vm.seekData.payout}}
+      </div>
+    </div>
+    <!--<div class="row" style="margin-top: 20px;">-->
+    <!--<div class="col-md-2" style="font-size: 20px;">回复:</div>-->
+    <!--<div class="col-md-10">-->
+    <!--<textarea class="form-control" rows="3" style="resize: none;overflow-y: auto;height: 100px;" readonly>-->
+    <!--{{vm.seekData.Reply}}-->
+    <!--</textarea>-->
+    <!--</div>-->
+    <!--</div>-->
+  </div>
+  <div class="modal-footer">
+    <div class="mask" close-pic style="display: none;">
+      <div class="mask-box"></div>
+      <div class="big-pic-wrap">
+        <img src="" alt="" class="bigPic mybigPic"/>
+        <span class="close-pic"><i class="glyphicon glyphicon-remove"></i></span>
+      </div>
+    </div>
+    <button class="btn btn-primary" ng-click="vm.ok()" ng-show="!vm.seek">确定</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">关闭</button>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="select">
+        <select name="" id="" ng-model="vmo.orgid" ng-options="v.typeID as v.typeName  for v in vmo.dj_PartyOrganization" style="float: left;width: auto;" class="form-control">
+        </select>
+      </div>
+      <input type="text" class="form-control" placeholder="通过姓名查找..." ng-model="vmo.key" style="float: left;width: auto;">
+      <span class="input-group-btn" style="float: left;width: auto;">
+                 <button type="button" class="btn btn-default" ng-click="vmo.searchPartyMeber(vmo.key)">
+  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索
+</button>
+                </span>
+    </div>
+    <div class="col-md-4">
+      <div class="btn-group pull-right" role="group" aria-label="oper">
+        <a class="btn btn-primary" ng-click="vmo.tj()"
+           tooltip-placement="top" uib-tooltip="统计">
+          <i class="glyphicon glyphicon-signal"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vmo.add()"
+           tooltip-placement="top" uib-tooltip="新增">
+          <i class="glyphicon glyphicon-plus"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vmo.update()" ng-show="!!vmo.selectedRow"
+           tooltip-placement="top" uib-tooltip="修改">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <!--<a class="btn btn-primary" ng-click="vmo.remove()" ng-show="!!vmo.selectedRow"
+           tooltip-placement="top" uib-tooltip="删除">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>-->
+        <a class="btn btn-primary" ng-click="vmo.view()" ng-show="!!vmo.selectedRow"
+           tooltip-placement="top" uib-tooltip="查看">
+          <i class="glyphicon glyphicon-eye-open"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div ui-grid="vmo.gridOptions"
+           ui-grid-selection
+           ui-grid-pagination
+           ui-grid-resize-columns
+           class="regionalization-grid">
+      </div>
+    </div>
+  </div>
+</div>

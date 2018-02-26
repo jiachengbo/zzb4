@@ -1,0 +1,133 @@
+<style>
+  .has-error .control-label{
+    color:#000;
+  }
+  .container-fluid.page-content{
+    background-image: url('/modules/core/client/img/houtaibg.png');
+  }
+</style>
+<section>
+    <form name="vm.muserForm" class="form-horizontal" novalidate>
+      <uib-tabset active="active">
+        <uib-tab index="0" heading="用户详情">
+          <fieldset ng-disabled="vm.disabled" class="muser-userinfo">
+            <!--自动生成
+                    <div class="form-group" show-errors ng-repeat="col in vm.columnDefs">
+                      <label class="control-label" for="{{col.field}}">{{col.displayName}}</label>
+                      <input name="{{col.field}}" type="text" ng-model="vm.muser_row[col.field]" id="{{col.field}}" class="form-control" placeholder="{{col.displayName}}" required autofocus>
+                      <div ng-messages="vm.muserForm[col.field].$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Workposition {{col.field}} is required.</p>
+                      </div>
+                    </div>
+            -->
+            <div class="form-group" ng-re show-errors>
+              <label class="control-label" for="username">登录名</label>
+              <input name="username" type="text" ng-model="vm.muser_row.username" id="username" class="form-control" placeholder="UserName" required autofocus />
+              <div ng-messages="vm.muserForm.username.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">登录名必须要输入.</p>
+              </div>
+            </div>
+            <div class="form-group" ng-re show-errors>
+              <label class="control-label" for="username">身份证号</label>
+              <input name="IDNumber" type="text" ng-model="vm.muser_row.IDNumber" id="IDNumber" class="form-control" placeholder="身份证号" required autofocus ng-blur="vm.idcard(vm.muser_row.IDNumber)"/>
+              <div ng-messages="vm.muserForm.IDNumber.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入身份证号</p>
+              </div>
+              <p style="color:firebrick" ng-show="vm.idcar">身份证号已经存在</p>
+            </div>
+            <div class="form-group " show-errors>
+              <label class="control-label" for="firstName">部门名称</label>
+              <input name="firstName" type="text" ng-model="vm.muser_row.firstName" id="firstName" class="form-control" placeholder="部门名称" required ng-disabled="true" />
+              <div ng-messages="vm.muserForm.firstName.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">部门名称必须要输入.</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors>
+              <label class="control-label" for="lastName">用户名称</label>
+              <input name="lastName" type="text" ng-model="vm.muser_row.lastName" id="lastName" class="form-control" placeholder="用户名称" />
+              <div ng-messages="vm.muserForm.lastName.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">用户名称必须要输入.</p>
+              </div>
+            </div>
+            <div class="form-group" ng-show="false">
+              <label class="control-label" for="roles">特殊权限</label>
+              <textarea name="roles" data-ng-model="vm.muser_row.roles" id="roles" class="form-control" cols="30" rows="2" placeholder="roles" ng-disabled="true"></textarea>
+            </div>
+            <div class="form-group" show-errors ng-if="!vm.disabled">
+              <label class="control-label" for="roles">用户角色</label>
+              <select name="JCDJ_User_roleID" type="text" ng-model="vm.muser_row.JCDJ_User_roleID"ng-change="vm.changedrole(vm.muser_row.JCDJ_User_roleID)" id="JCDJ_User_roleID" class="form-control" placeholder="选择用户角色" required>
+                <option value="{{partyList}}" data-ng-repeat="partyList in vm.partyList11">{{partyList.descriptor}}</option>
+              </select>
+              <div ng-messages="vm.muserForm.JCDJ_User_roleID.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择用户角色</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors ng-if="vm.disabled">
+              <label class="control-label" for="roles">用户角色</label>
+              <select name="JCDJ_User_roleID" type="text" ng-model="vm.muser_row.JCDJ_User_roleID"ng-change="vm.changedrole(vm.muser_row.JCDJ_User_roleID)" id="JCDJ_User_roleID1" class="form-control" placeholder="选择用户角色" ng-options="partyList.UserRoleID as partyList.descriptor for partyList in vm.partyList11">
+              </select>
+            </div>
+            <div class="form-group" show-errors >
+              <label class="control-label" for="roles">用户权限</label>
+              <select name="jobs" type="text" ng-model="vm.muser_row.jobs"id="jobs" class="form-control" placeholder="选择用户权限" ng-options="jobss.value as jobss.name for jobss in vm.jobss"ng-change='vm.changedjobrole(vm.muser_row.jobs)'>
+              </select>
+            </div>
+            <div class="form-group" show-errors ng-show="vm.show">
+              <label class="control-label" for="roles">选择党委或党工委</label>
+              <select name="partys" type="text" ng-model="vm.muser_row.party"ng-change="vm.changedparty(vm.muser_row.party)" id="party" class="form-control" placeholder="选择党委或党工委"  ng-disabled="vm.disableds">
+                <option value="1">党委</option>
+                <option value="2">党工委</option>
+              </select>
+              <div ng-messages="vm.muserForm.partys.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">选择党委或党工委</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors ng-show="vm.jiedao">
+              <label class="control-label" for="roles">选择街道或单位</label>
+              <select name="partyname" type="text" ng-model="vm.muser_row.street"ng-change="vm.changedstreet(vm.muser_row.street)" id="street" class="form-control" placeholder="选择党委或党工委" >
+                <option value="{{partyzhibu.typeID}}" data-ng-repeat="partyzhibu in vm.partyzhibu">{{partyzhibu.typeName}}</option>
+              </select>
+              <div ng-messages="vm.muserForm.partyname.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">选择党委或党工委</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors ng-show="vm.zongzhi">
+              <label class="control-label" for="roles">选择总支部</label>
+              <select name="zongzhi" type="text" ng-model="vm.muser_row.zongzhi"ng-change="vm.changedstreet(vm.muser_row.zongzhi)" id="zongzhi" class="form-control" placeholder="选择总支部" >
+                <option value="{{partyzhibu}}" data-ng-repeat="partyzhibu in vm.partyzhibu">{{partyzhibu.simpleName}}</option>
+              </select>
+              <div ng-messages="vm.muserForm.zongzhi.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">选择总支部</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors ng-if="!vm.disabled">
+              <label class="control-label" for="roles">所属支部</label>
+              <select name="partybranch" type="text" ng-model="vm.muser_row.branch"ng-change="vm.changedpartybranch(vm.muser_row.branch)" id="partybranch" class="form-control" placeholder="选择所属支部" required>
+                <option value="{{partybranch}}" ng-repeat="partybranch in vm.partybranch track by $index">{{partybranch.simpleName}}</option>
+              </select>
+              <div ng-messages="vm.muserForm.partybranch.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">选择所属支部</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors ng-if="vm.disabled">
+              <label class="control-label" for="roles">所属支部</label>
+              <select name="partybranch" type="text" ng-model="vm.muser_row.branch"ng-change="vm.changedpartybranch(vm.muser_row.branch)" id="partybranch1" class="form-control" placeholder="选择所属支部" ng-options="partybranch.OrganizationId as partybranch.simpleName for partybranch in vm.dj_PartyBranch">
+              </select>
+            </div>
+          </fieldset>
+        </uib-tab>
+        <uib-tab index="1" heading="岗位选择">
+          <treecontrol class="tree-classic"
+                       tree-model="vm.treeData"
+                       options="vm.treeOptions"
+                       on-selection="vm.showSelected(node)"
+                       selected-node="vm.selected"
+                       expanded-nodes="vm.expanded">
+            <input type="checkbox" ng-model="node.value.selected" ng-change="vm.changed(node)" ng-disabled="vm.disabled"  ng-if="vm.isWorkPositionNode(node)">
+            {{vm.treeTitle(node)}}
+          </treecontrol>
+        </uib-tab>
+      </uib-tabset>
+    </form>
+  </div>
+</section>

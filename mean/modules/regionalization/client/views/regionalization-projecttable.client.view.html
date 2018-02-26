@@ -1,0 +1,46 @@
+<style>
+  .container-fluid.page-content {
+    background-image: url('/modules/core/client/img/houtaibg.png')
+  }
+</style>
+<section>
+  <div class="page-header">
+    <h3>
+      项目管理
+      <div class="btn-group pull-right" role="group" aria-label="oper">
+        <a class="btn btn-primary" ng-click="vm.add()"
+           tooltip-placement="top" uib-tooltip="项目立项">
+          <i class="glyphicon glyphicon-plus"></i>
+        </a>
+        <a class="btn btn-primary"
+           ng-click="vm.approval()" ng-show="!!vm.selectedRow"
+           tooltip-placement="top" uib-tooltip="项目审核" ng-if="vm.iscanyu">
+          <i class="glyphicon glyphicon-pawn"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.update()" ng-show="!!vm.selectedRow"
+           tooltip-placement="top" uib-tooltip="项目修改" ng-if="vm.iscanyu">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.remove()" ng-show="!!vm.selectedRow"
+           tooltip-placement="top" uib-tooltip="项目删除" ng-if="vm.iscanyu">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.view()" ng-show="!!vm.selectedRow"
+           tooltip-placement="top" uib-tooltip="项目查看">
+          <i class="glyphicon glyphicon-eye-open"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.knot()" ng-show="!!vm.selectedRow"
+           tooltip-placement="top" uib-tooltip="项目结项" ng-if="vm.iscanyu">
+          <i class="glyphicon glyphicon-ok"></i>
+        </a>
+      </div>
+    </h3>
+  </div>
+  <uib-tabset active="active" type="tabs" ng-if="vm.showtab">
+    <uib-tab index="0" heading="创建" select="vm.alertMe('创建')"></uib-tab>
+    <uib-tab index="1" select="vm.alertMe('认领')" heading="参与">
+    </uib-tab>
+  </uib-tabset>
+  <div ui-grid="vm.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-resize-columns
+       class="regionalization-grid"></div>
+</section>

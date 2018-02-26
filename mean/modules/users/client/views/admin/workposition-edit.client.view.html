@@ -1,0 +1,57 @@
+<style>
+  .has-error .control-label{
+    color:#000;
+  }
+  .container-fluid.page-content{
+    background-image: url('/modules/core/client/img/houtaibg.png');
+  }
+</style>
+<section>
+    <form name="vm.workpositionForm" class="form-horizontal" novalidate>
+      <uib-tabset active="active">
+        <uib-tab index="0" heading="岗位详情">
+          <fieldset ng-disabled="vm.disabled" class="workpostion-info">
+            <!--自动生成
+                    <div class="form-group" show-errors ng-repeat="col in vm.columnDefs">
+                      <label class="control-label" for="{{col.field}}">{{col.displayName}}</label>
+                      <input name="{{col.field}}" type="text" ng-model="vm.position_row[col.field]" id="{{col.field}}" class="form-control" placeholder="{{col.displayName}}" required autofocus>
+                      <div ng-messages="vm.workpositionForm[col.field].$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Workposition {{col.field}} is required.</p>
+                      </div>
+                    </div>
+            -->
+            <div class="form-group" ng-re show-errors>
+              <label class="control-label" for="name">岗位名</label>
+              <input name="name" type="text" ng-model="vm.position_row.name" id="name" class="form-control" placeholder="Name" required autofocus />
+              <div ng-messages="vm.workpositionForm.name.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">岗位名必须输入.</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors>
+              <label class="control-label" for="displayName">岗位显示名</label>
+              <input name="displayName" type="text" ng-model="vm.position_row.displayName" id="displayName" class="form-control" placeholder="DisplayName" required />
+              <div ng-messages="vm.workpositionForm.displayName.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">岗位显示名必须输入.</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="descText">岗位描述</label>
+              <textarea name="destText" data-ng-model="vm.position_row.descText" id="descText" class="form-control" cols="30" rows="10" placeholder="descText"></textarea>
+            </div>
+          </fieldset>
+        </uib-tab>
+        <uib-tab index="1" heading="岗位权限">
+          <treecontrol class="tree-classic"
+                       tree-model="vm.treeData"
+                       options="vm.treeOptions"
+                       on-selection="vm.showSelected(node)"
+                       selected-node="vm.selected"
+                       expanded-nodes="vm.expanded">
+            <input type="checkbox" ng-model="node.value.selected" ng-change="vm.changed(node)" ng-disabled="vm.disabled">
+            {{vm.treeTitle(node)}}
+          </treecontrol>
+        </uib-tab>
+      </uib-tabset>
+    </form>
+  </div>
+</section>

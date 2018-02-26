@@ -1,0 +1,271 @@
+<style>
+  .top-menu{
+    position: relative;
+  }
+  .top-menu>div{
+    position: absolute;
+    top: 95px;
+    color: #fff;
+    font-size: 17px;
+    height: 50px;
+    line-height: 50px;
+  }
+  .top-menu>div>ul>li>a{
+    padding-left:0;
+    padding-right: 0;
+  }
+  .top-menu>div:hover{
+    cursor: pointer;
+  }
+  .menu-user{
+    right: 0;
+  }
+  .mypartybuild{
+    right: 28%;
+  }
+  .edu{
+    right: 34%;
+  }
+  .cityparty{
+    right: 53%;
+  }
+  .jichuxx{
+    right: 61%;
+  }
+  .video{
+    right: 40%;
+  }
+  .taskPayout{
+    right: 46%;
+  }
+  .set{
+    right: 25%;
+    padding-top: 15px;
+  }
+  .score{
+    right: 34%;
+  }
+  .navbar-inverse .navbar-nav>li>a{
+    width: 120px;
+    height: 55px;
+    line-height: 35px;
+    text-align: center;
+  }
+  .navbar-right .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+  /*.dropdown-menu{*/
+  /*background-color: transparent;*/
+  /*}*/
+  /*.dropdown-menu > li > a{*/
+  /*height: 158px;*/
+  /*}*/
+  /*.dropdown-menu > li > a:hover{*/
+  /*background-image: linear-gradient(to bottom, transparent 0%, transparent 100%);*/
+  /*background-color: transparent;*/
+  /*}*/
+  .menu-user>ul:nth-of-type(2)>li:nth-of-type(4)>a{
+    width: 70px;
+  }
+  .menu-user>ul:nth-of-type(2)>li:nth-of-type(3)>a{
+    width: 250px;
+  }
+  .menu-user>ul:nth-of-type(2)>li:nth-of-type(3)>ul{
+    width: 250px;
+  }
+  .xitong .dropdown-menu > li > a{
+    width: 180px;
+    background: url("/modules/core/client/img/header/系统设置.png") no-repeat 0 0;
+    background-size: 100% 100%;
+  }
+  .edu .dropdown-menu > li > a{
+    width: 180px;
+    background: url("/modules/core/client/img/header/宣传教育png.png") no-repeat 0 0;
+    background-size: 100% 100%;
+  }
+  .cityparty .dropdown-menu > li > a{
+    width: 180px;
+    background: url("/modules/core/client/img/header/城市基础党建.png") no-repeat 0 0;
+    background-size: 100% 100%;
+  }
+  .jichuxx .dropdown-menu > li > a{
+    width: 180px;
+    background: url("/modules/core/client/img/header/基础信息管理.png") no-repeat 0 0;
+    background-size: 100% 100%;
+  }
+  .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus{
+    color: #000;
+    background-color: #4D4D4D;
+  }
+  .navbar-inverse> .top-menu >div>ul>li> a.active{
+    background:url("/modules/core/client/img/header/activebg.png") #4D4D4D;
+    box-shadow: inset 0 3px 9px rgba(0, 0, 0, 0);
+    background-size: 100% 100%;
+    color: white;
+    /*color: #000000;*/
+  }
+  /*.sidebar-menu > ul > li > a {*/
+  /*background-image: url(/modules/core/client/img/header/按钮.png);*/
+  /*background-size: 100% 100%;*/
+  /*}*/
+</style>
+<div class="container-fluid navbar navbar-fixed-top navbar-inverse" ng-controller="HeaderController as vm">
+  <div class="top-menu">
+    <div class="menu-user">
+      <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
+        <li ui-sref-active="active">
+          <a ui-sref="authentication.signup">注册</a>
+        </li>
+        <li class="divider-vertical"></li>
+        <li ui-sref-active="active">
+          <a ui-sref="authentication.signin">登录</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+        <li class='header-state-li' tooltip-placement="bottom" uib-tooltip="通知消息">
+          <button class="btn btn-sm header-state-btn" type="button" ng-click="vm.openStateChangeMsgModalInstance()">
+            <span class="header-state-num" ng-show="vm.stateChangeMsg && (vm.stateChangeMsg[0].djdt > 0 || vm.stateChangeMsg[1].problemwall > 0)"></span>
+          </button>
+        </li>
+        <li class="header-task-li" tooltip-placement="bottom" uib-tooltip="任务消息">
+          <button class="btn btn-sm header-task-btn" type="button" ng-click="vm.openTaskMsgModalInstance()">
+            <span class="header-task-num" ng-show="vm.userWaitHandles && vm.userWaitHandles.length > 0"></span>
+          </button>
+        </li>
+        <!--<li class="dropdown" uib-dropdown>-->
+        <!--<a class="user-header-dropdown-toggle">-->
+        <!--<img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />-->
+        <!--<span ng-bind="vm.authentication.user.displayName" style="font-size: 16px"></span>-->
+        <!--</a>-->
+        <!--</li>-->
+        <li class="dropdown" uib-dropdown>
+          <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
+            <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
+            <span ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
+              <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
+            </li>
+            <li class="divider"></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/api/auth/signout" target="_self">退出</a>
+        </li>
+      </ul>
+    </div>
+    <div class="set">
+      <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+        <li class="">
+          <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button" ng-click="vm.itemClick('xtsz')" style="width: 30px;height: 20px;background-image: url('/modules/global/client/img/images/set.png');background-repeat: round;" data-ng-if="!vm.fff">
+          </a>
+          <!--<ul class="dropdown-menu" role="menu">-->
+          <!--<li>-->
+          <!--<a href="#" ></a>-->
+          <!--</li>-->
+          <!--</ul>-->
+        </li>
+      </ul>
+    </div>
+    <div class="mypartybuild">
+      <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+        <li class="" data-ng-if="!vm.userjob">
+          <a class="dropdown-toggle user-header-dropdown-toggle myparty amenu"  uib-dropdown-toggle  role="button" ng-click="vm.itemClick('myparty')">
+            我的党建
+          </a>
+          <!--<ul class="dropdown-menu" role="menu">-->
+          <!--<li>-->
+          <!--<a href="#" ></a>-->
+          <!--</li>-->
+          <!--</ul>-->
+        </li>
+      </ul>
+    </div>
+    <div class="edu">
+      <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+        <li class="">
+          <a class="dropdown-toggle user-header-dropdown-toggle xcjy amenu" uib-dropdown-toggle role="button" ng-click="vm.itemClick('xcjy')">
+            宣传教育
+          </a>
+          <!--<ul class="dropdown-menu" role="menu">-->
+          <!--<li>-->
+          <!--<a href="#" ></a>-->
+          <!--</li>-->
+          <!--</ul>-->
+        </li>
+      </ul>
+    </div>
+    <!--<div class="score">-->
+    <!--<ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">-->
+    <!--<li class="">-->
+    <!--<a class="dropdown-toggle user-header-dropdown-toggle jifen amenu" uib-dropdown-toggle role="button" ng-click="vm.itemClick('jifen')">-->
+    <!--积分管理-->
+    <!--</a>-->
+    <!--&lt;!&ndash;<ul class="dropdown-menu" role="menu">&ndash;&gt;-->
+    <!--&lt;!&ndash;<li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<a href="#" ></a>&ndash;&gt;-->
+    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <div class="video">
+      <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+        <li class="" >
+          <a class="dropdown-toggle user-header-dropdown-toggle videoson amenu" uib-dropdown-toggle role="button" ng-click="vm.itemClick('video')">
+            视频会议
+          </a>
+          <!--<ul class="dropdown-menu" role="menu">-->
+          <!--<li>-->
+          <!--<a href="#" ></a>-->
+          <!--</li>-->
+          <!--</ul>-->
+        </li>
+      </ul>
+    </div>
+    <div class="taskPayout">
+      <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+        <li class="">
+          <a class="dropdown-toggle user-header-dropdown-toggle task amenu" uib-dropdown-toggle role="button" ng-click="vm.itemClick('task')">
+            任务派遣
+          </a>
+          <!--<ul class="dropdown-menu" role="menu">-->
+          <!--<li>-->
+          <!--<a href="#" ></a>-->
+          <!--</li>-->
+          <!--</ul>-->
+        </li>
+      </ul>
+    </div>
+    <div class="cityparty">
+      <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+        <li class="">
+          <a class="dropdown-toggle user-header-dropdown-toggle cityjcdj amenu" uib-dropdown-toggle role="button" ng-click="vm.itemClick('cityjcdj')">
+            城市基层党建
+          </a>
+          <!--<ul class="dropdown-menu" role="menu">-->
+          <!--<li>-->
+          <!--<a href="#" ></a>-->
+          <!--</li>-->
+          <!--</ul>-->
+        </li>
+      </ul>
+    </div>
+    <div class="jichuxx">
+      <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+        <li class="">
+          <a class="dropdown-toggle user-header-dropdown-toggle jcxxgl amenu" uib-dropdown-toggle role="button" ng-click="vm.itemClick('jcxxgl')">
+            基础信息管理
+          </a>
+          <!--<ul class="dropdown-menu" role="menu">-->
+          <!--<li>-->
+          <!--<a href="#" ></a>-->
+          <!--</li>-->
+          <!--</ul>-->
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

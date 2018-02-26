@@ -1,0 +1,67 @@
+<div class="survey-modal">
+  <div class="modal-header">
+    <h1>{{vm.method}}</h1>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.surveyForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="form-group" show-errors>
+          <label class="control-label" for="content">概况</label>
+          <textarea name="content" data-ng-model="vm.surveyData.content" id="content" class="form-control" cols="30" rows="10" placeholder="概况" required maxlength="8000"></textarea>
+          <div ng-messages="vm.surveyForm.content.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">请输入概况</p>
+          </div>
+          <div ng-messages="vm.surveyForm.content.$error" role="alert">
+            <p class="help-block error-text" ng-message="maxlength">字数在8000字以内</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+                <label class="control-label">动态图片</label>
+                <div class="form-group text-center">
+                  <img ngf-src="vm.fileSelected ? vm.picFile : vm.surveyData.imgFile"
+                       alt="" class="img-thumbnail organization-profile-picture" ngf-drop>
+                </div>
+                <div ng-show="vm.loading" class="form-group text-center">
+                  <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                       height="80" width="40" alt="Loading image...">
+                </div>
+                <div class="text-center form-group">
+                  <button class="btn btn-default btn-file"
+                          ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                          ng-model="vm.picFile" accept="image/*"
+                          ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
+                          ngf-resize-if="$width > 400 || $height > 400">点击选择动态图片
+                  </button>
+                </div>
+              </div>
+            <div class="col-md-6">
+              <label class="control-label">文件上传</label>
+              <div class="form-group text-center">
+                <label ng-show="vm.fileSelect">{{vm.fileSelect ? vm.fileFile.name: vm.surveyData.textfile}}</label>
+              </div>
+              <div ng-show="vm.loadings" class="form-group text-center">
+                <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                     height="80" width="40" alt="Loading image...">
+              </div>
+              <div class="text-center form-group">
+                <button class="btn btn-default btn-file"
+                        ngf-select="(vm.fileSelect = true) && (vm.loadings = false)"
+                        ngf-before-model-change="vm.loadings = true" ngf-resize="{width: 400}"
+                        ng-model="vm.fileFile"
+                        accept="application/msword">点击选择文件
+                </button>
+                <a href="{{vm.fileSelect ? vm.fileFile.name: vm.surveyData.textfile}}" ng-show="vm.surveyData.textfile" target="_blank" style="display: inline-block;width: 80px;height: 34px;line-height: 34px;margin-top: 10px;border: 1px solid #ccc;border-radius: 5px;background-color: #e0e0e0;opacity: 0.65">查看</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.surveyForm.$valid)">确定</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

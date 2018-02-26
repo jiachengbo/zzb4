@@ -1,0 +1,184 @@
+/*模态窗口*/
+.task-modal {
+    margin: 10px;
+}
+/*表格*/
+.task-grid {
+    height: 500px;
+}
+.items li.act{
+	background: #245580;
+	color: white;
+}
+.leftitems li.act{
+	background: #245580;
+	color: white;
+}
+.mask{
+	display: none;
+}
+.mask-box{
+	position:absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 8000;
+	opacity: 0.5;
+	background: #000;
+}
+.big-pic-wrap{
+	position:fixed;
+	top:50%;
+	left:50%;
+	margin-left: -460px;
+	margin-top: -300px;
+	width:950px;
+	height: 700px;
+	padding:10px;
+	z-index:9000;
+	background:#fff;
+}
+.mybigPic{
+	position: absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom: 0;
+	margin: auto;
+}
+/*.bigPic{*/
+	/*width:900px;*/
+	/*height:600px;*/
+/*}*/
+/*关闭大图按钮*/
+.close-pic{
+	position:absolute;
+	top:5px;
+	right:5px;
+	display:inline-block;
+	width: 25px;
+	height: 25px;
+	cursor:pointer;
+	border-radius:50% !important;
+	background: #393A3C;
+	text-align: center;
+	line-height: 40px;
+}
+/*.close-pic:hover{*/
+/*background: #D43F27;*/
+/*}*/
+.close-pic>i{
+	font-size: 25px;
+	color:red;
+}
+.acceptTask{
+	background-image: url("/modules/task/client/image/accepttask1.png");
+}
+.acceptTask.act{
+	background-image: url("/modules/task/client/image/accepttask2.png");
+}
+.sendTask{
+	background-image: url("/modules/task/client/image/sendtask1.png");
+	margin-left: 20px;
+}
+.sendTask.act{
+	background-image: url("/modules/task/client/image/sendtask2.png");
+}
+.replybtn{
+	width: 132px;
+	height: 41px;
+	float: left;
+	cursor: pointer;
+	background-image: url("/modules/task/client/image/reply1.png");
+}
+.replybtn.act{
+	background-image: url("/modules/task/client/image/reply2.png");
+}
+.seekbtn{
+	width: 132px;
+	height: 41px;
+	float: left;
+	margin-left: 20px;
+	cursor: pointer;
+	background-image: url("/modules/task/client/image/see1.png");
+}
+.seekbtn.act{
+	background-image: url("/modules/task/client/image/see2.png");
+}
+.uploadbtn{
+	width: 167px;
+	height: 41px;
+	float: left;
+	margin-left: 20px;
+	cursor: pointer;
+	background-image: url("/modules/task/client/image/uploadprogress1.png");
+}
+.uploadbtn.act{
+	background-image: url("/modules/task/client/image/uploadprogress2.png");
+}
+.gettaskbtn{
+	width: 132px;
+	height: 41px;
+	float: left;
+	cursor: pointer;
+	margin-left: 20px;
+	background-image: url("/modules/task/client/image/gettask1.png");
+}
+.gettaskbtn.act{
+	background-image: url("/modules/task/client/image/gettask2.png");
+}
+.taskprogress{
+	width: 167px;
+	height: 41px;
+	float: left;
+	cursor: pointer;
+	margin-left: 20px;
+	background-image: url("/modules/task/client/image/taskprogess1.png");
+}
+.taskprogress.act{
+	background-image: url("/modules/task/client/image/taskprogress2.png")
+}
+.addtask{
+	width: 132px;
+	height: 41px;
+	float: left;
+	cursor: pointer;
+	margin-left: 20px;
+	background-image: url("/modules/task/client/image/addtask1.png");
+}
+.addtask.act{
+	background-image: url("/modules/task/client/image/addtask2.png");
+}
+.task-grid .ui-grid-header-cell-wrapper{
+	height: 50px;
+	background-image: url("/modules/task/client/image/radius.png");
+	background-repeat: round;
+	background-size: 100% 100%;
+}
+.ui-grid-header-cell-primary-focus{
+	height: 50px;
+	line-height: 40px;
+}
+.task-grid{
+	border: 1px solid #FB8131;
+}
+.replytable{
+	width: 100%;
+}
+.replytable tr td{
+	border: 1px solid #ddd;
+	text-align: center;
+}
+.replytable tr td:nth-child(1){
+	width: 20%;
+}
+.replytable tr td:nth-child(2){
+	width: 20%;
+}
+.replytable tr td:nth-child(3){
+	width: 40%;
+}
+.replytable tr td:nth-child(4){
+	width: 20%;
+}

@@ -1,0 +1,77 @@
+<div class="worknode-modal">
+  <div class="modal-header">
+    <h3>{{vm.method}} 工作日志</h3>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.worknodeForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="streetid">所属街道</label>
+              <select class="form-control"
+                      id="streetid"
+                      ng-model="vm.worknodeData.streetid"
+                      ng-options="street.streetID as street.streetName for street in street"
+                      required
+                      name="streetid"
+                      ng-change="vm.strchang(vm.worknodeData.streetid)"
+              >
+              </select>
+              <div ng-messages="vm.worknodeForm.streetid.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择街道</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="communityid">所属社区</label>
+              <select class="form-control"
+                      id="communityid"
+                      ng-model="vm.worknodeData.communityid"
+                      ng-options="community.communityId as community.communityName for community in community"
+                      required
+                      name="communityid"
+                      ng-change="vm.commchange(vm.worknodeData.streetid, vm.worknodeData.communityid)"
+              >
+              </select>
+              <div ng-messages="vm.worknodeForm.communityid.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择社区</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="gridId">所属网格</label>
+              <select class="form-control"
+                      id="gridId"
+                      ng-model="vm.worknodeData.gridId"
+                      ng-options="grid.gridId as grid.gridNum for grid in grid"
+                      required
+                      name="gridId"
+              >
+              </select>
+              <div ng-messages="vm.worknodeForm.gridId.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择网格</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="userReportContext">内容</label>
+          <textarea name="userReportContext"  ng-model="vm.worknodeData.userReportContext" maxlength="2000" id="userReportContext" class="form-control" placeholder="内容" required autofocus cols="30" rows="10"></textarea>
+          <div ng-messages="vm.worknodeForm.userReportContext.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">内容是必须的.</p>
+          </div>
+          <div ng-messages="vm.worknodeForm.userReportContext.$error" role="alert">
+            <p class="help-block error-text" ng-message="maxlength">字数在2000字以内.</p>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.worknodeForm.$valid)">确认</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

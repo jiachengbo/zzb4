@@ -1,0 +1,142 @@
+<section class="home-view view-backgroupd">
+  <div class="shouyeshang">
+    <div class="partygk">
+      <div class="patitle">
+        <a href="#" style="float: left">
+          <i></i>
+          <span>党工委概况</span>
+        </a>
+        <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+      </div>
+      <div style="margin: 0 20px;height: 430px;overflow: hidden;">
+        <img src="{{vm.surver.imgFile}}" style="float: left;width: 60%;height:60%;padding-right: 5px;position: relative;z-index: 20;">
+        <p class="surveyp" style="line-height: 27px;text-indent: 2em;position: relative;;right: 0;top: 0;" ng-mouse-wheel-down="vm.mousewheeldown(e)" ng-mouse-wheel-up="vm.mousewheelup(e)">{{vm.surver.content}}
+        </p>
+      </div>
+
+    </div>
+    <div class="partyjc">
+    </div>
+    <div class="partywj">
+      <div class="patitle">
+        <a href="#" style="float: left">
+          <i></i>
+          <span>通知文件</span>
+        </a>
+        <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+      </div>
+      <div style="margin: 0 20px">
+        <ul class="inform">
+          <li ng-repeat="v in vm.noticeData" class="caitiao1">
+            <a href="{{v.file_path}}" target="_blank" class="informtitle">{{v.title}}</a>
+            <span style="float: right">{{v.createdate | date:'yyyy-MM-dd'}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="shouyexia">
+    <div class="wentuhd1" style="width: 50%;">
+      <div class="patitle">
+        <a href="#" style="float: left">
+          <i></i>
+          <span>党建动态</span>
+        </a>
+        <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-6">
+          <div id="slider">
+            <div style="height: 400px">
+              <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                  <img ng-src="{{slide.image}}" style="margin:auto;height: 400px;width: 100%;">
+                  <div class="carousel-caption">
+                    <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{slide.text}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <ul class="inform" style="list-style: none;">
+            <li ng-repeat="v in vm.partyBuildingData track by $index" ng-click="vm.partydynamic($index)" class="shou caitiao1">
+              <span class="informtitle">{{v.appealTitle}}</span>
+              <span style="float: right">{{v.createDate | date : 'yyyy-MM-dd'}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="banzicy" style="width: 46%;padding-left: 15px;">
+      <div class="patitle">
+        <a href="#" style="float: left">
+          <i></i>
+          <span>党工委</span>
+        </a>
+        <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+      </div>
+      <div>
+        <div class="row">
+          <div class="col-md-12 col-lg-12" >
+            <div class="ditem button " ng-repeat="v in vm.dj_PartyOrganization" ng-if="v.comType === 2 ? true : false">
+              <a href="/page/basicmsg-org?id={{v.typeID}}">{{v.typeName}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" style="overflow-x: hidden">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>党建地图</span>
+          </a>
+          <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+        </div>
+      </div>
+      <div class="col-md-2 col-lg-2">
+        <div class="strMapSearch" id="0" ng-click="vm.search($event)">全部街道</div>
+        <div class="strMapSearch" ng-repeat="v in vm.street_info" ng-if="v.streetID !== 0 && v.streetID !== 10"
+             id="{{v.streetID}}" ng-click="vm.search($event)">{{v.streetName}}
+        </div>
+      </div>
+      <div class="col-md-10 col-lg-10">
+        <div id="homemap" style="height: 500px"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>统计分析</span>
+          </a>
+          <span style="float: right;cursor: pointer;" ng-click="vm.PartyOrganization()" class="analyza">党组织分析</span>
+          <span style="float: right;padding-right: 0px;padding-left: 0;"> | </span>
+          <span style="float: right;padding-right: 15px;cursor: pointer;" ng-click="vm.PartyMember()" class="analyza">党员分析</span>
+        </div>
+      </div>
+      <div class="row" style="margin-left: 20px" ng-show="!vm.PartyOrganizationF">
+        <button class=" btn btn-info" ng-click="vm.analyze('num')">人数分析</button>
+        <button class=" btn btn-info" ng-click="vm.analyze('age')">年龄分析</button>
+        <button class=" btn btn-info" ng-click="vm.analyze('sex')">性别分析</button>
+        <button class=" btn btn-info" ng-click="vm.analyze('jointime')">入党时间分析</button>
+      </div>
+        <div class="row" style="margin-left: 20px" ng-show="vm.PartyOrganizationF">
+            <button class=" btn btn-info" ng-click="vm.analyze('orgnum')">组织个数</button>
+            <button class=" btn btn-info" ng-click="vm.analyze('unitclass')">单位类别分析</button>
+            <button class=" btn btn-info" ng-click="vm.analyze('orgpersonnum')">党员人数分析</button>
+            <button class=" btn btn-info" ng-click="vm.analyze('orgclass')">组织类别分析</button>
+        </div>
+        <div class="row" style="margin: 20px auto">
+          <div class="col-md-7" id="main" style="height:600px;"></div>
+          <div class="col-md-5" id="main1" style="height:600px;"></div>
+        </div>
+    </div>
+  </div>
+</section>

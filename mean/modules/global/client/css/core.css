@@ -1,0 +1,346 @@
+body {
+	background-color: #ededed;
+	color: #333333;
+	font-family: "Open Sans", sans-serif;
+	padding: 0 !important;
+	margin: 0 !important;
+	font-size: 13px;
+	direction: ltr;
+	/*overflow-x: hidden;*/
+}
+
+/*只设置最外层的页头*/
+body > .page-header /*, .page-header .container-fluid*/
+{
+	padding: 0;
+	margin: 0;
+}
+
+.navbar-inverse {
+	background-image: url("/modules/global/client/img/images/head-bg.png");
+	border-bottom-width: 0;
+	background-repeat: round;
+}
+
+.page-header {
+	border-bottom-width: 0;
+}
+
+.page-header .navbar .navbar-brand {
+	width: 140px; /*调整位置,使toggle-sidebarmenu靠菜单右边*/
+	text-align: right;
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+	background-color: transparent;
+}
+
+/*头部右侧点击效果*/
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .active > a {
+	background-image: linear-gradient(to bottom, #0c5fa6 0%, #0c5fa6 100%);
+}
+
+/*左边菜单打开关闭按钮*/
+.page-header .navbar .toggle-sidebarmenu span {
+	display: none;
+}
+
+.page-header .navbar .toggle-sidebarmenu {
+	float: left;
+	width: 30px;
+	height: 30px;
+	margin-right: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 0;
+	padding: 0;
+	background-image: url("/modules/global/client/img/images/menu.png");
+	background-repeat: round;
+}
+
+/*标题栏宽度较小时*/
+@media (max-width: 767px) {
+	.navbar-nav .open .dropdown-menu {
+		background-color: #fff;
+		color: #333;
+	}
+
+	.navbar-nav .open .dropdown-menu li:hover {
+		background-color: #ccc;
+	}
+
+	.page-header .navbar .toggle-sidebarmenu {
+		float: right;
+		/*width: auto;*/
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		width: 18px;
+		height: 18px;
+		margin-top: 16px;
+		margin-bottom: 16px;
+	}
+}
+
+.page-header .navbar .navbar-brand {
+	width: auto;
+	margin-right: 10px;
+	margin-left: 0 !important;
+	padding-left: 0 !important;
+}
+
+.page-header .navbar .navbar-brand img {
+	margin-left: 4px !important;
+}
+
+.page-header .navbar .top-menu .navbar-nav {
+	/*display: inline-block; */
+	float: left;
+	margin: 0;
+}
+
+.page-header .navbar .top-menu .navbar-nav.navbar-right {
+	float: right;
+}
+
+.page-header .navbar .top-menu .navbar-nav > li {
+	float: left;
+}
+
+.page-header .navbar .top-menu .navbar-nav > li > a {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.page-header .navbar .top-menu .navbar-nav .nav li.dropdown i {
+	display: inline-block;
+	position: relative;
+	top: 1px;
+	right: 0;
+}
+
+.page-header .navbar .top-menu .navbar-nav .open .dropdown-menu {
+	position: absolute;
+	/*background-color: #333333;*/
+}
+
+/*内容区*/
+body > .page-container {
+	/*margin-top: 50px;*/
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+	display: -moz-box; /* 老版本语法: Firefox (buggy) */
+	display: -ms-flexbox; /* 混合版本语法: IE 10 */
+	display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+	display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+	flex-wrap: nowrap; /*不换行*/
+}
+
+/*屏幕宽度小于767, 菜单和内容分行显示*/
+@media (max-width: 767px) {
+	body > .page-container {
+		display: block;
+	}
+
+	.navbar-brand {
+		margin-right: 0;
+	}
+}
+
+/*底栏*/
+body > .page-footer {
+	color: white;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+/*内容区左栏*/
+.page-sidebar {
+	background: url("/modules/core/client/img/header/menu-bg.png") 0 100% #FFFAE6;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+/*内容区主内容区*/
+.page-content {
+	background: url("/modules/global/client/img/bg/content-bg.png");
+	background-size: 100% 100%;
+	/*background-color: #fff;*/
+	position: relative;
+	flex: 1; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+/*菜单最小宽度*/
+.sidebar-menu {
+	min-width: 200px;
+}
+
+/*一级菜单颜色*/
+.sidebar-menu > ul > li > a {
+	color: #000;
+	border-top: 1px solid #d9d9d9;
+	font-weight: bold;
+}
+
+/*子菜单内容靠右对齐*/
+.sidebar-menu ul.submenu li > a {
+	color: #333;
+	text-align: right;
+}
+
+/*一级菜单选择后样式*/
+.sidebar-menu > ul > li.selected > a {
+	background-color: blue;
+	/*color: #ffffff;*/
+}
+
+/*子级菜单选择后样式*/
+.sidebar-menu ul.submenu li.selected > a {
+	background-color: #0c5fa6;
+	/*color: #ffffff;*/
+}
+
+/*鼠标移动到主菜单*/
+.sidebar-menu > ul > li a:hover {
+	background-color: #0c5ff6;
+	/*color: #ffffff;*/
+}
+/*鼠标移动到子菜单*/
+.sidebar-menu ul.submenu li > a:hover {
+	background-color: #0c5ff6;
+	/*color: #ffffff;*/
+}
+
+/* 指示有子菜单*/
+.sidebar-menu li a i.icon-arrow {
+	position: absolute;
+	display: block;
+	top: 14px;
+	right: 10px;
+	color: #d9d9d9;
+}
+/*
+.nav > li > a:hover {
+	background-color: #d5e0e9;
+}
+*/
+
+/*拖动*/
+div[ng-drag] {
+	display: inline-block;
+}
+
+div[ng-drop].drag-enter {
+	border: solid 1px blue;
+}
+
+.undecorated-link:hover {
+	text-decoration: none;
+}
+
+[ng\:cloak],
+[ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+	display: none !important;
+}
+
+.header-profile-image {
+	border-radius: 50%;
+	height: 28px;
+	margin-right: 5px;
+	opacity: 0.8;
+	width: 28px;
+}
+
+.open .header-profile-image,
+a:hover .header-profile-image {
+	opacity: 1;
+}
+
+.user-header-dropdown-toggle {
+	padding-bottom: 11px !important;
+	padding-top: 11px !important;
+}
+
+.user-primary-account {
+	font-size: 30px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+/*标题状态通知*/
+.header-state-btn {
+	width: 24px;
+	height: 24px;
+	background-image: url('/modules/global/client/img/images/xx.png');
+	background-color: transparent;
+}
+.header-state-num {
+	position: absolute;
+	display: block;
+	width: 8px;
+	height: 8px;
+	background: red;
+	right: -4px;
+	top: 16px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 16px;
+	color: #fff;
+}
+
+/*标题任务通知*/
+.header-task-btn {
+	width: 24px;
+	height: 24px;
+	background-image: url('/modules/global/client/img/images/rw.png');
+	background-color: transparent;
+	background-repeat: space;
+}
+.header-task-num {
+	position: absolute;
+	display: block;
+	width: 8px;
+	height: 8px;
+	background: red;
+	right: -4px;
+	top: 16px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 16px;
+	color: #fff;
+}
+
+.error-text {
+	display: none;
+}
+
+.has-error .help-block.error-text {
+	display: block;
+}
+
+.has-error .help-inline.error-text {
+	display: inline;
+}
+
+.imgCropArea {
+	background: #E4E4E4;
+	overflow: hidden;
+	width: 500px;
+	height: 350px;
+}
+
+.view-header {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.copy-right {
+	color: #333;
+	width: 100%;
+	text-align: center;
+}
+/*header*/
+.navbar {
+	min-height: 191px;
+}

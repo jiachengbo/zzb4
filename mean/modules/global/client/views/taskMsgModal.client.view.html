@@ -1,0 +1,18 @@
+<div class="taskmsg-modal">
+  <div class="modal-header">
+    <h4>你有以下{{vm.data.length}}条任务未执行</h4>
+  </div>
+  <div class="modal-body">
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="v in vm.data">
+      <span>任务标题：{{v.AssignedTitle}}</span>
+      <span>任务内容：{{v.AssignedContent}}</span>
+    </li>
+  </ul>
+  </div>
+  <div class="modal-footer" style="text-align: right">
+  <div class="btn-group" role="group" aria-label="..." ng-click="vm.close()">
+    <button type="button" class="btn btn-default">关闭</button>
+  </div>
+  </div>
+</div>

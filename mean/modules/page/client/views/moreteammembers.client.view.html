@@ -1,0 +1,16 @@
+<section class="home-view view-backgroupd xiangqingbg" ng-style="styles">
+  <div class="container center-block mainbox">
+    <div class="row">
+      <div class="col-lg-2 col-md-2" ng-repeat="v in vm.teammembersData">
+        <div class="thumbnail" style="height: 300px;">
+          <img src="{{v.photo}}" alt="..." style="width: 100%;height: 213px;">
+          <div class="caption">
+            <h5 style="margin-top: 0;">{{v.name}}</h5>
+            <h5 style="margin: 0;">{{v.duty}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'/modules/core/client/views/footers.client.view.html'" class="footers" ng-show="vm.show"></div>
+</section>

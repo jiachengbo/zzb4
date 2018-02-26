@@ -1,0 +1,20 @@
+<style>
+  .btn-default:hover {
+    background-color: #c12e2a;
+    /*background-color: #ff0033;*/
+    background-position: 0 -30px;
+    border-color: #c12e2a;
+    /*border-color: #ff0033;*/
+    color: white;
+  }
+</style>
+<div>
+  <div class="row">
+    <div class="col-md-3" ng-repeat="col in columnDefsthree">
+      <button class="btn btn-default btn-sm"
+              ng-click="vmo.ok(col)"
+              style="width: 100%;margin-top: 8px;margin-bottom: 8px">{{col.simpleName}}
+      </button>
+    </div>
+  </div>
+</div>

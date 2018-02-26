@@ -1,0 +1,55 @@
+<style>
+  .row div.qdjitem{
+    height: 80px;
+  }
+</style>
+<section class="home-view view-backgroupd xiangqingbg" ng-style="styles">
+  <div class="container-fluid"
+       style="width: 1200px;margin: 0 auto;background: url('/modules/page/client/img/xiangmu/header.png')no-repeat;background-color: #fff;min-height: 740px;position: relative;z-index: 100">
+    <div class="patitle" style="padding-bottom: 15px;height: 40px;margin: 0;padding-top: 10px;">
+      <a href="#" style="float: left">
+        <i></i>
+        <span>党建项目</span>
+      </a>
+    </div>
+    <uib-tabset active="active" type="tabs">
+      <uib-tab index="0" heading="创建" select="vm.alertMe('创建')"></uib-tab>
+      <uib-tab index="1" select="vm.alertMe('认领')" heading="参与">
+      </uib-tab>
+    </uib-tabset>
+    <div class="row" style="margin-right: 0;margin-left: 0;">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-2 col-lg-1" style="height: 50px;">序号</div>
+          <div class="col-md-2 col-lg-2" style="height: 50px;">logo</div>
+          <div class="col-md-5 col-lg-7"  style="height: 50px;">项目介绍</div>
+          <div class="col-md-5 col-lg-2"  style="height: 50px;">项目结束时间</div>
+        </div>
+        <div class="row shou caitiao" data-ng-repeat="project in vm.project track by $index" ng-click="vm.projects($index)" >
+          <div class="col-md-2 col-lg-1" style="height: 50px;">{{($index + 1) + (vm.page-1)*8}}</div>
+          <div ng-if="project.ProjectTable">
+            <div class="col-md-2 col-lg-2 qdjitem" style="line-height: 80px;"><img src="{{project.ProjectTable.ProjectLogo}}" style="width: 60px;height: 60px;"></div>
+            <div class="col-md-5 col-lg-7 qdjitem">{{project.ProjectTable.ProjectName}}</div>
+            <div class="col-md-5 col-lg-2 qdjitem">{{project.ProjectTable.FinishTime | date:'yyyy-MM-dd HH:mm'}}</div>
+          </div>
+          <div ng-if="!project.ProjectTable">
+            <div class="col-md-2 col-lg-2 qdjitem" style="line-height: 80px;"><img src="{{project.ProjectLogo}}" style="width: 60px;height: 60px;"></div>
+            <div class="col-md-5 col-lg-7 qdjitem">{{project.ProjectName}}</div>
+            <div class="col-md-5 col-lg-2 qdjitem">{{project.FinishTime | date:'yyyy-MM-dd HH:mm'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-left: 0px;">
+      <div class="col-lg-12 col-md-12">
+        <nav aria-label="...">
+          <ul class="pager">
+            <li ng-click="vm.prevPage()" style="cursor: pointer;"><a >上一页</a></li>
+            <li ng-click="vm.nextPage()" style="cursor: pointer;"><a >下一页</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'/modules/core/client/views/footers.client.view.html'" class="footers" ng-show="vm.show"></div>
+</section>

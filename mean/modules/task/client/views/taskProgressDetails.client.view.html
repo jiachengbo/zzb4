@@ -1,0 +1,72 @@
+<div class="task-modal">
+  <div class="modal-header">
+    <h1>任务进度详情</h1>
+  </div>
+  <div class="modal-body col-md-12">
+    <div class="row">
+      <div class="col-md-2" style="font-size: 20px;">上传文字:</div>
+      <div class="col-md-10">
+        <textarea class="form-control" rows="3" style="resize: none;overflow-y: auto;height: 100px;" readonly>
+         {{vm.detailsData.progressContent}}
+        </textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 20px;">
+    <!--<div class="col-md-2"></div>-->
+    <div class="col-md-4" style="text-align: center;">
+      <div class="form-group">
+        <div>
+          <button class="btn btn-default btn-file">图片一
+          </button>
+        </div>
+        <div class="text-center" style="margin-top: 10px;">
+          <img src="{{vm.detailsData.img1}}" alt="没有图片" class="img-thumbnail" ngf-drop enlarge-pic>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" style="text-align: center;">
+      <div class="form-group">
+        <div>
+          <button class="btn btn-default btn-file">图片二</button>
+        </div>
+        <div class="text-center" style="margin-top: 10px;">
+          <img src="{{vm.detailsData.img2}}" alt="没有图片" class="img-thumbnail" ngf-drop enlarge-pic>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" style="text-align: center;">
+      <div class="form-group">
+        <div>
+          <button class="btn btn-default btn-file">图片三</button>
+        </div>
+        <div class="text-center" style="margin-top: 10px;">
+          <img src="{{vm.detailsData.img3}}" alt="没有图片" class="img-thumbnail" ngf-drop enlarge-pic>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-md-2" style="font-size: 20px;">上传文件:</div>
+    <div class="col-md-10">
+      <div class="btn btn-default" ng-if="!vm.detailsData.progressFile">
+        没有文件
+      </div>
+      <div class="btn btn-default" ng-if="vm.detailsData.progressFile">
+        <a href="{{vm.detailsData.progressFile}}" target="_blank">点击查看文件
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="mask" close-pic style="display: none;">
+    <div class="mask-box" ></div>
+    <div class="big-pic-wrap" style="top: 57%;">
+      <img src="" alt="" class="bigPic"/>
+      <span class="close-pic"><i class="glyphicon glyphicon-remove"></i></span>
+    </div>
+  </div>
+  <button class="btn btn-warning" ng-click="vm.cancel()">关闭</button>
+</div>
+</div>

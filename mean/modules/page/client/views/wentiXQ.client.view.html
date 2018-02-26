@@ -1,0 +1,51 @@
+<section class="home-view view-backgroupd xiangqingbg" ng-style="styles">
+  <div class="container-fluid"
+       style="width: 1200px;margin: 0 auto;background: url('/modules/page/client/img/xiangmu/header.png')no-repeat;background-color: #fff;min-height: 740px;position: relative;z-index: 100">
+    </h4>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 wentixq">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>问题墙</span>
+          </a>
+        </div>
+        <div class="citystr_wtq " >
+          <table class="table table-hover" style="overflow: hidden">
+            <thead>
+            <tr>
+              <th>序号</th>
+              <th>标题</th>
+              <th>问题内容</th>
+              <th>上报组织</th>
+              <th>处理平台</th>
+            </tr>
+            </thead>
+            <tbody style="position: relative;" class="prowalllnbo" >
+            <tr data-ng-repeat="prowall in vm.prowall track by $index" id="{{$index}}" class="caitiao1" ng-click="vm.proll($index)" style="text-align: center">
+              <td><span>{{((vm.pageage -1)*8+1)+ $index}}</span></td>
+              <td><a href=""><p>{{prowall.wtTitle}}</p></a></td>
+              <td><a href=""><p>{{prowall.wtContent}}</p></a></td>
+              <td><a href=""><span>{{prowall.superName}}</span></a></td>
+              <td><a href=""><span>{{prowall.pt}}</span></a></td>
+            </tr>
+            </tbody>
+          </table>
+          <ul class="fenye" style="color:#000;font-size: 16px">
+            <li>总共{{vm.pagesum}}条数</li>
+            <li ng-click="vm.pageshu(vm.count,$event)">尾页</li>
+            <li ng-click="vm.pageshu(vm.pageage+1,$event)">下一页</li>
+            <li ng-click="vm.pageshu(vm.pageage,$event)">跳转</li>
+            <li>
+              <input type="text" data-ng-model="vm.pageage"
+                     style="width: 40px;border: 1px solid #ddd;text-align: right;color: black">/{{vm.count}}页
+            </li>
+            <li ng-click="vm.pageshu(vm.pageage-1,$event)">上一页</li>
+            <li ng-click="vm.pageshu(1,$event)" class="pageactive">首页</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'/modules/core/client/views/footers.client.view.html'" class="footers" ng-show="vm.show"></div>
+</section>

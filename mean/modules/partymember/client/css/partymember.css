@@ -1,0 +1,15 @@
+/*模态窗口*/
+.partymember-modal {
+	margin: 10px;
+}
+
+/*表格*/
+.partymember-grid {
+	height: 500px;
+}
+
+.breadcrumb > li + li:before {
+	color: #CCCCCC;
+	content: "/ ";
+	padding: 0 5px;
+}

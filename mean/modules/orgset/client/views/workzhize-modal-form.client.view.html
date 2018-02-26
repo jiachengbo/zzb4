@@ -1,0 +1,28 @@
+<div class="orgset-modal">
+  <div class="modal-header">
+    <h3>工作职责</h3>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.committeeTableForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <!--第1行-->
+        <div class="row clearfix">
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <div contenteditable="true" style="width: 100%;min-height:100px;border:1px solid #ddd" id="nrr" name="orgtableData">
+              </div>
+              <!--<textarea name="orgtableData"
+                        ng-model="vm.orgtableData.duty"
+                        id="orgtableData"
+                        class="form-control"cols ='30'rows="10"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.committeeTableForm.$valid)">提交</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

@@ -1,0 +1,135 @@
+<style>
+  .form-horizontal .form-group {
+    margin-right: 0;
+    margin-left: 0;
+  }
+</style>
+<div class="problem-modal">
+  <div class="modal-header">
+    <h1>问题咨询{{vm.method}}</h1>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.problemForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="title">标题</label>
+              <input name="title" type="text" ng-model="vm.problemData.title" id="title" class="form-control" placeholder="标题" required autofocus ng-disabled="true">
+              <div ng-messages="vm.problemForm.title.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">标题是必须的</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="modifyUserId">发布人</label>
+              <input name="modifyUserId" type="text" ng-model="vm.problemData.modifyUserId" id="modifyUserId" class="form-control" placeholder="发布人" required autofocus ng-disabled="true">
+              <div ng-messages="vm.problemForm.modifyUserId.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">发布人是必须的</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="createDate">发布时间</label>
+              <input name="createDate" type="text" ng-model="vm.problemData.createDate" id="createDate" class="form-control" placeholder="发布时间" required autofocus ng-disabled="true">
+              <div ng-messages="vm.problemForm.createDate.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">发布时间是必须的</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label" for="adviceContent">发布内容</label>
+              <textarea name="adviceContent" data-ng-model="vm.problemData.adviceContent" id="adviceContent" class="form-control" cols="30" rows="10" placeholder="内容" ng-disabled="true"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="streetid">所属街道</label>
+              <select class="form-control"
+                      id="streetid"
+                      ng-model="vm.problemData.streetID"
+                      ng-options="street.streetID as street.streetName for street in street"
+                      name="streetid"
+                      ng-disabled="true">
+              </select>
+              <div ng-messages="vm.worknodeForm.streetid.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择街道</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="communityid">所属社区</label>
+              <select class="form-control"
+                      id="communityid"
+                      ng-model="vm.problemData.communityID"
+                      ng-options="community.communityId as community.communityName for community in community"
+                      name="communityid"
+                      ng-disabled="true">
+              </select>
+              <div ng-messages="vm.worknodeForm.communityid.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择社区</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="gridID">所属网格</label>
+              <select class="form-control"
+                      id="gridId"
+                      ng-model="vm.problemData.gridID"
+                      ng-options="grid.gridId as grid.gridNum for grid in grid"
+                      name="gridId"
+                      ng-disabled="true">
+              </select>
+              <div ng-messages="vm.worknodeForm.gridId.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择网格</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="releasePerson">回复人</label>
+              <input name="releasePerson" type="text" ng-model="vm.problemData.releasePerson" id="releasePerson" class="form-control" placeholder="回复人" required autofocus ng-disabled="true">
+              <div ng-messages="vm.problemForm.releasePerson.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">回复人是必须的</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="replyTime">回复时间</label>
+              <input name="replyTime" type="text" ng-model="vm.problemData.replyTime" id="replyTime" class="form-control" placeholder="回复时间" required autofocus ng-disabled="true">
+              <div ng-messages="vm.problemForm.replyTime.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">回复时间是必须的</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label" for="replyContent">回复内容</label>
+              <textarea name="replyContent" data-ng-model="vm.problemData.replyContent" id="replyContent" class="form-control" cols="30" rows="10" placeholder="回复内容"></textarea>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.problemForm.$valid)">确认</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

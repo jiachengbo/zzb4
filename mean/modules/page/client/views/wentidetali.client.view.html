@@ -1,0 +1,54 @@
+<section class="home-view view-backgroupd xiangqingbg" ng-style="styles">
+  <div class="container-fluid"
+       style="width: 1200px;margin: 0 auto;background: url('/modules/page/client/img/xiangmu/header.png')no-repeat;background-color: #fff;">
+    <h4 style="text-align: left;margin-top: 40px"><span
+      style='background: url("/modules/page/client/img/tupian/问题.png"); background-size:100% 100%;display: inline-block;width: 27px;height: 27px;vertical-align: top;'></span>问题墙
+    </h4>
+    <div>
+      <table style="width: 100%" class="wentiqiang table table-bordered">
+        <tbody>
+        <tr>
+          <td><span>标题：</span></td>
+          <td><p>{{vm.wenti.wtTitle}}</p></td>
+        </tr>
+        <tr>
+          <td><span>问题：</span></td>
+          <td><p>{{vm.wenti.wtContent}}</p></td>
+        </tr>
+        <tr>
+          <td><span>上报组织：</span></td>
+          <td><p>{{vm.wenti.superName}}</p></td>
+        </tr>
+        <tr>
+          <td><span>处理平台：</span></td>
+          <td><p>{{vm.wenti.pt}}</p></td>
+        </tr>
+        <tr>
+          <td><span>照片：</span></td>
+          <td>
+            <div class="row">
+              <div class="col-md-12" style="text-align: center">
+                <!--<h4 style="text-align: center">照片</h4>-->
+                <img src="{{vm.wenti.photoPath1}}">
+              </div>
+              <!--<div class="col-md-6" style="text-align: center">-->
+                <!--<h4 style="text-align: center">问题处理后</h4>-->
+                <!--<img src="{{vm.wenti.photoPath2}}">-->
+              <!--</div>-->
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span>问题回复：</span></td>
+          <td><p>{{vm.wenti.hfContent}}</p></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--<p>
+      处理平台：{{vm.wenti.pt}}
+      上报组织：{{vm.wenti.superName}}
+    </p>-->
+  </div>
+  <div ng-include="'/modules/core/client/views/footers.client.view.html'" class="footers" ng-show="vm.show"></div>
+</section>

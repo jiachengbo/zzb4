@@ -1,0 +1,399 @@
+<div class="regionalization-modal">
+  <div class="modal-header">
+    <h3>{{vm.method}}党员信息</h3>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.PartyMemberForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="PartyName">姓名</label>
+              <input name="PartyName" type="text" ng-model="vm.PartyMemberData.PartyName" id="PartyName"
+                     ng-pattern="/^[\u4e00-\u9fa5]/"
+                     maxlength="20"
+                     class="form-control" placeholder="请输入姓名" required autofocus>
+              <div ng-messages="vm.PartyMemberForm.PartyName.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">姓名不能为空！</p>
+              </div>
+              <div ng-messages="vm.PartyMemberForm.PartyName.$error" role="alert">
+                <p class="help-block error-text" ng-message="maxlength">字数在20字以内！</p>
+              </div>
+              <div ng-show="vm.PartyMemberForm.PartyName.$dirty && vm.PartyMemberForm.PartyName.$invalid"
+                   class="has-error"
+                   style="text-align: left">
+                <span class="help-block" ng-show="vm.PartyMemberForm.PartyName.$error.pattern">姓名必须是汉字!</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">性别</label>
+              <select class="form-control"
+                      ng-model="vm.PartyMemberData.PartySex"
+                      ng-options="pt.name as pt.name for pt in sexInfo">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-12 form-group" show-errors>
+                  <label class="control-label" for="IDNumber">身份证号码</label>
+                  <input name="IDNumber" type="text" ng-model="vm.PartyMemberData.IDNumber" id="IDNumber"
+                         maxlength="18" ng-minlength="15"
+                         ng-pattern="/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/"
+                         ng-blur="vm.YzIdNumber(vm.PartyMemberData.IDNumber)"
+                         class="form-control" placeholder="请输入身份证号码" required autofocus>
+                  <div ng-messages="vm.PartyMemberForm.IDNumber.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">身份证号码不能为空！</p>
+                  </div>
+                  <div ng-show="vm.PartyMemberForm.IDNumber.$dirty &&
+              vm.PartyMemberForm.IDNumber.$invalid" class="has-error"
+                       style="text-align: left">
+                <span class="help-block" ng-show="vm.PartyMemberForm.IDNumber.$error.pattern||
+                vm.PartyMemberForm.IDNumber.$error.minlength">请输入有效的身份证号码!</span>
+                  </div>
+                  <div ng-show="vm.YZIDNumberIsNo">
+                    <span style="color:firebrick">*此身份证号码已存在不能录入！</span>
+                  </div>
+                  <div ng-show="vm.YZIDNumberIsOk">
+                    <span style="color:green">*此身份证号码验证成功可以录入！！</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">民族</label>
+              <select class="form-control"
+                      ng-model="vm.PartyMemberData.PartyNation"
+                      ng-options="pt.name as pt.name for pt in nationInfo">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">籍贯</label>
+              <select class="form-control"
+                      ng-model="vm.PartyMemberData.PartyPlace"
+                      ng-options="pt.name as pt.name for pt in nationPlaceInfo">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="PartyBirth">出生日期</label>
+              <p class="input-group">
+                <input name="PartyBirth" type="text" class="form-control" id="PartyBirth"
+                       uib-datepicker-popup ng-model="vm.PartyMemberData.PartyBirth"
+                       is-open="popup1.opened"
+                       datepicker-options="inlineOptions" ng-required="true"
+                       close-text="Close" ng-disabled="vm.disabled"
+                       placeholder="请选择入党时间"/>
+                <span class="input-group-btn">
+            <button type="button" class="btn btn-default"
+                    ng-click="open1()" ng-disabled="vm.disabled"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+              </p>
+              <div ng-messages="vm.PartyMemberForm.PartyBirth.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">出生日期不能为空！</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">是否在职</label>
+              <select class="form-control"
+                      ng-model="vm.PartyMemberData.isJob"
+                      ng-options="pt.name as pt.name for pt in jobInfo">
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">党员类型</label>
+              <select class="form-control"
+                      ng-model="vm.PartyMemberData.Category"
+                      ng-options="pt.name as pt.name for pt in categoryInfo">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="JoinTime">入党时间</label>
+              <p class="input-group">
+                <input name="JoinTime" type="text" class="form-control" id="JoinTime"
+                       uib-datepicker-popup ng-model="vm.PartyMemberData.JoinTime"
+                       is-open="popup2.opened"
+                       datepicker-options="inlineOptions" ng-required="true"
+                       close-text="Close" ng-disabled="vm.disabled"
+                       placeholder="请选择入党时间"/>
+                <span class="input-group-btn">
+            <button type="button" class="btn btn-default"
+                    ng-click="open2()" ng-disabled="vm.disabled"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+              </p>
+              <div ng-messages="vm.PartyMemberForm.JoinTime.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">入党时间不能为空！</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="TelNumber">联系电话</label>
+              <input name="TelNumber" type="text" ng-model="vm.PartyMemberData.TelNumber" id="TelNumber"
+                     ng-minlength="11" maxlength="13"
+                     ng-pattern="/^((0\d{2,3}(|-)\d{7,8})|(1[37584]\d{9}))$/"
+                     class="form-control" placeholder="请输入联系电话" required autofocus>
+              <div ng-messages="vm.PartyMemberForm.TelNumber.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">联系电话不能为空！</p>
+              </div>
+              <div ng-show="vm.PartyMemberForm.TelNumber.$dirty && vm.PartyMemberForm.TelNumber.$invalid"
+                   class="has-error"
+                   style="text-align: left">
+                <span class="help-block" ng-show="vm.PartyMemberForm.TelNumber.$error.pattern||
+                vm.PartyMemberForm.TelNumber.$error.minlength">请输入有效的手机号码!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">学历</label>
+              <select class="form-control"
+                      ng-model="vm.PartyMemberData.education2"
+                      ng-options="pt.name as pt.name for pt in educationInfo">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">人员类别</label>
+              <select class="form-control"
+                      ng-model="vm.PartyMemberData.preson_category"
+                      ng-options="pt.name as pt.name for pt in presonInfo">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="WorkPlace">工作单位</label>
+              <input name="WorkPlace" type="text" ng-model="vm.PartyMemberData.WorkPlace" id="WorkPlace"
+                     maxlength="50"
+                     class="form-control" placeholder="请输入工作单位" required autofocus>
+              <div ng-messages="vm.PartyMemberForm.WorkPlace.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">工作单位不能为空！</p>
+              </div>
+              <div ng-messages="vm.PartyMemberForm.WorkPlace.$error" role="alert">
+                <p class="help-block error-text" ng-message="maxlength">字数在50字以内！</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在党组织</label>
+              <select class="form-control"
+                      ng-disabled="true"
+                      ng-model="vm.PartyMemberData.workbranch"
+                      ng-options="pt.orgid as pt.orgname for pt in workbranchInfo">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在党支部</label>
+              <select class="form-control"
+                      ng-model="vm.PartyMemberData.branch"
+                      ng-options="pt.branchid as pt.branchname for pt in branchInfo"
+                      ng-change="vm.partybranch(vm.PartyMemberData.branch)"
+              >
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在街道</label>
+              <select id="select_ssjd" class="form-control" name="STREETID"
+                      ng-model="vm.PartyMemberData.streetID"
+                      ng-change="vm.changeStreet()">
+                <option value="-1">--请选择--</option>
+                <option ng-repeat="v in streetInfo" value="{{v.streetID}}">
+                  {{v.streetName}}
+                </option>
+              </select>
+              <div ng-show="vm.requiredStreetInfoFlag" class="has-error" style="text-align: left">
+                <span class="help-block">此选项为必选类型</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在社区</label>
+              <select id="select_sssq" class="form-control" name="COMMUNITYID"
+                      ng-model="vm.PartyMemberData.communityId"
+                      ng-change="vm.changeCommunity()">
+                <option value="-1">--请选择--</option>
+                <option ng-repeat="v in communityInfo | filter:{'streetID':vm.PartyMemberData.streetID}"
+                        value="{{v.communityId}}">{{v.communityName}}
+                </option>
+              </select>
+              <div ng-show="vm.requiredCommunityInfoFlag" class="has-error" style="text-align: left">
+                <span class="help-block">此选项为必选类型</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在网格</label>
+              <select id="select_sswg" class="form-control" name="CELLID"
+                      ng-model="vm.PartyMemberData.BelongGrid"
+                      ng-change="vm.changeNetGrid()">
+                <option value="-1">--请选择--</option>
+                <option
+                  ng-repeat="v in gridInfo | filter:{'streetID': vm.PartyMemberData.streetID,'departmentId': vm.PartyMemberData.communityId}"
+                  value="{{v.gridId}}">
+                  {{v.gridName}}
+                </option>
+              </select>
+              <div ng-show="vm.requiredNetGridFlag" class="has-error" style="text-align: left">
+                <span class="help-block">此选项为必选类型</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">网格编号</label>
+              <select id="select_gridnum" class="form-control" name="GRIDNUM"
+                      ng-model="vm.PartyMemberData.gridNum"
+                      ng-change="vm.changeNetGridNum()">
+                <option value="-1">--请选择--</option>
+                <option
+                  ng-repeat="v in gridNumInfo | filter:{'gridId': vm.PartyMemberData.BelongGrid,'streetID': vm.PartyMemberData.streetID,'departmentId': vm.PartyMemberData.communityId}"
+                  value="{{v.gridId}}">
+                  {{v.gridNum}}
+                </option>
+              </select>
+              <div ng-show="vm.requiredNetGridNumFlag" class="has-error" style="text-align: left">
+                <span class="help-block">此选项为必选类型</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">是否流动党员</label>
+              <select class="form-control"
+                      ng-model="vm.PartyMemberData.isFlow_party"
+                      ng-options="pt.id as pt.name for pt in flowInfo">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">是否失联党员</label>
+              <select class="form-control"
+                      ng-model="vm.PartyMemberData.isConcat"
+                      ng-options="pt.id as pt.name for pt in concatInfo">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="Specialty">个人特长</label>
+              <input name="Specialty" type="text" ng-model="vm.PartyMemberData.Specialty" id="Specialty"
+                     maxlength="100"
+                     class="form-control" placeholder="请输入个人特长" required autofocus>
+              <div ng-messages="vm.PartyMemberForm.Specialty.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">个人特长不能为空！</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="col-md-12 form-group" show-errors>
+                  <label class="control-label" for="Income">个人收入（月）</label>
+                  <input name="Income" type="text" ng-model="vm.PartyMemberData.Income" id="Income"
+                         maxlength="50"
+                         class="form-control" placeholder="请输入个人收入" required autofocus ng-blur="vm.PartyMemberData.Income ? vm.partymoney() : ''">
+                  <div ng-messages="vm.PartyMemberForm.Income.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">个人收入不能为空！</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-12 form-group" show-errors>
+                  <label class="control-label" for="PartyMoney">每月党费</label>
+                  <input name="PartyMoney" type="text" ng-model="vm.PartyMemberData.PartyMoney" id="PartyMoney"
+                         maxlength="50"
+                         class="form-control" placeholder="请输入每月党费" required autofocus>
+                  <div ng-messages="vm.PartyMemberForm.PartyMoney.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">每月党费不能为空！</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="col-md-12 form-group" show-errors>
+                  <label class="control-label" for="ToPay">缴纳比例</label>
+                  <input name="ToPay" type="text" ng-model="vm.PartyMemberData.ToPay" id="ToPay"
+                         maxlength="50"
+                         class="form-control" placeholder="请输入缴纳比例" required autofocus>
+                  <div ng-messages="vm.PartyMemberForm.ToPay.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">缴纳比例不能为空！</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group"  show-errors>
+              <label class="control-label" for="ThePartyfor">党内表彰</label>
+              <textarea name="ThePartyfor" data-ng-model="vm.PartyMemberData.ThePartyfor"
+                        maxlength="500"
+                        id="ThePartyfor" class="form-control" cols="10" rows="1"
+                        placeholder="请输入党内表彰"></textarea>
+              <div>
+                <span style="color: firebrick" ng-show="vm.yzThePartyfor">*党内表彰不能为空！</span>
+              </div>
+              <div ng-messages="vm.PartyMemberForm.ThePartyfor.$error" role="alert">
+                <p class="help-block error-text" ng-message="maxlength">字数在500字以内！</p>
+              </div>
+            </div>
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="ToPay">认领单位（报到社区）</label>
+              <input name="sections" type="text" ng-model="vm.PartyMemberData.sections" id="sections"
+                     maxlength="200"
+                     class="form-control" placeholder="认领单位（报到社区）" required autofocus>
+              <div ng-messages="vm.PartyMemberForm.sections.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">认领单位（报到社区）不能为空！</p>
+              </div>
+              <div ng-messages="vm.PartyMemberForm.sections.$error" role="alert">
+                <p class="help-block error-text" ng-message="maxlength">字数限制在200字以内！</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.PartyMemberForm.$valid)">提交</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

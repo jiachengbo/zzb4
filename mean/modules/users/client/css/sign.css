@@ -1,0 +1,90 @@
+.signin-view {
+	height: 100%;
+	position: relative;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.signin-view h1 {
+	color: #fff;
+	text-align: left;
+	margin-left: 30px;
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+
+.signin-view .signin-div {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	top: 40%;
+	left: 80%;
+	background-color: white;
+	border: ridge 4px #d9d9d9;
+	width: 300px;
+	height: 320px;
+	padding: 0 30px;
+	transform: translate(-50%, -50%);
+}
+
+/*如果是填充模式，不显示边框、背景色*/
+.signin-view.signin-fill .signin-div {
+	padding: 0;
+	border: none;
+	background-color: transparent;
+}
+
+.signin-view .signin-div .signin-form-title {
+	color: #1f64a7;
+	font-size: 24px;
+}
+
+.signin-view .signin-form .input-group {
+	height: 40px;
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.signin-view .signin-form .signin-span {
+	top: 0;
+	border-right: none;
+}
+
+.signin-view .signin-div .signin-form .signin-btn {
+	margin-top: 20px;
+	width: 100%;
+}
+
+.signin-view .signin-form .signin-input {
+	display: block;
+	height: 40px;
+}
+
+@media (max-width: 1023px) {
+	.signin-view h1 {
+		text-align: center;
+	}
+
+	.signin-view .signin-div {
+		left: 60%;
+		top: 50%;
+	}
+}
+
+@media (max-width: 767px) {
+	.signin-view h1 {
+		margin: 20px 20px;
+	}
+	.signin-view .signin-div {
+		left: 50%;
+	}
+}
+
+/*特殊适应莲湖数字化pc登录界面*/
+@media (min-width: 768px) {
+	.signin-view.signin-fill .signin-div .signin-form .signin-btn {
+		width: 70%;
+	}
+}

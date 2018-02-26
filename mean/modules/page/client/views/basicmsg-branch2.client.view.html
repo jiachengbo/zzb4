@@ -1,0 +1,253 @@
+<section class="home-view view-backgroupd">
+  <div class="shouyeshang">
+    <div class="partygk">
+      <div class="patitle">
+        <a href="#" style="float: left">
+          <i></i>
+          <span>{{vm.branchName}}概况</span>
+        </a>
+        <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+      </div>
+      <div style="margin: 0 20px;height: 430px;overflow: hidden;">
+        <img src="{{vm.surver.imgFile}}" style="float: left;width: 60%;height:60%;padding-right: 5px;position: relative;z-index: 20;" enlarge-pic>
+        <p class="surveyp" style="line-height: 27px;text-indent: 2em;position: relative;;right: 0;top: 0;" ng-mouse-wheel-down="vm.mousewheeldown(e)" ng-mouse-wheel-up="vm.mousewheelup(e)">{{vm.surver.content}}
+        </p>
+      </div>
+
+    </div>
+    <div class="partyjc" ng-style="vm.bgs">
+    </div>
+    <div class="partywj banzicy">
+      <div class="patitle">
+        <a href="#" style="float: left">
+          <i></i>
+          <span>班子成员</span>
+        </a>
+        <a  style="float: right"><span ng-click="vm.toMore()">更多+</span></a>
+      </div>
+      <div class="zhonglou">
+        <ul>
+          <li ng-repeat="v in vm.teammembersData">
+            <img src="{{v.photo}}">
+            <h4 style="text-align: left">{{v.name}}   {{v.duty}}</h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="shouyexia">
+    <div class="wentuhd1">
+      <div class="patitle" style="margin: 20px 0">
+        <a href="#" style="float: left;">
+          <i></i>
+          <span>党建动态</span>
+        </a>
+        <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+      </div>
+      <div class="nr">
+        <div class="wentuhdleft" style="height: auto;">
+          <div id="slider" style="height: 100%;">
+            <div style="height: 100%;">
+              <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" style="height: 100%;">
+                <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id" style="height: 100%;">
+                  <img ng-src="{{slide.image}}" style="margin:auto;width:100%;height: 100%;" >
+                  <div class="carousel-caption">
+                    <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{slide.text}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wentuhdright" style="padding-left: 20px;height: auto">
+          <ul class="inform" style="list-style: none;">
+            <li ng-repeat="v in vm.partyBuildingData track by $index" class="caitiao1 shou" ng-click="vm.partydynamic($index)">
+              <span class="informtitle">{{v.appealTitle}}</span>
+              <span style="float: right">{{v.sbtime}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="banzicy" style="min-height: 400px;">
+      <div class="patitle" style="margin: 20px 0">
+        <a href="#" style="float: left">
+          <i></i>
+          <span>党建地图</span>
+        </a>
+        <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+      </div>
+      <div class="zhonglou">
+        <div style="width:100%;height:100%;border:0px solId gray" id="basicmsgmap"></div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-lg-8">
+        <div class="patitle" style="padding-bottom: 15px;margin-top: 30px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>三会一课</span>
+          </a>
+          <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-6">
+            <div id="slider2">
+              <div style="height: 400px">
+                <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                  <div uib-slide ng-repeat="slide in slides2 track by slide.id" index="slide.id">
+                    <img ng-src="{{slide.image}}" style="margin:auto;height: 400px;width: 100%;">
+                    <div class="carousel-caption">
+                      <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{slide.text}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6">
+            <ul class="inform" style="list-style: none;">
+              <li ng-repeat="v in vm.ThreelessonsData track by $index" class="caitiao1 shou" ng-click="vm.threehui($index)">
+                <span class="informtitle">{{v.title}}</span>
+                <span style="float: right">{{v.starttime | date: 'yyyy-MM-dd'}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" ng-if="!vm.belongComm">
+        <div class="patitle" style="padding-bottom: 40px;margin: 30px 0 ;">
+        </div>
+        <ul class="inform" style="list-style: none;">
+          <li ng-repeat="v in vm.ThreelessonsData1 track by $index" class="caitiao1" ng-click="vm.threehui($index)">
+            <span class="informtitle">{{v.title}}</span>
+            <span style="float: right">{{v.starttime | date: 'yyyy-MM-dd'}}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-lg-4" ng-if="vm.belongComm">
+        <div class="patitle" style="padding-bottom: 15px;margin-top: 30px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>第一书记</span>
+          </a>
+          <span style="float: right" class="shou" ng-click="vm.firsshuji()">查看详情>></span>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-md-6 col-lg-6">
+                <img src="{{vm.MajorsecretaryData.photo}}"
+                     style="width: 100%;">
+              </div>
+              <div class="col-md-6 col-lg-6">
+                <ul>
+                  <li style="margin-top: 50px"><span>职位：</span>{{vm.MajorsecretaryData.duty}}</li>
+                  <li style="margin-top: 20px"><span>姓名：</span>{{vm.MajorsecretaryData.name}}</li>
+                  <li style="margin-top: 20px"><span>性别：</span>{{vm.MajorsecretaryData.sex}}</li>
+                </ul>
+              </div>
+            </div>
+            <p style="line-height: 28px;text-indent: 2em;height: 145px;overflow: hidden;">{{vm.MajorsecretaryData.deeds}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--<div class="col-md-6 col-lg-4">
+        <div class="patitle" style="padding-bottom: 15px;margin-top: 30px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>第一书记</span>
+          </a>
+          <span style="float: right" class="shou" ng-click="vm.firsshuji()">查看详情>></span>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-md-6 col-lg-6">
+                <img src="{{vm.MajorsecretaryData.photo}}"
+                     style="width: 100%;">
+              </div>
+              <div class="col-md-6 col-lg-6">
+                <ul>
+                  <li style="margin-top: 50px"><span>职位：</span>{{vm.MajorsecretaryData.duty}}</li>
+                  <li style="margin-top: 20px"><span>姓名：</span>{{vm.MajorsecretaryData.name}}</li>
+                  <li style="margin-top: 20px"><span>性别：</span>{{vm.MajorsecretaryData.sex}}</li>
+                </ul>
+              </div>
+              &lt;!&ndash;<video src="/modules/page/client/video/24.webm"  width="100%" height="100%" controls></video>&ndash;&gt;
+            </div>
+            <p style="line-height: 28px;text-indent: 2em;height: 145px;overflow: hidden;">{{vm.MajorsecretaryData.deeds}}
+            </p>
+          </div>
+        </div>
+      </div>-->
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>党员信息台账</span>
+          </a>
+          <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-12" >
+        <!--<div ui-grid="vm.gridOptions2" ui-grid-selection ui-grid-pagination ui-grid-resize-columns-->
+             <!--ui-grid-exporter></div>-->
+        <div class="row tabledata1">
+          <div class="col-md-1 col-lg-1">姓名</div>
+          <div class="col-md-1 col-lg-1">性别</div>
+          <div class="col-md-1 col-lg-1">民族</div>
+          <div class="col-md-2 col-lg-2">身份证号</div>
+          <div class="col-md-2 col-lg-2">工作单位</div>
+          <div class="col-md-1 col-lg-1">联系电话</div>
+          <div class="col-md-1 col-lg-1">党员类别</div>
+          <div class="col-md-2 col-lg-2">所属支部</div>
+          <div class="col-md-1 col-lg-1">入党时间</div>
+        </div>
+        <div class="tablebox">
+          <div class="tableboxinner" ng-click="vm.memeberone($event)">
+            <div class="row tabledata" ng-repeat="v in vm.partymemberdata track by $index" id="{{$index}}" style="cursor: pointer;">
+              <div class="col-md-1 col-lg-1">{{v.PartyName}}</div>
+              <div class="col-md-1 col-lg-1">{{v.PartySex}}</div>
+              <div class="col-md-1 col-lg-1">{{v.PartyNation}}</div>
+              <div class="col-md-2 col-lg-2">{{v.IDNumber}}</div>
+              <div class="col-md-2 col-lg-2" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{v.WorkPlace}}</div>
+              <div class="col-md-1 col-lg-1">{{v.TelNumber}}</div>
+              <div class="col-md-1 col-lg-1">{{v.preson_category}}</div>
+              <div class="col-md-2 col-lg-2" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{vm.branchName}}</div>
+              <div class="col-md-1 col-lg-1">{{v.JoinTime | date: 'yyyy-MM-dd'}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-12">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>党支部</span>
+          </a>
+          <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-lg-4" ng-repeat="v in vm.dzzson">
+            <div class="dzbitem">
+              <a href="/page/basicmsg-branch?OrganizationId={{v.OrganizationId}}">{{v.OrganizationName}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mask" close-pic style="display: none;">
+    <div class="mask-box"></div>
+    <div class="big-pic-wrap" style="top:60%;margin-top: -360px;">
+      <img src="" alt="" class="bigPic mybigPic"/>
+      <span class="close-pic"><i class="glyphicon glyphicon-remove"></i></span>
+    </div>
+  </div>
+</section>

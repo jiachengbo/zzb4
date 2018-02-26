@@ -1,0 +1,36 @@
+<style>
+  .container-fluid.page-content{
+    background-image: url('/modules/core/client/img/houtaibg.png')
+  }
+</style>
+<section>
+  <div class="view-header">
+    <h3>
+      项目分析
+    </h3>
+  </div>
+
+
+  <div class="col-md-12" style="top:0px;">
+    <div class="row" ng-style="myRightStyle" auto-min-height="50%" style="overflow: auto;">
+      <div class="col-md-6 col" style="display: block">
+        <div style="width: 100%;margin: 0 auto;">
+          <nvd3 options='vm.options1' data='vm.data1'></nvd3>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div style="width:100%;margin: 0 0 0 -50px;">
+          <nvd3 options='vm.options2' data='vm.data2'></nvd3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ui-grid="vm.gridOptions"
+       ui-grid-selection
+       ui-grid-resize-columns
+       ui-grid-pagination
+       class="projectanalysis row" height="400">
+  </div>
+
+</section>

@@ -1,0 +1,14 @@
+/*模态窗口*/
+.problemWall-modal {
+    margin: 10px;
+}
+/*表格*/
+.problemWall-grid {
+    height: 750px;
+}
+.sbxf_li {
+	list-style: none;
+	width: 50%;
+	float: left;
+
+}

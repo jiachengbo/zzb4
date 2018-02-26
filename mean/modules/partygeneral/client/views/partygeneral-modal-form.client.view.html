@@ -1,0 +1,43 @@
+<div class="partygeneral-modal">
+  <div class="modal-header">
+    <h4>{{vm.method}} 党总支</h4>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.partygeneralForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="form-group" show-errors>
+          <label class="control-label" for="branchName">党总支名称</label>
+          <input name="branchName" type="text" ng-model="vm.partygeneralData.branchName" id="branchName" class="form-control" placeholder="党总支名称" required autofocus>
+          <div ng-messages="vm.partygeneralForm.branchName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">党总支名称不能为空</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="simpleName">党总支简称</label>
+          <input name="simpleName" type="text" ng-model="vm.partygeneralData.simpleName" id="simpleName" class="form-control" placeholder="党总支简称" required autofocus>
+          <div ng-messages="vm.partygeneralForm.simpleName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">党总支简称不能为空</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="superior">上级党组织</label>
+          <select name="superior" ng-model="vm.partygeneralData.superior" id="superior" class="form-control"  required autofocus ng-options="org.typeID as org.simpleName for org in vm.dj_PartyOrganization" ng-disabled="vm.showdis"></select>
+          <div ng-messages="vm.partygeneralForm.superior.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">上级党组织不能为空</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors ng-if="vm.showmold">
+          <label class="control-label" for="mold">组织类别</label>
+          <select name="mold" ng-model="vm.partygeneralData.mold" id="mold" class="form-control"  required autofocus ng-options="mold.id as mold.name for mold in vm.mold"></select>
+          <div ng-messages="vm.partygeneralForm.mold.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">组织类别不能为空</p>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.partygeneralForm.$valid)">确认</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

@@ -1,0 +1,331 @@
+<div class="partymap-modal">
+  <div class="modal-header">
+    <h1>{{vm.method}} Partymap</h1>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.partymapForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <!--第1行-->
+        <div class="row clearfix">
+          <div class="col-xs-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label for="ProjectName">项目名称</label>
+                <input name="ProjectName"
+                       type="text"
+                       ng-model="vm.partymapData.ProjectName"
+                       id="ProjectName"
+                       class="form-control"
+                       placeholder=""
+                       required autofocus>
+                <div ng-messages="vm.partymapForm.ProjectName.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入项目名称.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--第2行-->
+          <div class="col-xs-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label for="ProjectSummary">项目介绍</label>
+                <textarea name="ProjectSummary"
+                          type="text"
+                          ng-model="vm.partymapData.ProjectSummary"
+                          id="ProjectSummary"
+                          style="height: 200px"
+                          class="form-control"
+                          placeholder=""
+                          requied required>
+                  </textarea>
+                <div ng-messages="vm.partymapForm.ProjectSummary.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入项目介绍.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--第3行-->
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>上报部门</label>
+                <input name="Report"
+                       type="text"
+                       ng-model="vm.partymapData.Report"
+                       id="Report"
+                       class="form-control"
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.Report.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入上报部门.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>项目类型</label>
+                <input name="ProjectType"
+                       type="text"
+                       ng-model="vm.partymapData.ProjectType"
+                       id="ProjectType"
+                       class="form-control"
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.ProjectType.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入项目类型.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>项目来源</label>
+                <input name="Source"
+                       type="text"
+                       ng-model="vm.partymapData.Source"
+                       id="Source"
+                       class="form-control"
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.Source.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入项目来源.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>受益人数</label>
+                <input name="People"
+                       type="text"
+                       ng-model="vm.partymapData.People"
+                       id="People"
+                       class="form-control"
+
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.People.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入受益人数.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>申报时间</label>
+                <input name="SbTime"
+                       type="text"
+                       ng-model="vm.partymapData.SbTime"
+                       id="SbTime"
+                       class="form-control"
+
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.SbTime.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入申报时间.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>拟完成时间</label>
+                <input name="FinishTime"
+                       type="text"
+                       ng-model="vm.partymapData.FinishTime"
+                       id="FinishTime"
+                       class="form-control"
+
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.FinishTime.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入拟完成时间.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>负责人</label>
+                <input name="Head"
+                       type="text"
+                       ng-model="vm.partymapData.Head"
+                       id="Head"
+                       class="form-control"
+
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.Head.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入负责人.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>项目状态</label>
+                <input name="State"
+                       type="text"
+                       ng-model="vm.partymapData.State"
+                       id="State"
+                       class="form-control"
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.State.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入项目状态.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>认领单位</label>
+                <input name="company"
+                       type="text"
+                       ng-model="vm.partymapData.company"
+                       id="company"
+                       class="form-control"
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.company.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入认领单位.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>项目状态</label>
+                <input name="State"
+                       type="text"
+                       ng-model="vm.partymapData.State"
+                       id="State"
+                       class="form-control"
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.State.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入项目状态.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>审批部门</label>
+                <input name="approvedDepartment"
+                       type="text"
+                       ng-model="vm.partymapData.approvedDepartment"
+                       id="approvedDepartment"
+                       class="form-control"
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.approvedDepartment.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入审批部门.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>审批时间</label>
+                <input name="ApprovedTime"
+                       type="text"
+                       ng-model="vm.partymapData.ApprovedTime"
+                       id="ApprovedTime"
+                       class="form-control"
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.ApprovedTime.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入审批时间.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>是否通过</label>
+                <input name="ispast"
+                       type="text"
+                       ng-model="vm.partymapData.ispast"
+                       id="ispast"
+                       class="form-control"
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.ispast.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入是否通过.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>是否结项</label>
+                <input name="isfinish"
+                       type="text"
+                       ng-model="vm.partymapData.isfinish"
+                       id="isfinish"
+                       class="form-control"
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.isfinish.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入是否结项.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group row" show-errors>
+              <div class="col-xs-12">
+                <label>党支部</label>
+                <input name="PartyBranchID"
+                       type="text"
+                       ng-model="vm.partymapData.PartyBranchID"
+                       id="PartyBranchID"
+                       class="form-control"
+                       placeholder=""
+                       required>
+                <div ng-messages="vm.partymapForm.PartyBranchID.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">请输入党支部.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.partymapForm.$valid)">OK</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
+  </div>
+</div>

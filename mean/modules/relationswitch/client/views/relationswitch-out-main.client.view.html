@@ -1,0 +1,29 @@
+<style>
+  .container-fluid.page-content{
+    background-image: url('/modules/core/client/img/houtaibg.png')
+  }
+</style>
+<section>
+  <div class="view-header">
+    <h3>
+      转出表
+      <div class="btn-group pull-right" role="group" aria-label="oper">
+        <a class="btn btn-primary" ng-click="vmo.add()" tooltip-placement="top" uib-tooltip="新增">
+          <i class="glyphicon glyphicon-plus"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vmo.update()" ng-show="!!vmo.selectedRow" tooltip-placement="top" uib-tooltip="修改">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vmo.remove()" ng-show="!!vmo.selectedRow" tooltip-placement="top" uib-tooltip="删除">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vmo.view()" ng-show="!!vmo.selectedRow" tooltip-placement="top" uib-tooltip="查看">
+          <i class="glyphicon glyphicon-eye-open"></i>
+        </a>
+      </div>
+    </h3>
+  </div>
+
+  <div ui-grid="vmo.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-resize-columns ui-grid-exporter
+       class="relationswitch-grid"></div>
+</section>

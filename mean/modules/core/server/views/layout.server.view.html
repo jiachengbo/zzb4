@@ -1,0 +1,102 @@
+  <!DOCTYPE html>
+<html lang="zh-cmn-Hans" ng-strict-di>
+<head>
+  <script type="text/javascript">
+    //计时统计
+    var calcPerformance = {
+      beginRunTime: new Date()
+    };
+  </script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title page-title="{{title}}"></title>
+  <meta name="description" content="{{description}}">
+  <meta name="fragment" content="!">
+
+  <!-- Apple META -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- Facebook META -->
+  <meta property="fb:app_id" content="{{facebookAppId}}">
+  <meta property="og:site_name" content="{{title}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="{{url}}">
+  <meta property="og:image" content="{{logo}}">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter META -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="pageTitle{{twitterUsername}}">
+  <meta name="twitter:title" content="{{title}}">
+  <meta name="twitter:description" content="{{description}}">
+  <meta name="twitter:image" content="{{logo}}">
+  <meta name="keywords" content="莲湖，莲湖区，西安莲湖，莲湖政府，西安莲湖区，西安莲湖政府，莲湖区人民政府，西安莲湖区政府，莲湖区人民政府">
+
+  <!-- Fav Icon -->
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+  <!-- Application CSS Files -->
+  {{#each cssFiles}}<link rel="stylesheet" href="/{{this}}">{{/each}}
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=X14h6lgZx7qUsoNbPi49AGHc6hRtuqlO"></script>
+</head>
+
+<body class="ng-cloak" ng-controller="PageFrameController as pfvm">
+<header ng-include="pfvm.headerViewUrl ? pfvm.headerViewUrl : '/modules/core/client/views/header.client.view.html'" class="page-header"></header>
+<section class="page-container clearfix" auto-min-height>
+  <section ng-include="pfvm.menuViewUrl ? pfvm.menuViewUrl : '/modules/core/client/views/sidebarmenu.client.view.html'" class="page-sidebar"></section>
+  <section class="container-fluid page-content">
+    {{{block "content"}}}
+  </section>
+</section>
+<section ng-include="pfvm.footerViewUrl ? pfvm.footerViewUrl : '/modules/core/client/views/footer.client.view.html'" class="page-footer"></section>
+  <noscript>
+    <style>
+      [ng\:cloak], [ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: block !important;
+      }
+    </style>
+    <div class="alert alert-warning">
+      <strong>This page requires JavaScript.</strong> Please enable it in your browser.
+    </div>
+  </noscript>
+
+  <!--Embedding The User Object-->
+  <script type="text/javascript">
+    var user = {{{ user }}};
+    var env = "{{ env }}";
+    var sharedConfig = {{{ sharedConfig }}};
+  </script>
+
+  <!--Load The Socket.io File-->
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+  <!--Application JavaScript Files-->
+  {{#each jsFiles}}<script type="text/javascript" src="/{{this}}"></script>{{/each}}
+
+  <!--owasp config sync-->
+  <script type="text/javascript">
+    owaspPasswordStrengthTest.config(sharedConfig.owasp);
+  </script>
+
+  {{#if livereload}}
+  <!--Livereload script rendered -->
+    <script type="text/javascript" src="{{host}}:35729/livereload.js"></script>
+  {{/if}}
+
+  <div class="use-hideelement" style="display: none">
+    <canvas class="use-hide-calcwidth" height="0"></canvas >
+  </div>
+  <div class="maskover" ng-show="pfvm.maskOverIsOpen">
+    <div class="maskover-mask"></div>
+    <div class="maskover-over">
+      <img ng-src="/modules/core/client/img/loaders/maskoverloader.gif" height="50" width="50" alt="running ...">
+      <strong ng-if="pfvm.maskOverTitle">{{pfvm.maskOverTitle}}...</strong>
+    </div>
+  </div>
+</body>
+
+</html>

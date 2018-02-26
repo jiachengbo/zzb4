@@ -1,0 +1,189 @@
+.view-backgroupd {
+    position: relative;
+    margin-left: -15px;
+    margin-right: -15px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+	/*background: url('/modules/global/client/img/bg/bg.png');*/
+	background-size: 100% 100%;
+	background-color: #fff;
+}
+.shouyeshang{
+	width: 100%;
+	height: 48%;
+	display: flex;
+	justify-content:center;
+}
+.shouyexia{
+	width: 100%;
+	height: 48%;
+	/*background-color: aquamarine;*/
+	display: flex;
+	justify-content:center;
+}
+.shouyeshang>div{
+	width: 32%;
+	float: left;
+	/*border: 1px solid #000000;*/
+}
+.shouyeshang>div:nth-of-type(2){
+	margin: 0 20px;
+}
+.shouyexia>div{
+	float: left;
+	/*border: 1px solid #000000;*/
+}
+.shouyexia>div:nth-of-type(1){
+	width: 64%;
+	margin-right: 20px;
+	padding-right: 15px;
+	box-sizing: content-box;
+}
+.shouyexia>div:nth-of-type(2){
+	width: 32%;
+}
+.partygk,.partywj{
+	overflow: hidden;
+}
+.partyjc{
+	background: url("/modules/global/client/img/home/基层党建.png") no-repeat;
+	background-size: 100% 100%;
+}
+.banzicy ul,.wentuhd ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+.banzicy ul li{
+	float: left;
+}
+.wentuhdleft{
+	width: 50%;
+	height: 87%;
+	overflow: hidden;
+}
+.wentuhdleft ul li{
+	height: 30%;
+}
+.wentuhdleft ul,.wentuhdleft ul li.first{
+	height: 100%;
+}
+.wentuhdright{
+	width: 50%;
+	height: 87%;
+	overflow: hidden;
+	padding-left: 15px;
+}
+.nr{
+	height: 85%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.zhonglou{
+	display: flex;
+	justify-content: space-around;
+	height: 84%;
+}
+.banzicy ul{
+	display: flex;
+	justify-content: space-around;
+	align-items:flex-start;
+	flex-wrap:wrap;
+	width: 100%;
+}
+.banzicy ul li{
+	width: 22%;
+	height: 40%;
+}
+.banzicy ul li img{
+	width: 100%;
+	height: 100%;
+}
+.zhonglou h4{
+	text-align: center;
+	font-size: 13px;
+	margin-top: 5px;
+	margin-bottom: 0;
+}
+.patitle{
+	overflow: hidden;
+	height: 10%;
+	margin: 10px 0;
+	border-bottom: 2px solid red;
+}
+.patitle i{
+	display: inline-block;
+	vertical-align: top;
+	width: 25px;
+	height: 25px;
+	background:url("/modules/global/client/img/home/党徽11.png");
+}
+.patitle span{
+	display: inline-block;
+	text-align: center;
+	padding-left: 15px;
+	height: 25px;
+	font-size: 16px;
+	line-height: 25px;
+}
+.patitle a:nth-of-type(1) span{
+	color: red;
+}
+.inform{
+	padding: 0;
+}
+.inform>li{
+	height: 40px;
+	line-height: 40px;
+	cursor: default;
+}
+.informtitle{
+	float: left;
+	width: 79%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.informtitle:hover{
+	text-decoration: underline;
+}
+.carousel-indicators{
+	bottom: 5px;
+}
+.strMapSearch{
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	margin-top: 10px;
+	border: 1px solid #CCCCCC;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.icon{
+	float: left;
+	width: 50px;
+	height: 50px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.msg:nth-child(1) .icon{
+	background-image: url("/modules/global/client/img/home/time.png");
+}
+.msg:nth-child(2) .icon{
+	background-image: url("/modules/global/client/img/home/shuji.png");
+}
+.msg:nth-child(3) .icon{
+	background-image: url("/modules/global/client/img/home/gwzg.png");
+}
+.msg:nth-child(4) .icon{
+	 background-image: url("/modules/global/client/img/home/dyrs.png");
+}
+.msg:nth-child(5) .icon{
+	background-image: url("/modules/global/client/img/home/phone.png");
+}
+.font{
+	line-height: 50px;
+	font-size: 18px;
+}

@@ -1,0 +1,290 @@
+<style>
+  .form-horizontal .form-group {
+     margin-right: 0;
+     margin-left: 0;
+  }
+</style>
+<div class="threefive-modal">
+  <div class="modal-header">
+    <h3>{{vm.method}}</h3>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.threefiveForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="streetid">所属街道</label>
+              <select class="form-control"
+                      id="streetid"
+                      ng-model="vm.threefiveData.streetid"
+                      ng-options="street.streetID as street.streetName for street in street"
+                      required
+                      name="streetid"
+                      ng-change="vm.strchang(vm.threefiveData.streetid)"
+              >
+              </select>
+              <div ng-messages="vm.threefiveForm.streetid.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择街道</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="communityid">所属社区</label>
+              <select class="form-control"
+                      id="communityid"
+                      ng-model="vm.threefiveData.communityid"
+                      ng-options="community.communityId as community.communityName for community in community"
+                      required
+                      name="communityid"
+                      ng-change="vm.commchange(vm.threefiveData.streetid, vm.threefiveData.communityid)"
+              >
+              </select>
+              <div ng-messages="vm.threefiveForm.communityid.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择社区</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="gridId">所属网格</label>
+              <select class="form-control"
+                      id="gridId"
+                      ng-model="vm.threefiveData.gridId"
+                      ng-options="grid.gridId as grid.gridName for grid in grid"
+                      required
+                      name="gridId"
+              >
+              </select>
+              <div ng-messages="vm.threefiveForm.gridId.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择网格</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="peerAdvisor">楼栋长</label>
+              <input class="form-control"
+                     id="peerAdvisor"
+                     ng-model="vm.threefiveData.peerAdvisor"
+                     required
+                     name="peerAdvisor"
+              />
+              <div ng-messages="vm.threefiveForm.peerAdvisor.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入楼栋长</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="gridZhang">网格长</label>
+              <input class="form-control"
+                     id="gridZhang"
+                     ng-model="vm.threefiveData.gridZhang"
+                     required
+                     name="gridZhang"
+              />
+              <div ng-messages="vm.threefiveForm.gridZhang.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入网格长</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="centerLeader">中心户长</label>
+              <input class="form-control"
+                     id="centerLeader"
+                     ng-model="vm.threefiveData.centerLeader"
+                     required
+                     name="centerLeader"
+              />
+              <div ng-messages="vm.threefiveForm.gridGleader.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入中心户长</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="partyBuild">党建工作专员</label>
+              <input class="form-control"
+                     id="partyBuild"
+                     ng-model="vm.threefiveData.partyBuild"
+                     required
+                     name="partyBuild"
+              />
+              <div ng-messages="vm.threefiveForm.partyBuild.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入党建工作专员</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="EconomicZY">经济发展专员</label>
+              <input class="form-control"
+                     id="EconomicZY"
+                     ng-model="vm.threefiveData.EconomicZY"
+                     required
+                     name="EconomicZY"
+              />
+              <div ng-messages="vm.threefiveForm.EconomicZY.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入经济发展专员</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="publicZY">公共服务专员</label>
+              <input class="form-control"
+                     id="publicZY"
+                     ng-model="vm.threefiveData.publicZY"
+                     required
+                     name="publicZY"
+              />
+              <div ng-messages="vm.threefiveForm.publicZY.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入公共服务专员</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="gridGleader">网格党建小组组长</label>
+              <input class="form-control"
+                     id="gridGleader"
+                     ng-model="vm.threefiveData.gridGleader"
+                     required
+                     name="gridGleader"
+              />
+              <div ng-messages="vm.threefiveForm.gridGleader.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入网格党建小组组长</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="GleaderPhone">网格组长电话</label>
+              <input class="form-control"
+                     id="GleaderPhone"
+                     ng-model="vm.threefiveData.GleaderPhone"
+                     required
+                     name="GleaderPhone"
+              />
+              <div ng-messages="vm.threefiveForm.GleaderPhone.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入网格组长电话</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="PInstructor">党建指导员</label>
+              <input class="form-control"
+                     id="PInstructor"
+                     ng-model="vm.threefiveData.PInstructor"
+                     required
+                     name="PInstructor"
+              />
+              <div ng-messages="vm.threefiveForm.PInstructor.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入党建指导员</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="InstructorPhone">党建指导员电话</label>
+              <input class="form-control"
+                     id="InstructorPhone"
+                     ng-model="vm.threefiveData.InstructorPhone"
+                     required
+                     name="InstructorPhone"
+              />
+              <div ng-messages="vm.threefiveForm.InstructorPhone.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入党建指导员电话</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="socialStabilitycZY">社会稳定专员</label>
+              <input class="form-control"
+                     id="socialStabilitycZY"
+                     ng-model="vm.threefiveData.socialStabilitycZY"
+                     required
+                     name="socialStabilitycZY"
+              />
+              <div ng-messages="vm.threefiveForm.socialStabilitycZY.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入社会稳定专员</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="cityZY">城市管理专员</label>
+              <input class="form-control"
+                     id="cityZY"
+                     ng-model="vm.threefiveData.cityZY"
+                     required
+                     name="cityZY"
+              />
+              <div ng-messages="vm.threefiveForm.cityZY.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入城市管理专员</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="lat">经度</label>
+              <input class="form-control"
+                     id="lat"
+                     ng-model="vm.threefiveData.lat"
+                     required
+                     name="lat"
+              />
+              <div ng-messages="vm.threefiveForm.lat.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入经度</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="lon">维度</label>
+              <input class="form-control"
+                     id="lon"
+                     ng-model="vm.threefiveData.lon"
+                     required
+                     name="lon"
+              />
+              <div ng-messages="vm.threefiveForm.lon.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入维度</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">备注</label>
+          <textarea name="remark" data-ng-model="vm.threefiveData.remark" id="content" class="form-control" cols="30" rows="10" placeholder="备注"></textarea>
+        </div>
+      </fieldset>
+    </form>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="allmap" style="height: 350px;width: 100%"></div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.threefiveForm.$valid)">确认</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

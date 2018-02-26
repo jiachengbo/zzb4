@@ -1,0 +1,77 @@
+<style>
+  .form-horizontal .form-group {
+    margin-right: 0;
+    margin-left: 0;
+  }
+</style>
+<div class="jobduties-modal">
+  <div class="modal-header">
+    <h3>{{vm.method}} 工作职责</h3>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.jobdutiesForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="streetid">所属街道</label>
+              <select class="form-control"
+                      id="streetid"
+                      ng-model="vm.jobdutiesData.streetid"
+                      ng-options="street.streetID as street.streetName for street in street"
+                      required
+                      name="streetid"
+                      ng-change="vm.strchang(vm.jobdutiesData.streetid)"
+              >
+              </select>
+              <div ng-messages="vm.jobdutiesForm.streetid.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择街道</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="communityid">所属社区</label>
+              <select class="form-control"
+                      id="communityid"
+                      ng-model="vm.jobdutiesData.communityid"
+                      ng-options="community.communityId as community.communityName for community in community"
+                      required
+                      name="communityid"
+                      ng-change="vm.commchange(vm.jobdutiesData.streetid, vm.jobdutiesData.communityid)"
+              >
+              </select>
+              <div ng-messages="vm.jobdutiesForm.communityid.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择社区</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="gridId">所属网格</label>
+              <select class="form-control"
+                      id="gridId"
+                      ng-model="vm.jobdutiesData.gridId"
+                      ng-options="grid.gridId as grid.gridName for grid in grid"
+                      required
+                      name="gridId"
+              >
+              </select>
+              <div ng-messages="vm.jobdutiesForm.gridId.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请选择网格</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">职责描述</label>
+          <textarea  name="dutycontent" data-ng-model="vm.jobdutiesData.dutycontent" id="content" class="form-control" cols="30" rows="10" placeholder="职责描述"></textarea>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.jobdutiesForm.$valid)">确认</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

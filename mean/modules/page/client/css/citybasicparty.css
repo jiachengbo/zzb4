@@ -1,0 +1,45 @@
+.str{
+	height: 800px;
+	border:1px solid #ddd;
+}
+.orgset{
+	height: 300px;
+	border: 1px solid #ddd;
+}
+.orgset>div{
+	border: 1px solid #ddd;
+	height: 100%;
+}
+.partymiddle{
+	height: 500px;
+	border: 1px solid #ddd;
+}
+.partymiddle>div{
+	height: 100%;
+	border: 1px solid #ccc;
+}
+.stritem{
+	width: 48%;
+	height: 30px;
+	line-height: 30px;
+	float: left;
+	margin: 10px 10px 10px 0;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding-left: 10px;
+}
+.qitem{
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	border: 1px solid #ddd;
+	margin-top: 16px;
+}
+.qdjitem{
+	height: 40px;
+	line-height: 40px;
+}
+.qwtitem{
+	height: 30px;
+	line-height: 30px;
+}

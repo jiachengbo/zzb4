@@ -1,0 +1,300 @@
+<div class="appeal-modal">
+  <div class="modal-header">
+    <h3>{{vm.method}} 党建动态</h3>
+  </div>
+  <div class="col-md-12" style="text-align: right;margin-top: 20px;font-size: large" ng-show="vm.method==='修改'">
+    <button class="btn btn-primary" ng-if="vm.getOther"  ng-click="vm.updatebuildP()">获取</button>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.appealForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <!--<div class="form-group" show-errors ng-repeat="col in vm.columnDefs">
+          <label class="control-label" for="{{col.field}}">{{col.displayName}}</label>
+          <input name="{{col.field}}" type="text" ng-model="vm.appealData[col.field]" id="{{col.field}}"
+                 class="form-control" placeholder="" required autofocus>
+          <div ng-messages="vm.appealForm[col.field].$error" role="alert">
+            <p class="help-block error-text" ng-message="required">{{col.field}} is required.</p>
+          </div>
+        </div>-->
+        <!--<div class="form-group" show-errors>
+           <label class="control-label">appealId</label>
+           <input name="createDate" type="text" ng-model="vm.appealData.createDate" id="createDate"
+                  class="form-control" placeholder="" required autofocus>
+           <div ng-messages="vm.appealForm.createDate.$error" role="alert">
+             <p class="help-block error-text" ng-message="required"></p>
+           </div>
+         </div>
+ -->
+        <!--第1行-->
+        <div class="row clearfix">
+          <div class="col-md-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="appealTitle">需求标题</label>
+                <textarea name="appealTitle"
+                          rows="1"
+                          type="text"
+                          ng-model="vm.appealData.appealTitle"
+                          id="appealTitle"
+                          ng-maxlength="500"
+                          class="form-control"
+                          placeholder=""
+                          required autofocus></textarea>
+                <div ng-messages="vm.appealForm.appealTitle.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入标题.500字以内</p>
+                </div>
+                <div ng-show="vm.appealForm.appealTitle.$dirty" class="has-error" role="alert">
+                  <p class="help-block error-text" ng-show="vm.appealForm.appealTitle.$error.maxlength">500字以内.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="appealContext">需求内容</label>
+                <!--<textarea name="appealContext"-->
+                          <!--type="text"-->
+                          <!--rows="4"-->
+                          <!--ng-model="vm.appealData.appealContext"-->
+                          <!--id="appealContext"-->
+                          <!--class="form-control"-->
+                          <!--ng-maxlength="2000"-->
+                          <!--placeholder=""-->
+                          <!--required autofocus>-->
+                <!--</textarea>-->
+                <div class="form-control" style="min-height: 100px;overflow-y: scroll;" contenteditable="true" id="appealContext">
+
+                </div>
+                <div ng-messages="vm.appealForm.appealContext.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入内容.2000字以内</p>
+                </div>
+                <div ng-show="vm.appealData.appealContext.length > 4000" class="has-error" role="alert">
+                  <p class="help-block error-text" ng-show="vm.appealData.appealContext.length > 4000">字数在2000字以内.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--第2行-->
+        <div class="row clearfix">
+          <div class="col-md-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="context">备注</label>
+                <textarea name="context"
+                          type="text"
+                          rows="1"
+                          ng-model="vm.appealData.context"
+                          id="context"
+                          class="form-control"
+                          placeholder=""></textarea>
+                <!--<div ng-messages="vm.appealForm.context.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入备注.</p>
+                </div>-->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!--第三行-->
+        <div class="row clearfix">
+
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="createUser">上报人</label>
+                <input name="createUser"
+                       type="text"
+                       readonly
+                       ng-model="vm.appealData.createUser"
+                       id="createUser"
+                       class="form-control"
+                       placeholder="">
+                <!-- <div ng-messages="vm.appealForm.createUser.$error" role="alert">
+                   <p class="help-block error-text"
+                      ng-message="required">请输入上报人.</p>
+                 </div>-->
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="state">上报状态</label>
+                <select class="form-control"
+                        id="state"
+                        ng-model="vm.appealData.state"
+                        ng-options="cv_state.name as cv_state.name for cv_state in cvs_state"
+                        required
+                >
+                </select>
+              </div>
+            </div>
+          </div>
+          <!--
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="communityId">所在社区</label>
+                <select class="form-control"
+                        id="communityId"
+                        ng-model="vm.appealData.communityId"
+                        ng-options="cv_community.communityId as cv_community.communityName for cv_community in cvs_communitys"
+                        ng-change="vm.selectCommunityIdChange(vm.appealData.communityId)"
+                        required
+                >
+                </select>
+              </div>
+            </div>
+          </div>
+         -->
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="issb">是否上报上级党组织</label>
+                <select class="form-control"
+                        id="issb"
+                        ng-model="vm.appealData.issb"
+                        ng-options="cv_issb.id as cv_issb.name for cv_issb in cvs_issb"
+                >
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="ishow">是否推送前端页面展示</label>
+                <select class="form-control"
+                        id="ishow"
+                        ng-model="vm.appealData.ishow"
+                        ng-options="cv_ishow.id as cv_ishow.name for cv_ishow in cvs_ishow"
+
+                >
+                </select>
+              </div>
+            </div>
+          </div><!--
+          <div class="col-md-6 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="gridId">所在网格</label>
+                <select class="form-control"
+                        id="gridId"
+                        ng-model="vm.appealData.gridId"
+                        ng-options="cv_grid.gridId as cv_grid.gridNum for cv_grid in cvs_grids"
+                        required
+                >
+                </select>
+              </div>
+            </div>
+          </div>-->
+        </div>
+        <!--第四行-->
+        <div class="row clearfix">
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <label class="control-label">图片一</label>
+              <div class="form-group text-center">
+                <img ngf-src="vm.fileSelected ? vm.picFile1 : vm.appealData.phoneOnePath"
+                     alt="" class="img-thumbnail project-profile-picture" ngf-drop>
+              </div>
+              <div ng-show="vm.loading" class="form-group text-center">
+                <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                     height="80" width="40" alt="Loading image...">
+              </div>
+              <div class="text-center form-group">
+                <button class="btn btn-default btn-file"
+                        ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                        ng-model="vm.picFile1" accept="image/*"
+                        ngf-before-model-change="vm.loading = true" ngf-resize="{width: 900, quality: 1}"
+                        ngf-resize-if="$width > 900 || $height > 900">点击选择图片
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <label class="control-label">图片二</label>
+              <div class="form-group text-center">
+                <img ngf-src="vm.fileSelected2 ? vm.picFile2 : vm.appealData.photoTwoimagePath"
+                     alt="" class="img-thumbnail project-profile-picture" ngf-drop>
+              </div>
+              <div ng-show="vm.loading2" class="form-group text-center">
+                <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                     height="80" width="40" alt="Loading2 image...">
+              </div>
+              <div class="text-center form-group">
+                <button class="btn btn-default btn-file"
+                        ngf-select="(vm.fileSelected2 = true) && (vm.loading2 = false)"
+                        ng-model="vm.picFile2" accept="image/*"
+                        ngf-before-model-change="vm.loading2 = true" ngf-resize="{width: 900, quality: 1}"
+                        ngf-resize-if="$width > 900 || $height > 900">点击选择图片
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <label class="control-label">图片三</label>
+              <div class="form-group text-center">
+                <img ngf-src="vm.fileSelected3 ? vm.picFile3 : vm.appealData.photoThreeimagePath"
+                     alt="" class="img-thumbnail project-profile-picture" ngf-drop>
+              </div>
+              <div ng-show="vm.loading3" class="form-group text-center">
+                <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                     height="80" width="40" alt="Loading3 image...">
+              </div>
+              <div class="text-center form-group">
+                <button class="btn btn-default btn-file"
+                        ngf-select="(vm.fileSelected3 = true) && (vm.loading3 = false)"
+                        ng-model="vm.picFile3" accept="image/*"
+                        ngf-before-model-change="vm.loading3 = true" ngf-resize="{width: 900, quality: 1}"
+                        ngf-resize-if="$width > 900 || $height > 900">点击选择图片
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-6">
+            申报时间
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup
+                     ng-model="sbtime" is-open="popup1.opened"
+                     datepicker-options="inlineOptions" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </p>
+          </div>
+        </div>
+        <!-- -->
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" style="width: 100px;" ng-if="!vm.disabled" ng-click="vm.ok(vm.appealForm.$valid)">
+      提交
+    </button>
+    <button class="btn btn-warning" style="width: 100px;" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

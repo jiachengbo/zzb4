@@ -1,0 +1,314 @@
+<div class="regionalization-modal">
+  <div class="modal-body">
+    <uib-tabset active="0">
+      <uib-tab index="0" heading="项目介绍">
+        <div class="row" style="margin-top: 10px">
+          <div class="col-sm-12 column">
+            <form name="vm.progressForm" class="form-horizontal" novalidate>
+              <fieldset ng-disabled="vm.disabled">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="col-md-12 form-group" show-errors>
+                          <label class="control-label" for="ProjectName">项目名称</label>
+                          <input name="ProjectName" type="text" ng-model="vm.projectData.ProjectName"
+                                 id="ProjectName" class="form-control" maxlength="25"
+                                 placeholder="请输入项目名称" required autofocus>
+                          <div ng-messages="vm.projectForm.ProjectName.$error" role="alert">
+                            <p class="help-block error-text" ng-message="required">项目名称不能为空！</p>
+                          </div>
+                          <div ng-messages="vm.projectForm.ProjectName.$error" role="alert">
+                            <p class="help-block error-text" ng-message="maxlength">字数在25字以内</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12 form-group">
+                          <label class="control-label">项目来源</label>
+                          <select class="form-control"
+                                  ng-model="vm.projectData.Source"
+                                  ng-options="ps.projectSourcename as ps.projectSourcename for ps in projectSourceInfo">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12 form-group">
+                          <label class="control-label">项目类型</label>
+                          <select class="form-control"
+                                  ng-model="vm.projectData.ProjectType"
+                                  ng-options="pt.projectTypename as pt.projectTypename for pt in projectTypeInfo">
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12 form-group" show-errors>
+                          <label class="control-label" for="SbTime">申报时间</label>
+                          <p class="input-group">
+                            <input name="SbTime" type="text" class="form-control" id="SbTime"
+                                   uib-datepicker-popup ng-model="vm.projectData.SbTime" is-open="popup1.opened"
+                                   datepicker-options="inlineOptions" ng-required="true"
+                                   close-text="Close" ng-disabled="vm.disabled"
+                                   placeholder="请选择时间"/>
+                            <span class="input-group-btn">
+            <button type="button" class="btn btn-default"
+                    ng-click="open1()" ng-disabled="vm.disabled"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+                          </p>
+                          <div ng-messages="vm.projectForm.SbTime.$error" role="alert">
+                            <p class="help-block error-text" ng-message="required">上报时间不能为空！</p>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12 form-group" show-errors>
+                          <label class="control-label" for="FinishTime">拟完成时间</label>
+                          <p class="input-group">
+                            <input name="FinishTime" type="text" class="form-control" id="FinishTime"
+                                   uib-datepicker-popup ng-model="vm.projectData.FinishTime" is-open="popup2.opened"
+                                   datepicker-options="inlineOptions" ng-required="true"
+                                   close-text="Close" ng-disabled="vm.disabled"
+                                   placeholder="请选择时间"/>
+                            <span class="input-group-btn">
+            <button type="button" class="btn btn-default"
+                    ng-click="open2()" ng-disabled="vm.disabled"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+                          </p>
+                          <div ng-messages="vm.projectForm.FinishTime.$error" role="alert">
+                            <p class="help-block error-text" ng-message="required">拟完成时间不能为空！</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="col-md-12">
+                      <label class="control-label">项目Logo</label>
+                      <div class="form-group text-center">
+                        <img ngf-src="vm.fileSelected ? vm.picFile : vm.projectData.ProjectLogo"
+                             alt="" class="img-thumbnail project-profile-picture" ngf-drop>
+                      </div>
+                      <div ng-show="vm.loading" class="form-group text-center">
+                        <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                             height="80" width="40" alt="Loading image...">
+                      </div>
+                      <div class="text-center form-group">
+                        <button class="btn btn-default btn-file"
+                                ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                                ng-model="vm.picFile" accept="image/*"
+                                ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
+                                ngf-resize-if="$width > 400 || $height > 400">点击选择项目Logo图片
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div>
+            <span class="col-md-12" style="color: red"
+                  ng-show="vm.yzSbTimeAndFinishTime">*申报时间不能大于等于拟完成时间！</span>
+                  </div>
+                </div>
+                <div class="col-md-12 form-group">
+                  <label class="control-label" for="ProjectSummary">项目简介</label>
+                  <textarea name="ProjectSummary" data-ng-model="vm.projectData.ProjectSummary"
+                            maxlength="2500"
+                            id="ProjectSummary" class="form-control" cols="30"
+                            rows="3" placeholder="请输入项目简介"></textarea>
+                  <div>
+                    <span style="color: red" ng-show="vm.yzProjectsummary">*项目简介不能为空！</span>
+                  </div>
+                </div>
+                <div class="col-md-12 form-group">
+                  <label class="control-label" for="Measure">具体推进措施</label>
+                  <textarea name="Measure" data-ng-model="vm.projectData.Measure"
+                            maxlength="500"
+                            id="Measure" class="form-control" cols="30"
+                            rows="3" placeholder="请输入具体推进措施"></textarea>
+                  <div>
+                    <span style="color: red" ng-show="vm.yzMeasure">*推进措施不能为空！</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12 form-group" show-errors>
+                          <label class="control-label" for="Head">负责人</label>
+                          <input name="Head" type="text" ng-model="vm.projectData.Head"
+                                 id="Head" class="form-control" maxlength="20"
+                                 ng-pattern="/^[\u4e00-\u9fa5]/"
+                                 placeholder="请输入负责人名称" required autofocus>
+                          <div ng-messages="vm.projectForm.Head.$error" role="alert">
+                            <p class="help-block error-text" ng-message="required">负责人不能为空！</p>
+                          </div>
+                          <div ng-show="vm.projectForm.Head.$dirty && vm.projectForm.Head.$invalid" class="has-error"
+                               style="text-align: left">
+                            <span class="help-block" ng-show="vm.projectForm.Head.$error.pattern">责任人必须是汉字!</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12 form-group" show-errors>
+                          <label class="control-label" for="State">状态</label>
+                          <input name="State" type="text" ng-model="vm.projectData.State"
+                                 id="State" class="form-control"
+                                 placeholder="请输入状态" required autofocus>
+                          <div ng-messages="vm.projectForm.State.$error" role="alert">
+                            <p class="help-block error-text" ng-message="required">状态不能为空！</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--<div class="col-md-6">
+                    <div class="col-md-12 form-group">
+                      <label class="control-label">上报社区</label>
+                      <select class="form-control"
+                              ng-model="vm.projectData.Report"
+                              ng-options="c.communityId as c.communityName for c in communityInfo">
+                      </select>
+                    </div>
+                  </div>-->
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="col-md-12 form-group" show-errors>
+                      <label class="control-label" for="People">受益人数（单位：人）</label>
+                      <input name="People" type="text" ng-model="vm.projectData.People"
+                             id="People" class="form-control"
+                             ng-pattern="/^[0-9]*$/" maxlength="10"
+                             placeholder="请输入受益人数" required autofocus>
+                      <div ng-messages="vm.projectForm.People.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">受益人数不能为空！</p>
+                      </div>
+                      <div ng-show="vm.projectForm.People.$dirty && vm.projectForm.People.$invalid" class="has-error"
+                           style="text-align: left">
+                        <span class="help-block" ng-show="vm.projectForm.People.$error.pattern">受益人数只能为数字!</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="col-md-12 form-group" show-errors>
+                      <label class="control-label" for="company">认领单位</label>
+                      <input name="company" type="text" ng-model="vm.projectData.company"
+                             id="company" class="form-control" maxlength="100"
+                             placeholder="请输入认领单位" required autofocus>
+                      <div ng-messages="vm.projectForm.company.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">认领单位不能为空！</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group autoscroll">
+                      <label class="control-label" for="Head">认领单位</label>
+                      <div ng-repeat="renlinlist in vm.remlist track by $index ">
+                            <span class="on_check" ng-click="vm.check1($event, $index)" >
+                            </span>
+                        <label class="checklabel">{{renlinlist.name}}</label>
+                      </div>
+                    </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </uib-tab>
+      <uib-tab index="1" heading="项目进展" ng-show="vm.projectData.State==='实施中'">
+        <div class="row" style="margin-top: 10px">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label" for="ProgressContent">进展内容</label>
+                  <textarea name="ProgressContent" data-ng-model="vm.ProgressContent"
+                            maxlength="2500"
+                            id="ProgressContent" class="form-control" cols="30"
+                            rows="9" placeholder="请输入进展内容"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-12">
+                  <label class="control-label">进展图片</label>
+                  <div class="form-group text-center">
+                    <img ngf-src="vm.fileSelected ? vm.progressPicFile : vm.ProgressPhoto"
+                         alt="" class="img-thumbnail progress-profile-picture" ngf-drop>
+                  </div>
+                  <div ng-show="vm.loading" class="form-group text-center">
+                    <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                         height="80" width="40" alt="Loading image...">
+                  </div>
+                  <div class="text-center form-group">
+                    <button class="btn btn-default btn-file"
+                            ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                            ng-model="vm.progressPicFile" accept="image/*"
+                            ngf-before-model-change="vm.loading = true" ngf-resize="{width: 900, quality: 1}"
+                            ngf-resize-if="$width > 900 || $height > 900">点击选择项目进展图片
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <label>进展时间：</label>
+                <p class="input-group">
+                  <input type="text" class="form-control"
+                         uib-datepicker-popup ng-model="vm.ProgressTime " is-open="popup3.opened"
+                         datepicker-options="inlineOptions" ng-required="true"
+                         placeholder="请选择进展时间"
+                         close-text="Close" ng-disabled="vm.progressDisabled"/>
+                  <span class="input-group-btn">
+            <button type="button" class="btn btn-default"
+                    ng-click="open3()" ng-disabled="vm.progressDisabled"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+                </p>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-12" style="margin-bottom: 5px">
+                    <span style="color: red">提示信息：{{vm.errInfo}}</span>
+                  </div>
+                </div>
+                <div class="row" ng-if="!vm.canyu">
+                  <div class="col-md-6">
+                    <button type="button" ng-class="vm.buttonClass"
+                            style="width: 100%" ng-click="vm.progressOk()">{{vm.progressSubmit}}
+                    </button>
+                  </div>
+                  <div class="col-md-6">
+                    <button type="button" class="btn btn-danger" ng-disabled="vm.progressDelete"
+                            style="width: 100%" ng-click="vm.progressRemove()">删&nbsp;除
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div ui-grid="vm.gridOptions"
+                 ui-grid-selection
+                 ui-grid-pagination
+                 ui-grid-resize-columns
+                 class="regionalization-progress-grid">
+            </div>
+          </div>
+        </div>
+      </uib-tab>
+    </uib-tabset>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

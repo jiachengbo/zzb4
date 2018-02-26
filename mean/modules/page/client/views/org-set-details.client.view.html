@@ -1,0 +1,134 @@
+<style>
+  .citystr_xm tbody tr td a p {
+    width: 900px;
+  }
+</style>
+<section class="home-view view-backgroupd xiangqingbg" ng-style="styles">
+  <div class="container center-block mainbox">
+    <div class="row">
+      <div class="patitle" style="padding-bottom: 15px;">
+        <a href="##" style="float: left">
+          <i></i>
+          <span>{{vm.ame}}</span>
+        </a>
+      </div>
+      <div class="col-md-12 col-lg-12">
+        <div class="row" style="margin-bottom: 10px;">
+          <div class="col-md-12 col-lg-12">
+            <div style="width: 150px;height: 50px;line-height:50px;padding-left:10px;background: red;color: white;font-size: 20px;">
+              领导机构
+            </div>
+          </div>
+        </div>
+        <div ng-if="!vm.streetperson.show">
+          <h4 style="color:red;" ng-show="vm.orgId === 3">负责人</h4>
+          <h4 style="color:red;letter-spacing: 8px" ng-show="vm.orgId === 2">召集人</h4>
+          <h4 style="color:red;letter-spacing: 20px" ng-show="vm.orgId === 1">组长</h4>
+          <ul class="leader row">
+            <li data-ng-repeat="OrgPerson in vm.OrgPerson" ng-if="vm.OrgPerson.length > 2" class="col-md-4 col-lg-4" style="margin-bottom: 20px;">
+              <div><span style="display: inline-block;width: 70px;"> {{vm.orgId > 3 ? OrgPerson.CommitteeName : OrgPerson.personName}}</span> <span>{{vm.orgId > 3 ? OrgPerson.CommitteePostion : OrgPerson.personduty}}</span></div>
+            </li>
+            <li data-ng-repeat="OrgPerson in vm.OrgPerson" ng-if="vm.OrgPerson.length === 2" class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+              <div><span style="display: inline-block;width: 70px;"> {{vm.orgId > 3 ? OrgPerson.CommitteeName : OrgPerson.personName}}</span> <span>{{vm.orgId > 3 ? OrgPerson.CommitteePostion : OrgPerson.personduty}}</span></div>
+            </li>
+            <li data-ng-repeat="OrgPerson in vm.OrgPerson" ng-if="vm.OrgPerson.length === 1" class="col-md-12 col-lg-12" style="margin-bottom: 20px;">
+              <div><span style="display: inline-block;width: 70px;"> {{vm.orgId > 3 ? OrgPerson.CommitteeName : OrgPerson.personName}}</span> <span>{{vm.orgId > 3 ? OrgPerson.CommitteePostion : OrgPerson.personduty}}</span></div>
+            </li>
+          </ul>
+          <h4 style="color:red" data-ng-if="vm.showss">{{vm.dutyname2}}</h4>
+          <ul class="leader row" data-ng-if="vm.showss">
+            <li data-ng-repeat="OrgPerson in vm.fzz" class="col-md-4 col-lg-4" style="margin-bottom: 20px;">
+              <div> <span style="display: inline-block;width: 70px;">{{vm.orgId > 3 ? OrgPerson.CommitteeName : OrgPerson.personName}}</span> <span>{{vm.orgId > 3 ? OrgPerson.CommitteePostion : OrgPerson.personduty}}</span></div>
+            </li>
+          </ul>
+          <h4 style="color:red;letter-spacing: 20px" ng-show="vm.orgId === 3">成员</h4>
+          <h4 style="color:red;letter-spacing: 35px" ng-show="vm.orgId === 2" >成员</h4>
+          <h4 style="color:red;letter-spacing: 20px" ng-show="vm.orgId === 1" >成员</h4>
+          <ul class="leader row">
+            <li data-ng-repeat="OrgPerson in vm.cy" class="col-md-4 col-lg-4" style="margin-bottom: 20px;">
+              <div ><span style="display: inline-block;width: 70px;">{{vm.orgId > 3 ? OrgPerson.CommitteeName : OrgPerson.personName}}</span> <span>{{vm.orgId > 3 ? OrgPerson.CommitteePostion : OrgPerson.personduty}}</span></div>
+            </li>
+          </ul>
+        </div>
+        <div ng-if="vm.streetperson.show">
+          <h4 style="color:red;letter-spacing: 12px">{{vm.streetperson.name}}</h4>
+          <ul class="leaders row">
+            <li data-ng-repeat="OrgPerson in vm.OrgPerson" class="col-md-3 col-lg-3" style="margin-bottom: 20px;">
+              <p style="height: 166px;text-align: center"><img src="{{vm.orgId > 3 ? OrgPerson.CommitteePhotoPath : OrgPerson.personPhoto}}" alt="" style="height: 100%;"></p>
+              <div class="button shou" style="width: 50%;margin: 0 auto;">{{vm.orgId > 3 ? OrgPerson.CommitteeName : OrgPerson.personName}}</div>
+              <div class="button shou">{{vm.orgId > 3 ? OrgPerson.CommitteePostion : OrgPerson.duty}}</div>
+            </li>
+          </ul>
+          <h4 style="color:red">{{vm.streetperson.name1}}</h4>
+          <ul class="leaders row">
+            <li data-ng-repeat="OrgPerson in vm.fzz" class="col-md-3 col-lg-3" style="margin-bottom: 20px;">
+              <p style="height: 166px;text-align: center"><img src="{{vm.orgId > 3 ? OrgPerson.CommitteePhotoPath : OrgPerson.personPhoto}}" alt="" style="height: 100%;"></p>
+              <div class="button shou" style="width: 50%;margin: 0 auto;">{{vm.orgId > 3 ? OrgPerson.CommitteeName : OrgPerson.personName}}</div>
+              <div class="button shou">{{vm.orgId > 3 ? OrgPerson.CommitteePostion : OrgPerson.duty}}</div>
+            </li>
+          </ul>
+        </div>
+
+    </div>
+      <div class="col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <div style="width: 150px;height: 50px;line-height:50px;padding-left:10px;background: red;color: white;font-size: 20px;">
+              工作职责
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-12">
+            <div style="padding-left:10px;margin-bottom: 10px;min-height: 300px;font-size: 15px;line-height: 30px" class="aaas">
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="citystr_xm">
+          <table class="table table-hover cityduty">
+            <thead>
+            <tr style="background-color: #FEFEFE;font-size: 16px;">
+              <th>序号</th>
+              <th>标题</th>
+              <th>内容</th>
+              <th>召开时间</th>
+              <th>图片</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="Orgset in vm.Orgset track by $index"  class="shou">
+              <td ng-click="vm.toNext($index)"><span>{{$index + 1}}</span></td>
+              <td ng-click="vm.toNext($index)"><span>{{Orgset.duty}}</span></td>
+              <td ng-click="vm.toNext($index)"><span>{{Orgset.quest}}</span></td>
+              <td ng-click="vm.toNext($index)"><span>{{Orgset.createTime | date: "yyyy-MM-hh"}}</span></td>
+              <td><img src="{{Orgset.meetingPhoto}}" style="height: 150px" enlarge-pic></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--<ul class="fenye" style="color:#000;">
+      <li>总共{{vm.pagesum}}条数</li>
+      <li ng-click="vm.pageshu(vm.count,$event)">尾页</li>
+      <li ng-click="vm.pageshu(vm.pageage+1,$event)">下一页</li>
+      <li ng-click="vm.pageshu(vm.pageage,$event)">跳转</li>
+      <li>
+        <input type="text" data-ng-model="vm.pageage"
+               style="width: 40px;border: 1px solid #ddd;text-align: right;color: black">/{{vm.count}}页
+      </li>
+      <li ng-click="vm.pageshu(vm.pageage-1,$event)">上一页</li>
+      <li ng-click="vm.pageshu(1,$event)" class="pageactive">首页</li>
+    </ul>-->
+  </div>
+  <div class="mask" close-pic style="display: none;">
+    <div class="mask-box"></div>
+    <div class="big-pic-wrap" style="top:40%;text-align: center;overflow-y: auto;overflow-x: hidden;">
+      <img src="" alt="" style="transform:scale(1)"  class="bigPic"/>
+      <span class="close-pic"><i class="glyphicon glyphicon-remove"></i></span>
+    </div>
+  </div>
+  <div ng-include="'/modules/core/client/views/footers.client.view.html'" class="footers" ng-show="vm.show"></div>
+</section>

@@ -1,0 +1,135 @@
+.dangwei{
+	height: 50%;
+	border-bottom: 1px dashed #ddd;
+}
+.dangwei .title {
+	width: 3%;
+	height: 100%;
+	border-right: 1px dashed #ddd;
+	float: left;
+}
+.dangwei .items{
+	float: right;
+	width: 97%;
+}
+ul,li{
+	list-style: none;
+}
+.ditem{
+	border: 1px solid #ddd;
+	background: #eee;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 4px;
+	cursor: pointer;
+	float: left;
+	padding: 0 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	width: 47%;
+	box-sizing: border-box;
+}
+.tjitem{
+	border: 1px solid #ddd;
+	background: #eee;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 4px;
+	cursor: pointer;
+	float: left;
+	padding: 0 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	width: 100%;
+	box-sizing: border-box;
+}
+.title{
+	height: 40px;
+	background: #F8C301;
+	line-height: 40px;
+	width: 200px;
+	text-align: center;
+	margin:10px 0;
+}
+.danggongwei{
+	height: 50%;
+}
+.danggongwei .title{
+	width: 3%;
+	height: 100%;
+	border-right: 1px dashed #ddd;
+	float: left;
+}
+.danggongwei .items{
+	float: right;
+	width: 97%;
+}
+.danggongwei .items .item{
+	border: 1px solid #ddd;
+	background: #eee;
+	border-radius: 4px;
+	cursor: pointer;
+	float: left;
+	margin-left: 10px;
+	margin-top: 5px;
+	padding: 0 10px;
+}
+.media:hover{
+	cursor: pointer;
+}
+.fenye li{
+	float: right;
+	margin-left: 10px;
+}
+.pageactive{
+	color: red;
+}
+.fenye li:hover{
+	cursor: pointer;
+}
+.shou:hover{
+	cursor: pointer;
+}
+.xiangqingbg{
+	background: url('/modules/page/client/img/tupian/01.png') no-repeat 0 0;
+	background-size: 100%;
+	background-color: #FDF6E7;
+}
+/**{
+	user-select: none;
+}*/
+.tablebox{
+	height: 400px;
+	width: 100%;
+	overflow: hidden;
+}
+.tabledata{
+	height: 40px;
+	border: 1px solid #ddd;
+	margin: 0;
+	background: #FFFFFF;
+	border-bottom: 1px dashed #ddd;
+	border-top: 1px dashed transparent;
+}
+.tableboxinner{
+	position: relative;
+	height: auto;
+	top:0;
+}
+.tabledata1{
+	height: 40px;
+	border: 1px solid #ddd;
+	margin: 0;
+	background: #EFEFEF;
+	font-size: 16px;
+}
+.tabledata1>div{
+	line-height: 40px;
+	text-align: center;
+	font-weight: bold;
+}
+.tabledata>div{
+	line-height: 40px;
+	text-align: center;
+	font-weight: bold;
+}

@@ -1,0 +1,50 @@
+<section class="home-view view-backgroupd xiangqingbg" ng-style="styles">
+  <div class="container-fluid" style="width: 1200px;margin: 0 auto;background: url('/modules/page/client/img/xiangmu/header.png')no-repeat;background-color: #fff;position: relative;z-index: 10;min-height: 741px">
+    <h4 style="text-align: left;margin-top: 40px"><span style='background: url("/modules/page/client/img/tupian/问题.png"); background-size:100% 100%;display: inline-block;width: 27px;height: 27px;vertical-align: top;'></span>三会一课</h4>
+    <div>
+      <table style="width: 100%" class="threehyk table table-bordered">
+        <tbody>
+        <tr>
+          <td><span>主 题：</span></td>
+          <td colspan="3"><p>{{vm.wenti.title}}</p></td>
+        </tr>
+        <tr>
+          <td><span>负责人：</span></td>
+          <td><span>{{vm.wenti.head}}</span></td>
+          <td><span>参加人数：</span></td>
+          <td><p>{{vm.wenti.peoplenum}}</p></td>
+        </tr>
+        <tr>
+          <td><span>开始时间：</span></td>
+          <td><span>{{vm.wenti.starttime | date: 'yyyy-MM-dd HH-mm-ss'}}</span></td>
+          <td><span>结束时间：</span></td>
+          <td><p>{{vm.wenti.endtime  | date: 'yyyy-MM-dd HH-mm-ss'}}</p></td>
+        </tr>
+        <tr>
+          <td><span>地 址：</span></td>
+          <td colspan="3"><p>{{vm.wenti.address}}</p></td>
+        </tr>
+        <tr>
+          <td><span>照 片：</span></td>
+          <td colspan="3"><img src="{{vm.wenti.photo}}" style="height: 280px"></td>
+        </tr>
+        <tr>
+          <td><span>内 容：</span></td>
+          <td colspan="3">
+            {{vm.wenti.content}}
+          </td>
+        </tr>
+        <tr>
+          <td><span>文件查看：</span></td>
+          <td colspan="3"><span  class="shou" ng-show="vm.wenti.file_path" ng-click="vm.tocontent(vm.wenti.file_path)">查看</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--<p>
+      处理平台：{{vm.wenti.pt}}
+      上报组织：{{vm.wenti.superName}}
+    </p>-->
+  </div>
+  <div ng-include="'/modules/core/client/views/footers.client.view.html'" class="footers" ng-show="vm.show"></div>
+</section>

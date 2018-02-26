@@ -1,0 +1,66 @@
+<section>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>党组织信息统计</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="row">
+        <div class="col-md-12" style="margin-bottom: 10px">
+          <span style="color: red" ng-show="cmo.yzStartAndEndTime">*开始时间不能大于等于结束时间！</span>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 10px">
+        <div class="col-md-12" style="margin-bottom: 10px">
+          <label>分析类型：</label>
+          <select class="form-control" ng-model="cmo.type_selected"
+                  ng-options="m.typeid as m.typename for m in typeinfo">
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>开始时间：</label>
+          <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup
+                   ng-model="dt1" is-open="popup1.opened"
+                   datepicker-options="inlineOptions" ng-required="true" close-text="Close"/>
+            <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>结束时间：</label>
+          <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup
+                   ng-model="dt2" is-open="popup2.opened"
+                   datepicker-options="inlineOptions" ng-required="true" close-text="Close"/>
+            <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open2()"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" style="width: 100%;margin-bottom: 10px;margin-top: 10px"
+                  class="btn btn-success" ng-model="singlcmodel"
+                  ng-click="submit()">分&nbsp;&nbsp;析
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <nvd3 options='cmo.options1' data='cmo.data1'></nvd3>
+    </div>
+    <div class="col-md-5">
+      <nvd3 options='cmo.options2' data='cmo.data2'></nvd3>
+    </div>
+  </div>
+</section>

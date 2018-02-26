@@ -1,0 +1,222 @@
+<style>
+  .form-horizontal .form-group {
+    margin-right: 0;
+    margin-left: 0;
+  }
+</style>
+<div class="threelessons-modal">
+  <div class="modal-header">
+    <h1>{{vm.method}} 三会一课</h1>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.threelessonsForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="title">主题</label>
+              <input name="title" type="text" ng-model="vm.threelessonsData.title" id="title" class="form-control" placeholder="主题" required autofocus maxlength="100">
+              <div ng-messages="vm.threelessonsForm.title.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入主题.</p>
+              </div>
+              <div ng-messages="vm.threelessonsForm.title.$error" role="alert">
+                <p class="help-block error-text" ng-message="maxlength">字数在100字以内.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="content">内容</label>
+              <textarea name="content" data-ng-model="vm.threelessonsData.content" id="content"  required class="form-control" cols="30" rows="10" placeholder="内容" ng-maxlenght="4000"></textarea>
+              <div ng-messages="vm.threelessonsForm.content.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入内容.</p>
+              </div>
+              <div ng-messages="vm.threelessonsForm.content.$error" role="alert">
+                <p class="help-block error-text" ng-message="maxlenght">字数在4000字以内.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label" for="starttime">开始时间</label>
+              <input type="text" uib-datepicker-popup
+                     ng-model="dt1" is-open="popup1.opened"
+                     datepicker-options="inlineOptions" ng-required="true" close-text="Close" name="starttime" id="starttime" class="form-control" cols="30" rows="10" placeholder="开始时间"/>
+              <span class="input-group-btn btnspan">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" >
+              <label class="control-label" for="endtime">结束时间</label>
+              <input type="text" uib-datepicker-popup
+                     ng-model="dt2" is-open="popup2.opened"
+                     datepicker-options="inlineOptions" ng-required="true" close-text="Close"  name="endtime" id="endtime" class="form-control" cols="30" rows="10" placeholder="结束时间"/>
+              <span class="input-group-btn btnspan">
+            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>开始时间：</label>
+            <div uib-timepicker ng-model="vm.worktime"
+                 hour-step="hstep_am1"
+                 minute-step="mstep_am1"
+                 show-meridian="ismeridian_am1">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>结束时间：</label>
+            <div uib-timepicker ng-model="vm.resttime"
+                 hour-step="hstep_am2"
+                 minute-step="mstep_am2"
+                 show-meridian="ismeridian_am2"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="head">负责人</label>
+              <input name="head" data-ng-model="vm.threelessonsData.head" id="head" maxlength="50" required class="form-control"  placeholder="负责人">
+              <div ng-messages="vm.threelessonsForm.head.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入负责人.</p>
+              </div>
+              <div ng-messages="vm.threelessonsForm.head.$error" role="alert">
+                <p class="help-block error-text" ng-message="maxlenght">字数在50字以内.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="peoplenum">参加人数</label>
+              <input name="peoplenum" data-ng-model="vm.threelessonsData.peoplenum" id="peoplenum" class="form-control"  placeholder="参加人数" required>
+              <div ng-messages="vm.threelessonsForm.peoplenum.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入参加人数.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="address">地址</label>
+              <input name="address" data-ng-model="vm.threelessonsData.address" id="address" required maxlength="100" class="form-control"  placeholder="地址">
+              <div ng-messages="vm.threelessonsForm.address.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">请输入地址.</p>
+              </div>
+              <div ng-messages="vm.threelessonsForm.address.$error" role="alert">
+                <p class="help-block error-text" ng-message="maxlenght">字数在100字以内.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" ng-show="vm.method === '新增'">
+          <label class="control-label">照片</label>
+          <!--<input name="photo" ng-model="vm.teammembersData.photo" id="photo" class="form-control" cols="30" rows="10" placeholder="照片">-->
+          <div>
+            <button class="btn btn-default btn-file"
+                    ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                    ng-model="vm.create_photoPicFile" accept="image/*" ngf-before-model-change="vm.loading = true"
+                    ngf-resize="{width: 900, quality: 1}" ngf-resize-if="$width > 900 || $height > 900">照片
+            </button>
+          </div>
+          <div class="text-center" style="margin-top: 10px;">
+            <img id="create_photo" ngf-src="vm.fileSelected ? vm.create_photoPicFile : vm.torectestData.create_photo"
+                 alt="没有图片" class="img-thumbnail" ngf-drop enlarge-pic>
+          </div>
+          <div ng-show="vm.loading" class="form-group text-center">
+            <img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">
+          </div>
+        </div>
+        <div class="form-group" ng-show="vm.method === '新增'">
+          <label class="control-label">文件</label>
+          <div>
+            <button class="btn btn-default btn-file"
+                    ngf-select="(vm.fileSelect = true) && (vm.loading = false)"
+                    ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
+                    ng-model="vm.fileFile"
+                    accept="application/msword">点击选择文件
+            </button>
+          </div>
+          <div class="text-center" style="margin-top: 10px;">
+            <label>{{vm.fileSelect ? vm.fileFile.name: vm.task.file_path}}</label>
+          </div>
+        </div>
+        <div class="form-group" ng-show="vm.method === '修改'">
+          <!--<img src="{{vm.teammembersData.photo}}" alt="">-->
+          <div class="text-center" style="margin-top: 10px;">
+            <img id="update_photo" ngf-src="vm.fileSelected ? vm.create_photoPicFile : vm.threelessonsData.photo"
+                 alt="没有图片" class="img-thumbnail" ngf-drop>
+          </div>
+          <div>
+            <button class="btn btn-default btn-file"
+                    ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                    ng-model="vm.create_photoPicFile" accept="image/*" ngf-before-model-change="vm.loading = true"
+                    ngf-resize="{width: 400}" ngf-resize-if="$width > 400 || $height > 400">更换照片
+            </button>
+          </div>
+          <div ng-show="vm.loading" class="form-group text-center">
+            <img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">
+          </div>
+        </div>
+        <div class="form-group" ng-show="vm.method === '修改'">
+          <label class="control-label">文件</label>
+          <div>
+            <button class="btn btn-default btn-file"
+                    ngf-select="(vm.fileSelect = true) && (vm.loading = false)"
+                    ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
+                    ng-model="vm.fileFile"
+                    accept="application/msword">点击选择文件
+            </button>
+          </div>
+          <div class="text-center" style="margin-top: 10px;">
+            <label>{{vm.fileSelect ? vm.fileFile.name: vm.threelessonsData.file_path}}</label>
+          </div>
+        </div>
+        <div class="seekphoto" ng-show="vm.method === '查看'">
+          照片<img src="{{vm.threelessonsData.photo}}" alt="" style="width: 100%;">
+        </div>
+        <div class="seekfile" ng-show="vm.method === '查看'">
+          <a href="{{vm.threelessonsData.file_path}}" target="_blank">查看文件</a>
+        </div>
+
+        <!--<div class="row">
+          <div class="col-md-6">
+            <label>上班时间：</label>
+            <div uib-timepicker ng-model="vm.worktime"
+                 hour-step="hstep_am1"
+                 minute-step="mstep_am1"
+                 show-meridian="ismeridian_am1"></div>
+          </div>
+          <div class="col-md-6">
+            <label>下班时间：</label>
+            <div uib-timepicker ng-model="vm.resttime"
+                 hour-step="hstep_am2"
+                 minute-step="mstep_am2"
+                 show-meridian="ismeridian_am2"></div>
+          </div>
+        </div>-->
+
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="mask" close-pic style="display: none;">
+      <div class="mask-box"></div>
+      <div class="big-pic-wrap">
+        <img src="" alt="" class="bigPic mybigPic"/>
+        <span class="close-pic"><i class="glyphicon glyphicon-remove"></i></span>
+      </div>
+    </div>
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.threelessonsForm.$valid)">确认</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

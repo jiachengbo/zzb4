@@ -1,0 +1,64 @@
+<div class="task-modal">
+  <div class="modal-header">
+    <h1>案件回复</h1>
+  </div>
+  <div class="modal-body col-md-12">
+    <div class="row">
+      <div class="col-md-2" style="font-size: 20px;">历史回复:</div>
+      <div class="col-md-10" style="max-height: 250px;overflow-y: scroll;">
+        <!--<div class="form-control" rows="3" style="resize: none;overflow-y: auto;overflow-x:hidden;min-height: 100px;">-->
+          <!--<ul style="padding-left: 0;">-->
+            <!--<li ng-repeat="v in vm.history" style="border-bottom: 1px dashed #ddd;">-->
+              <!--<div class="row">-->
+                <!--<div class="col-md-6 col-lg-6">-->
+                  <!--<span style="padding-right: 20px;">{{v.NexusContext}}</span>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 col-lg-3">-->
+                  <!--<span style="padding-right: 20px;">{{v.HF_name}}</span>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 col-lg-3">-->
+                  <!--<span>{{v.createDate | date : 'yyyy-MM-dd hh:mm:ss'}}</span>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</div>-->
+        <table class="replytable">
+          <tr style="font-weight: bold;font-size: 16px;">
+            <td>发送人</td>
+            <td>接收人</td>
+            <td>内容</td>
+            <td>时间</td>
+          </tr>
+          <tr ng-repeat="v in vm.history">
+            <td>{{v.fromPersonId}}</td>
+            <td>{{v.toPersonId}}</td>
+            <td>{{v.NexusContext}}</td>
+            <td>{{v.createDate}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-2" style="font-size: 20px;">回复内容:</div>
+      <div class="col-md-10"><textarea class="form-control" rows="3" style="resize: none;overflow-y: auto;height: 100px;" ng-model="vm.replyContent"></textarea></div>
+    </div>
+    <div class="row" style="margin-top: 20px;" ng-show="!vm.type">
+      <div class="col-md-2" style="font-size: 20px;">发送到</div>
+      <div class="col-md-10" >
+        <div class="row" >
+          <div class="col-lg-12 col-md-12" ng-show="vm.person.length !== 1">
+            <input type="checkbox" value="replyperson" ng-model="vm.allReply" ng-change="vm.changeAllReply(vm.allReply)"> 全选
+          </div>
+          <div class="col-lg-12 col-md-12" ng-repeat="v in vm.person track by $index">
+            <input type="checkbox" value="replyperson" ng-model="$parent.replayperson[$index]"> {{v}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="vm.ok()">确定</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">关闭</button>
+  </div>
+</div>

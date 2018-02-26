@@ -1,0 +1,93 @@
+<section class="home-view view-backgroupd xiangqingbg" ng-style="styles">
+  <div class="container-fluid" style="width: 100%;margin: 0 auto;position: relative;z-index: 10">
+    <div class="row">
+      <div style="height: 30px"></div>
+      <div class="col-md-6 col-lg-6" style="padding: 0 35px">
+        <h3 style="text-align: center"><span
+          style='display: inline-block;width:199px;height:53px;background: url("/modules/page/client/img/xiangmu/项目简介.png"); background-size:100% 100%;color:#fff;'></span>
+        </h3>
+        <div class="xiangmu2">
+            <div class="row">
+              <div class="col-md-12">
+                <i class="item1"></i><span>{{vm.project.ProjectName}}</span>
+              </div>
+            </div>
+          <p style="margin-top: 20px"><i class="item2"></i><img src="{{vm.project.ProjectLogo}}" style="width: 28%"></p>
+          <div class="row">
+            <div class="col-md-6">
+              <i class="item6"></i><span>{{vm.project.People}}</span>
+            </div>
+            <div class="col-md-6">
+              <i class="item13"></i><span>{{vm.project.State}}</span>
+            </div>
+          </div>
+        </div>
+        <div style="width: 100%;height: 2px;border: 1px solid red"></div>
+        <ul style="font-size: 16px;line-height: 30px;margin-top: 50px;font-weight: bold" class="xiangmu">
+          <!--<li><i class="item1"></i>{{vm.project.ProjectName}}</li>
+          <li><i class="item2"></i><img src="{{vm.project.ProjectLogo}}" style="height: 34px"></li>-->
+          <li><i class="item3"></i>{{vm.project.ProjectType}}</li>
+          <li><i class="item4"></i>{{vm.project.communityName}}</li>
+          <li><i class="item5"></i>{{vm.project.Source}}</li>
+          <!--<li><i class="item6"></i>{{vm.project.People}}</li>-->
+          <li><i class="item10"></i>{{vm.project.Head}}</li>
+          <li><i class="item8"></i>{{vm.project.SbTime | date: 'yyyy-mm-dd'}}</li>
+          <li><i class="item9"></i>{{vm.project.FinishTime | date: 'yyyy-mm-dd'}}</li>
+          <!--   <li style="position: relative"><i class="item12"></i><span style="position: absolute;top: 0px;left: 200px">{{vm.project.company}}</span></li>-->
+        </ul>
+        <div style="clear: both"></div>
+        <div class="xiangmu1">
+          <p style="position: relative;margin-top: 50px"><i class="item7"></i><span>{{vm.project.ProjectSummary}}</span>
+          </p>
+          <p style="position: relative;margin-top: 50px"><i class="item11"></i><span>{{vm.project.Measure}}</span></p>
+          <p style="position: relative;margin-top: 50px"><i class="item12"></i><span>{{vm.project.company}}</span></p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6">
+        <h3 style="text-align: center"><span
+          style='display: inline-block;width:199px;height:53px;background: url("/modules/page/client/img/xiangmu/项目进展.png"); background-size:100% 100%;color:#fff;'></span>
+        </h3>
+        <div class="xiangmuxq" style="height: 1220px">
+          <table class="table table-hover" style="margin-top: 70px">
+            <thead>
+            <tr style="background: #FF3535; color: #fff;font-size: 16px">
+              <th>序号</th>
+              <th width="15%;" style="text-align: center;">时间</th>
+              <th>具体措施</th>
+              <th>进展图片</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="projectdata in vm.projectdata track by $index" style="text-align: center;color: #000">
+              <td><span>{{((vm.pageage -1)*4+1)+ $index}}</span></td>
+              <td width="15%;"><span style="    line-height: 217px">{{projectdata.ProgressTime | date: "yyyy-MM-dd"}}</span></td>
+              <td style="height: 217px;vertical-align:middle;">{{projectdata.ProgressContent}}</td>
+              <td><img src="{{projectdata.ProgressPhoto}}" style="width: 270px;height: 200px" enlarge-pic></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="fenye" style="color:#000;">
+          <li>总共{{vm.pagesum}}条数</li>
+          <li ng-click="vm.pageshu(vm.count,$event)">尾页</li>
+          <li ng-click="vm.pageshu(vm.pageage+1,$event)">下一页</li>
+          <li ng-click="vm.pageshu(vm.pageage,$event)">跳转</li>
+          <li>
+            <input type="text" data-ng-model="vm.pageage"
+                   style="width: 40px;border: 1px solid #ddd;text-align: right;color: black">/{{vm.count}}页
+          </li>
+          <li ng-click="vm.pageshu(vm.pageage-1,$event)">上一页</li>
+          <li ng-click="vm.pageshu(1,$event)" class="pageactive">首页</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="mask" close-pic style="display: none;">
+    <div class="mask-box"></div>
+    <div class="big-pic-wrap" style="top:40%;text-align: center;overflow-y: auto;overflow-x: hidden;">
+      <img src="" alt="" width="900px" class="bigPic"/>
+      <span class="close-pic"><i class="glyphicon glyphicon-remove"></i></span>
+    </div>
+  </div>
+  <div ng-include="'/modules/core/client/views/footers.client.view.html'" class="footers" ng-show="vm.show"></div>
+</section>

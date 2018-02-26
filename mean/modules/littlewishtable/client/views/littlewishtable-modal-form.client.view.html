@@ -1,0 +1,346 @@
+<div class="littleWishTable-modal">
+  <div class="modal-header">
+    <h3>{{vm.method}} 微心愿</h3>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.littleWishTableForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+
+        <!--第1行-->
+        <div class="row clearfix">
+          <div class="col-md-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="littleTitle">标题</label>
+                <input name="littleTitle"
+                       type="text"
+                       ng-model="vm.littleWishTableData.littleTitle"
+                       id="littleTitle"
+                       class="form-control"
+                       ng-maxlength="250"
+                       placeholder=""
+                       required autofocus>
+                <div ng-messages="vm.littleWishTableForm.littleTitle.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入标题.</p>
+                </div>
+                <div ng-messages="vm.littleWishTableForm.littleTitle.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="maxlength">字数在250字以内</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="littleContent">内容</label>
+                <textarea name="littleContent"
+                       type="text"
+                       ng-model="vm.littleWishTableData.littleContent"
+                       id="littleContent"
+                       class="form-control"
+                       maxlength="4000"
+                       placeholder=""
+                       required autofocus>
+                  </textarea>
+                <div ng-messages="vm.littleWishTableForm.littleContent.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入内容.</p>
+                </div>
+                <div ng-messages="vm.littleWishTableForm.littleContent.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="maxlength">字数在4000字以内.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!--第2行-->
+        <div class="row clearfix">
+          <div class="col-md-4 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="littlePerson">发布人</label>
+                <input name="littlePerson"
+                       type="text"
+                       ng-model="vm.littleWishTableData.littlePerson"
+                       id="littlePerson"
+                       class="form-control"
+                       placeholder=""
+                       required autofocus>
+                <div ng-messages="vm.littleWishTableForm.littlePerson.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入发布人.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="sbphone">联系电话</label>
+              <input name="sbphone" type="text" ng-model="vm.littleWishTableData.sbphone" id="sbphone"
+                     minlength="11" maxlength="11"
+                     ng-pattern="/^1(3|4|5|7|8)\d{9}$/"
+                     required
+                     class="form-control" placeholder="请输入联系电话"  autofocus>
+              <div ng-messages="vm.littleWishTableForm.sbphone.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">联系电话不能为空！</p>
+              </div>
+              <div ng-messages="vm.littleWishTableForm.sbphone.$error" role="alert">
+                <p class="help-block error-text" ng-message="pattern">请输入有效的手机号码!！</p>
+              </div>
+              <div ng-messages="vm.littleWishTableForm.sbphone.$error" role="alert">
+                <p class="help-block error-text" ng-message="minlength">请输入有效的手机号码!！</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="littleDate">发布时间</label>
+                <p class="input-group">
+                <input name="littleDate"
+                       type="text"
+                       ng-model="vm.littleWishTableData.littleDate"
+                       id="littleDate"
+                       class="form-control"
+                       uib-datepicker-popup
+                       is-open="popup1.opened"
+                       datepicker-options="inlineOptions"
+                       ng-required="true"
+                       current-text="今天"
+                       clear-text="清空"
+                       close-text="关闭"
+                       placeholder=""
+                       uib-datepicker-popup="{{format}}"
+                       required autofocus/>
+                  <span class="input-group-btn">
+                      <button type="button"
+                              class="btn btn-default"
+                              ng-click="open1()">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                      </button>
+                 </span>
+                </p>
+                <div ng-messages="vm.littleWishTableForm.littleDate.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入发布时间.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!--第3行-->
+        <div class="row clearfix" ng-if="vm.littleWishTableData.littleStatus !== '待认领' && vm.littleWishTableData.littleStatus !== '待审核' && vm.littleWishTableData.littleStatus !== '未通过'">
+          <div class="col-md-4 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" show-errors>
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="littleClaimant">认领人</label>
+                <input name="littleClaimant"
+                       type="text"
+                       ng-model="vm.littleWishTableData.littleClaimant"
+                       id="littleClaimant"
+                       class="form-control"
+                       placeholder="" required
+                       autofocus>
+                <div ng-messages="vm.littleWishTableForm.littleClaimant.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入认领人.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="claimphone">联系电话</label>
+              <input name="claimphone" type="text" ng-model="vm.littleWishTableData.claimphone" id="claimphone"
+                     minlength="11" maxlength="11"
+                     ng-pattern="/^1(3|4|5|7|8)\d{9}$/"
+                     required
+                     class="form-control" placeholder="请输入联系电话"  autofocus>
+              <div ng-messages="vm.littleWishTableForm.claimphone.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">联系电话不能为空！</p>
+              </div>
+              <div ng-messages="vm.littleWishTableForm.claimphone.$error" role="alert">
+                <p class="help-block error-text" ng-message="pattern || minlength">请输入有效的手机号码!！</p>
+              </div>
+              <!--<div ng-messages="vm.littleWishTableForm.claimphone.$error" role="alert">
+                <p class="help-block error-text" ng-message="minlength">请输入有效的手机号码!！</p>
+              </div>-->
+            </div>
+          </div>
+
+          <div class="col-md-4 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group" >
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="littleClaimDate">认领时间</label>
+                <p class="input-group">
+                  <input name="littleClaimDate"
+                         type="text"
+                         ng-model="vm.littleWishTableData.littleClaimDate"
+                         id="littleClaimDate"
+                         class="form-control"
+                         uib-datepicker-popup
+                         is-open="popup2.opened"
+                         datepicker-options="inlineOptions"
+                         ng-required="false"
+                         current-text="今天"
+                         clear-text="清空"
+                         close-text="关闭"
+                         placeholder=""
+                         autofocus/>
+                  <span class="input-group-btn">
+                      <button type="button"
+                              class="btn btn-default"
+                              ng-click="open2()">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                      </button>
+                 </span>
+                </p>
+                <div ng-messages="vm.littleWishTableForm.littleClaimDate.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入认领时间.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!--第4行-->
+        <div class="row clearfix">
+          <div class="col-md-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="littleStatus">状态</label>
+                <select class="form-control"
+                        id="littleStatus"
+                        ng-model="vm.littleWishTableData.littleStatus"
+                        ng-options="cv_littleStatus.name as cv_littleStatus.name for cv_littleStatus in cvs_littleStatus"
+                        required ng-disabled="vm.method !== '修改'" ng-change="vm.lwchange(vm.littleWishTableData.littleStatus)">
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!--<div class="col-md-12 column" style="margin-top: 0px;margin-bottom: 0px;">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label class="control-label"
+                       for="littltCon">回复内容</label>
+                <textarea name="littltCon"
+                       type="text"
+                       ng-model="vm.littleWishTableData.littltCon"
+                       id="littltCon"
+                       class="form-control"
+                       maxlength="250"
+                       placeholder=""
+                       autofocus>
+                  </textarea>
+                <div ng-messages="vm.littleWishTableForm.littltCon.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="required">请输入回复内容.</p>
+                </div>
+                <div ng-messages="vm.littleWishTableForm.littltCon.$error" role="alert">
+                  <p class="help-block error-text"
+                     ng-message="maxlength">字数在250字以内.</p>
+                </div>
+              </div>
+            </div>
+          </div>-->
+        </div>
+        <div class="row clearfix" ng-if="vm.weitonguo" >
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <label class="control-label"
+                     for="nPassReason">审核未通过原因</label>
+              <textarea name="nPassReason"
+                        type="text"
+                        ng-model="vm.littleWishTableData.nPassReason"
+                        id="nPassReason"
+                        class="form-control"
+                        maxlength="1000"
+                        placeholder=""
+                        rows="5"
+                        required
+                        autofocus>
+                  </textarea>
+              <div ng-messages="vm.littleWishTableForm.nPassReason.$error" role="alert">
+                <p class="help-block error-text"
+                   ng-message="required">请输入审核未通过原因.</p>
+              </div>
+              <div ng-messages="vm.littleWishTableForm.nPassReason.$error" role="alert">
+                <p class="help-block error-text"
+                   ng-message="maxlength">字数在1000字以内.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row clearfix" ng-if="vm.wanchengstatus">
+          <div class="col-md-6">
+            <label class="control-label">图片</label>
+            <div class="form-group text-center">
+              <img ngf-src="vm.fileSelected ? vm.picFile : vm.littleWishTableData.littlePhoto"
+                   alt="" class="img-thumbnail organization-profile-picture" ngf-drop>
+            </div>
+            <div ng-show="vm.loading" class="form-group text-center">
+              <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                   height="80" width="40" alt="Loading image...">
+            </div>
+            <div class="text-center form-group">
+              <button class="btn btn-default btn-file"
+                      ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                      ng-model="vm.picFile" accept="image/*"
+                      ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
+                      ngf-resize-if="$width > 400 || $height > 400">点击选择图片
+              </button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label"
+                     for="littltCon">回复内容</label>
+              <textarea name="littltCon"
+                        type="text"
+                        ng-model="vm.littleWishTableData.littltCon"
+                        id="littltCon"
+                        class="form-control"
+                        maxlength="250"
+                        placeholder=""
+                        rows="8"
+                        required
+                        autofocus>
+                  </textarea>
+              <div ng-messages="vm.littleWishTableForm.littltCon.$error" role="alert">
+                <p class="help-block error-text"
+                   ng-message="required">请输入回复内容.</p>
+              </div>
+              <div ng-messages="vm.littleWishTableForm.littltCon.$error" role="alert">
+                <p class="help-block error-text"
+                   ng-message="maxlength">字数在250字以内.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.littleWishTableForm.$valid)">确定</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

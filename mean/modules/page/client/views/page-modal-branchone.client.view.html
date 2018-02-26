@@ -1,0 +1,188 @@
+<div class="regionalization-modal">
+  <div class="modal-header">
+    <h3>详细信息</h3>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.partyorganizationForm" class="form-horizontal" novalidate >
+      <fieldset >
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" >
+              <label class="control-label" for="OrganizationName">党组织名称</label>
+              <input name="OrganizationName" type="text"
+                     ng-model="vm.PartyorganizationData.OrganizationName" id="OrganizationName"
+                     class="form-control" readonly>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" >
+              <label class="control-label" for="simpleName">党组织简称</label>
+              <input name="simpleName" type="text"
+                     ng-model="vm.PartyorganizationData.simpleName" id="simpleName"
+                     class="form-control" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" >
+              <label class="control-label" for="Secretary">书记</label>
+              <input name="Secretary" type="text"
+                     ng-model="vm.PartyorganizationData.Secretary" id="Secretary"
+                     class="form-control" readonly>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" >
+              <label class="control-label" for="Head">党务专干</label>
+              <input name="Head" type="text"
+                     ng-model="vm.PartyorganizationData.Head" id="Head"
+                     class="form-control" readonly>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" >
+              <label class="control-label" for="OrganizationTime">成立时间</label>
+                <input name="OrganizationTime" type="text" class="form-control" id="OrganizationTime"
+                       ng-model="vm.PartyorganizationData.OrganizationTime" readonly>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">组织类别</label>
+              <input class="form-control"
+                      ng-model="vm.PartyorganizationData.OrganizationCategory" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-md-12 form-group">
+              <label class="control-label">上级党组织</label>
+              <input class="form-control"
+                      ng-model="vm.PartyorganizationData.superName" readonly>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">隶属关系</label>
+              <input class="form-control"
+                      ng-model="vm.PartyorganizationData.Relations" readonly>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" >
+              <label class="control-label" for="OrganizationNum">党员人数（人）</label>
+              <input name="OrganizationNum" type="text" ng-model="vm.PartyorganizationData.OrganizationNum" id="OrganizationNum" class="form-control" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" >
+              <label class="control-label" for="TelNumber">联系电话</label>
+              <input name="TelNumber" type="text" ng-model="vm.PartyorganizationData.TelNumber" id="TelNumber" class="form-control" readonly>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" >
+              <label class="control-label" for="Address">联系地址</label>
+              <input name="Address" type="text"
+                     ng-model="vm.PartyorganizationData.Address" id="Address"
+                     class="form-control" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在街道</label>
+              <input type="text" class="form-control" name="STREETID"
+                      ng-model="vm.PartyorganizationData.streetIDname" readonly>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在社区</label>
+              <input type="text" class="form-control" name="COMMUNITYID"
+                      ng-model="vm.PartyorganizationData.communityIdname" readonly>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">所在网格</label>
+              <input type="text" class="form-control" name="CELLID"
+                      ng-model="vm.PartyorganizationData.BelongGridname" readonly>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">网格编号</label>
+              <input type="text" class="form-control" name="GRIDNUM"
+                      ng-model="vm.PartyorganizationData.gridNum" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" >
+              <label class="control-label" for="unitname">单位名称</label>
+              <input type="text" ng-model="vm.PartyorganizationData.unitname" id="unitname" class="form-control" readonly>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">单位类别</label>
+              <input type="text" class="form-control" ng-model="vm.PartyorganizationData.Category" readonly>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">党组织所在单位情况</label>
+              <input type="text" class="form-control" ng-model="vm.PartyorganizationData.unitsitu" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-md-12 form-group">
+              <label class="control-label">单位建立党组织情况</label>
+              <input type="text" class="form-control" ng-model="vm.PartyorganizationData.unitorgsitu" readonly>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group">
+              <label class="control-label" for="unitcode">党组织所在单位代码</label>
+              <input name="unitcode" type="text" ng-model="vm.PartyorganizationData.unitcode" id="unitcode" class="form-control" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" >
+              <label class="control-label" for="longitude">经度</label>
+              <input name="longitude" type="text"
+                     ng-model="vm.PartyorganizationData.longitude" id="longitude"
+                     class="form-control" readonly>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" >
+              <label class="control-label" for="latitude">维度</label>
+              <input name="latitude" type="text"
+                     ng-model="vm.PartyorganizationData.latitude" id="latitude"
+                     class="form-control" readonly>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning"
+            ng-show="vm.disvisible"
+            ng-hide="vm.visible"
+            ng-click="vm.cancel()">关闭
+    </button>
+  </div>
+</div>

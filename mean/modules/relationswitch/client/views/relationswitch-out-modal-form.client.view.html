@@ -1,0 +1,288 @@
+<div class="regionalization-modal">
+  <div class="modal-header">
+    <h3>{{vm.method}}关系转出信息</h3>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.RelationswitchOutForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group container-fluid typeahead-demo" show-errors>
+              <label class="control-label" for="memberName">姓名</label>
+              <input name="memberName" type="text" ng-model="vm.RelationswitchOutData.memberName" id="memberName"
+                     ng-pattern="/^[\u4e00-\u9fa5]/"
+                     maxlength="20"
+                     class="form-control" placeholder="请输入姓名" required autofocus>
+              <div ng-messages="vm.RelationswitchOutForm.memberName.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">姓名不能为空！</p>
+              </div>
+              <div ng-show="vm.RelationswitchOutForm.memberName.$dirty && vm.RelationswitchOutForm.memberName.$invalid"
+                   class="has-error"
+                   style="text-align: left">
+                <span class="help-block" ng-show="vm.RelationswitchOutForm.memberName.$error.pattern">姓名必须是汉字!</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">性别</label>
+              <select class="form-control"
+                      ng-model="vm.RelationswitchOutData.sex"
+                      ng-options="pt.name as pt.name for pt in sexInfo">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-12 form-group" show-errors>
+                  <label class="control-label" for="card">身份证号码</label>
+                  <input name="card" type="text" ng-model="vm.RelationswitchOutData.card" id="card"
+                         maxlength="18" ng-minlength="15"
+                         ng-pattern="/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/"
+                         class="form-control" placeholder="请输入身份证号码" required autofocus>
+                  <div ng-messages="vm.RelationswitchOutForm.card.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">身份证号码不能为空！</p>
+                  </div>
+                  <div ng-show="vm.RelationswitchOutForm.card.$dirty &&
+              vm.RelationswitchOutForm.card.$invalid" class="has-error"
+                       style="text-align: left">
+                <span class="help-block" ng-show="vm.RelationswitchOutForm.card.$error.pattern||
+                vm.RelationswitchOutForm.card.$error.minlength">请输入有效的身份证号码!</span>
+                  </div>
+                </div>
+              </div>
+              <!--<div class="col-md-6">-->
+              <!--<div class="col-md-12 form-group">-->
+              <!--<label class="control-label">&nbsp;</label>-->
+              <!--<button type="button" class="btn btn-warning" style="width: 100%"-->
+              <!--ng-click="vm.selectIDNumber(vm.RelationswitchOutData.IDNumber)">查&nbsp;&nbsp;询-->
+              <!--</button>-->
+              <!--</div>-->
+              <!--</div>-->
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div ng-show="vm.YZIDNumberIsNo">
+                  <span style="color:firebrick">*此身份证号码已存在不能录入！</span>
+                </div>
+                <div ng-show="vm.YZIDNumberIsOk">
+                  <span style="color:green">*此身份证号码验证成功可以录入！！</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">民族</label>
+              <select class="form-control"
+                      ng-model="vm.RelationswitchOutData.nation"
+                      ng-options="pt.name as pt.name for pt in nationInfo">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group">
+              <label class="control-label">籍贯</label>
+              <select class="form-control"
+                      ng-model="vm.RelationswitchOutData.place"
+                      ng-options="pt.name as pt.name for pt in nationPlaceInfo">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="birth">出生日期</label>
+              <p class="input-group">
+                <input name="birth" type="text" class="form-control" id="birth"
+                       uib-datepicker-popup ng-model="vm.RelationswitchOutData.birth"
+                       is-open="popup1.opened"
+                       datepicker-options="inlineOptions" ng-required="true"
+                       close-text="Close" ng-disabled="vm.disabled"
+                       placeholder="请选择入党时间"/>
+                <span class="input-group-btn">
+            <button type="button" class="btn btn-default"
+                    ng-click="open1()" ng-disabled="vm.disabled"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+              </p>
+              <div ng-messages="vm.RelationswitchOutForm.birth.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">出生日期不能为空！</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="tel">联系电话</label>
+              <input name="tel" type="text" ng-model="vm.RelationswitchOutData.tel" id="tel"
+                     ng-minlength="11" maxlength="11"
+                     ng-pattern="/^1(3|4|5|7|8)\d{9}$/"
+                     class="form-control" placeholder="请输入联系电话" required autofocus>
+              <div ng-messages="vm.RelationswitchOutForm.tel.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">联系电话不能为空！</p>
+              </div>
+              <div ng-show="vm.RelationswitchOutForm.tel.$dirty && vm.RelationswitchOutForm.tel.$invalid"
+                   class="has-error"
+                   style="text-align: left">
+                <span class="help-block" ng-show="vm.RelationswitchOutForm.tel.$error.pattern||
+                vm.RelationswitchOutForm.tel.$error.minlength">请输入有效的手机号码!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="WorkPlace">工作单位</label>
+              <input name="WorkPlace" type="text" ng-model="vm.RelationswitchOutData.workplace" id="WorkPlace"
+                     maxlength="50"
+                     class="form-control" placeholder="请输入工作单位" required autofocus>
+              <div ng-messages="vm.RelationswitchOutForm.WorkPlace.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">工作单位不能为空！</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="address">家庭住址</label>
+              <input name="address" type="text" ng-model="vm.RelationswitchOutData.address" id="address"
+                     maxlength="100"
+                     class="form-control" placeholder="请输入家庭住址" required autofocus>
+              <div ng-messages="vm.RelationswitchOutForm.address.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">家庭住址不能为空！</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="col-md-12 form-group" show-errors>
+                  <label class="control-label" for="jointime">入党时间</label>
+                  <p class="input-group">
+                    <input name="jointime" type="text" class="form-control" id="jointime"
+                           uib-datepicker-popup ng-model="vm.RelationswitchOutData.jointime"
+                           is-open="popup2.opened"
+                           datepicker-options="inlineOptions" ng-required="true"
+                           close-text="Close" ng-disabled="vm.disabled"
+                           placeholder="请选择入党时间"/>
+                    <span class="input-group-btn">
+            <button type="button" class="btn btn-default"
+                    ng-click="open2()" ng-disabled="vm.disabled"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+                  </p>
+                  <div ng-messages="vm.RelationswitchOutForm.jointime.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">入党时间不能为空！</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-12 form-group" show-errors>
+                  <label class="control-label" for="partycost">每月党费</label>
+                  <input name="partycost" type="text" ng-model="vm.RelationswitchOutData.partycost" id="partycost"
+                         maxlength="50"
+                         class="form-control" placeholder="请输入每月党费" required autofocus>
+                  <div ng-messages="vm.RelationswitchOutForm.partycost.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">每月党费不能为空！</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-12 form-group">
+                  <label class="control-label">转出党支部</label>
+                  <select class="form-control"
+                          ng-disabled="true"
+                          ng-model="vm.RelationswitchOutData.outBranch"
+                          ng-options="pt.branchid as pt.branchname for pt in outBranchInfo">
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-12 form-group" show-errors>
+                  <label class="control-label" for="inBranch">转入党支部</label>
+                  <input name="inBranch" type="text" id="inBranch"
+                         maxlength="100"
+                         autocomplete="off"
+                         ng-model="vm.inBranchId"
+                         uib-typeahead="n.OrganizationName for n in names | filter:$viewValue | limitTo:10"
+                         typeahead-loading="loadingLocations" typeahead-no-results="noResults"
+                         class="form-control" placeholder="请输入转入党支部" required autofocus>
+                  <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                  <div ng-show="noResults">
+                    <i class="glyphicon glyphicon-remove" style="color: firebrick"> 没有匹配到此党支部，请核实后再输入！</i>
+                  </div>
+                  <div ng-messages="vm.RelationswitchOutForm.inBranch.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">转入党支部不能为空！</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <label class="control-label">介绍信照片</label>
+                <div class="form-group text-center">
+                  <img ngf-src="vm.fileSelected ? vm.picFile : vm.RelationswitchOutData.phonePath"
+                       alt="" class="img-thumbnail organization-profile-picture" ngf-drop>
+                </div>
+                <div ng-show="vm.loading" class="form-group text-center">
+                  <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                       height="80" width="40" alt="Loading image...">
+                </div>
+                <div class="text-center form-group">
+                  <button class="btn btn-default btn-file"
+                          ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                          ng-model="vm.picFile" accept="image/*"
+                          ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
+                          ngf-resize-if="$width > 400 || $height > 400">点击选择介绍信照片
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-12 form-group">
+            <label class="control-label" for="filePath1">附件1</label>
+            <p class="input-group">
+              <input name="filePath1" type="text" class="form-control" id="filePath1"
+                     ng-model="vm.selected1=(vm.fileSelected1 ? vm.File1.name : vm.RelationswitchOutData.filePath1)"
+                     ng-disabled="vm.disabled"
+                     placeholder="请选择要上传的附件"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default"
+                        ngf-select="vm.fileSelected1 = true"
+                        ng-disabled="vm.disabled"
+                        ng-model="vm.File1"
+                        accept="application/msword">
+                  <i class="glyphicon glyphicon-folder-open"> 选择...</i>
+                </button>
+                <a class="btn btn-default"
+                   href="{{vm.selected1}}"
+                   target="_blank"
+                   ng-disabled="vm.method==='新增' || vm.selected1===undefined || vm.selected1===''">
+                  <i class="glyphicon glyphicon-folder-open"> 查看...</i>
+                </a>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.RelationswitchOutForm.$valid)">提交</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+  </div>
+</div>

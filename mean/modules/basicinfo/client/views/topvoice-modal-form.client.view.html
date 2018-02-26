@@ -1,0 +1,118 @@
+<div class="basicinfo-modal">
+  <div class="modal-header">
+    <h3>{{vm.method}} 通知文件</h3>
+  </div>
+  <div class="modal-body col-md-12">
+    <form name="vm.topvoiceForm" class="form-horizontal" novalidate>
+      <fieldset ng-disabled="vm.disabled">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-12 form-group" show-errors>
+              <label class="control-label" for="title">标题</label>
+              <input name="title" type="text" ng-model="vm.topvoiceData.title"
+                     id="title" class="form-control" placeholder="请输入标题"
+                     ng-maxlength="50" required autofocus>
+              <div ng-messages="vm.topvoiceForm.title.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">标题不能为空</p>
+              </div>
+              <div ng-messages="vm.topvoiceForm.title.$error" role="alert">
+                <p class="help-block error-text" ng-message="maxlength">字数在50字以内</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-12 form-group">
+                  <label class="control-label" for="deeds">通知内容</label>
+                  <textarea name="deeds" data-ng-model="vm.topvoiceData.content"
+                            id="deeds" class="form-control" cols="30" rows="6"
+                            ng-maxlength="5000" placeholder="请输入动态内容"></textarea>
+                  <div>
+                    <span style="color: red" ng-show="vm.yzContent">*动态内容不能为空！</span>
+                  </div>
+                  <div ng-messages="vm.topvoiceForm.deeds.$error" role="alert">
+                    <p class="help-block error-text" ng-message="maxlength">字数在5000字以内</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" ng-show="vm.iscreatedate">
+              <div class="col-md-12">
+                <label>创建时间：{{vm.topvoiceData.createdate | date:'yyyy-MM-dd HH:mm:ss'}}</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <label class="control-label">通知图片</label>
+                <div class="form-group text-center">
+                  <img ngf-src="vm.fileSelected ? vm.picFile : vm.topvoiceData.photos"
+                       alt="" class="img-thumbnail organization-profile-picture" ngf-drop enlarge-pic>
+                </div>
+                <div ng-show="vm.loading" class="form-group text-center">
+                  <img ng-src="/modules/core/client/img/loaders/loader.gif"
+                       height="80" width="40" alt="Loading image..." >
+                </div>
+                <div class="text-center form-group">
+                  <button class="btn btn-default btn-file"
+                          ngf-select="(vm.fileSelected = true) && (vm.loading = false)"
+                          ng-model="vm.picFile" accept="image/*"
+                          ngf-before-model-change="vm.loading = true" ngf-resize="{width: 900, quality: 1}"
+                          ngf-resize-if="$width > 900 || $height > 900">点击选择动态图片
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row clearfix" >
+          <div class="col-xs-12 column">
+            <div class="form-group col-xs-2 column">
+              <label class="control-label">上传文件</label>
+            </div>
+            <div class="col-xs-8 column text-center" >
+              <label>{{vm.fileSelect ? vm.fileFile.name: vm.topvoiceData.file_path}}</label>
+            </div>
+            <div class="col-xs-2 column text-right" >
+              <button class="btn btn-default btn-file"
+                      ngf-select="(vm.fileSelect = true) && (vm.loading = false)"
+                      ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
+                      ng-model="vm.fileFile"
+                      accept="application/msword">点击选择文件
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-6">
+            申报时间
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup
+                     ng-model="sbtime" is-open="popup1.opened"
+                     datepicker-options="inlineOptions" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </p>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="mask" close-pic style="display: none;">
+      <div class="mask-box"></div>
+      <div class="big-pic-wrap">
+        <img src="" alt="" class="bigPic mybigPic"/>
+        <span class="close-pic"><i class="glyphicon glyphicon-remove"></i></span>
+      </div>
+    </div>
+    <button class="btn btn-primary" ng-if="!vm.disabled" ng-click="vm.ok(vm.topvoiceForm.$valid)">提交</button>
+    <button class="btn btn-warning" ng-click="vm.cancel()">退出</button>
+  </div>
+</div>

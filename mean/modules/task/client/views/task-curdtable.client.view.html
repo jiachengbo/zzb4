@@ -1,0 +1,28 @@
+<style>
+  .page-content{
+    padding: 0;
+  }
+  .view-header>div{
+    float: left;
+    width: 132px;
+    height: 41px;
+    cursor: pointer;
+  }
+  .container-fluid.page-content{
+    background-image: url('/modules/core/client/img/houtaibg.png')
+  }
+</style>
+<section style="padding: 0 15px;" auto-height="-50">
+  <div class="view-header" style="overflow: hidden;">
+    <div class="acceptTask act" ng-click="vm.acceptTask()" ng-if="vm.grade !== 1"></div>
+    <div class="sendTask" ng-click="vm.sendTask()" ng-if="vm.grade !== 6 && vm.grade !== 7"></div>
+  </div>
+  <div ui-grid="vm.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-resize-columns ui-grid-exporter
+       class="task-grid" style="margin-bottom: 15px;"></div>
+  <div class="replybtn taskbtn" ng-click="vm.reply()"></div>
+  <div class="seekbtn taskbtn" ng-click="vm.seek()"></div>
+  <div class="addtask taskbtn" ng-click="vm.add2()" ng-if="vm.addF && !vm.acceptTaskF"></div>
+  <div class="uploadbtn taskbtn" ng-click="vm.uploadTaskProgress()" ng-show="vm.acceptTaskF"></div>
+  <div class="taskprogress taskbtn" ng-click="vm.taskProgress()"></div>
+  <div class="gettaskbtn taskbtn" ng-click="vm.getTask()" ng-if="vm.acceptTaskF"></div>
+</section>

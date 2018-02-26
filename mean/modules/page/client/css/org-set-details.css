@@ -1,0 +1,8 @@
+.mainbox{
+	width: 1200px;
+	z-index: 100;
+	position: relative;
+}
+.headmsg{
+	line-height: 40px;
+}

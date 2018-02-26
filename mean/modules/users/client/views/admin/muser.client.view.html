@@ -1,0 +1,50 @@
+<style>
+  .container-fluid.page-content{
+    background-image: url('/modules/core/client/img/houtaibg.png');
+  }
+</style>
+<section>
+  <breadcrumbs></breadcrumbs>
+  <div class="view-header">
+    <h1>
+      用户管理
+      <div class="btn-group pull-right" role="group" aria-label="oper">
+        <a class="btn btn-primary" ng-click="vm.add()" ng-show="vm.disabled">
+          <i class="glyphicon glyphicon-plus"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.remove()" ng-show="vm.disabled && vm.currMUser">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.save()" ng-hide="vm.disabled">
+          <i class="glyphicon glyphicon-ok"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.cancel()" ng-hide="vm.disabled">
+          <i class="glyphicon glyphicon-remove"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.update()" ng-show="vm.disabled && vm.currMUser">
+          <i class="glyphicon glyphicon-pencil"></i>
+        </a>
+      </div>
+    </h1>
+  </div>
+  <div class="flexible-grow1 full-height view-content">
+    <div class="row full-height full-width">
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <a>部门用户：</a>
+        <treecontrol class="tree-classic"
+                     tree-model="vm.treeData"
+                     options="vm.treeOptions"
+                     on-selection="vm.showSelected(node)"
+                     selected-node="vm.selected"
+                     expanded-nodes="vm.expanded">
+          <div ng-drag="vm.canDrag(node)" ng-drag-data="node" ng-drop="vm.canDrop(node)" ng-drop-success="vm.dropComplete($data,node)">
+            {{vm.treeTitle(node)}}
+          </div>
+        </treecontrol>
+      </div>
+      <div class="full-height col-xs-12 col-sm-8 col-md-9">
+        <div ui-view class="full-height full-width"></div>
+      </div>
+    </div>
+  </div>
+</section>

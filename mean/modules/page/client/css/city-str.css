@@ -1,0 +1,157 @@
+.citystr_wxy>.media>.media-body>p{
+	height:33px;
+	overflow: hidden;
+	margin: 0;
+}
+.citystr_grid>ul li{
+	float: left;
+	width: 50%;
+	text-align: center;
+	padding: 10px;
+}
+.citystr_grid>ul li a{
+	width: 90%;
+	display: inline-block;
+	border: 1px solid #ddd;
+	text-align: center;
+}
+.partymiddle>.col-md-8>.row ul>li{
+	text-align: center;
+	margin-top: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.citystr_lxh>span{
+	display: inline-block;
+	height: 40px;
+	background: #F8C301;
+	line-height: 40px;
+	width: 200px;
+	text-align: center;
+	margin: 10px 0;
+}
+.citystr_lxh+.row p{
+	height: 120px;
+	font-size: 17px;
+	overflow: hidden;
+}
+.citystr_xm thead tr th{
+	text-align: center;
+}
+.citystr_xm tbody tr td{
+	line-height: 40px;
+	text-align: center;
+}
+.citystr_xm tbody tr td a img{
+	width: 40px;
+}
+.citystr_xm tbody tr td a p{
+	width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.BMap_bubble_content tbody>tr:nth-of-type(2n+1){
+	background-color: #DFF0D8;
+	color: #000;
+}
+.citystr_wtq thead tr th{
+	text-align: center;
+}
+.citystr_wtq tbody tr td:nth-of-type(1) a p{
+	width: 150px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.citystr_wtq tbody tr td:nth-of-type(2) a p{
+	width: 580px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.citystr_wtq tbody tr td:nth-of-type(4) a span{
+	display: inline-block;
+	width: 70px;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.wentixq>.citystr_wtq tbody tr td:nth-of-type(2) a p{
+	width: 150px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.wentixq>.citystr_wtq tbody tr td:nth-of-type(3) a p{
+	width: 580px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.wentixq>.citystr_wtq tbody tr td:nth-of-type(5) a span{
+	display: inline-block;
+	width: 70px;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.citystr_gzgj tbody tr td a p{
+	width: 155px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+@media screen and (max-width: 1366px) {
+	.citystr_lxh+.row p{
+		width: 400px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.citystr_xm tbody tr td a p{
+		width: 255px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.citystr_wtq tbody tr td:nth-of-type(1) a p{
+		width: 100px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.citystr_wtq tbody tr td:nth-of-type(2) a p{
+		width: 200px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.citystr_gzgj tbody tr td a p{
+		width: 200px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}
+.wentiqiang tbody tr{
+	height: 50px;
+	font-size: 16px;
+}
+.wentiqiang tbody tr:nth-of-type(6){
+	height: 200px;
+}
+.wentiqiang tbody tr:nth-of-type(5){
+	height: 300px;
+}
+.wentiqiang tbody tr td span{
+	display: inline-block;
+	width: 200px;
+	text-align: center;
+
+}

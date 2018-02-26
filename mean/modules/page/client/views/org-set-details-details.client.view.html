@@ -1,0 +1,36 @@
+<style>
+  .citystr_xm tbody tr td a p {
+    width: 900px;
+  }
+</style>
+<section class="home-view view-backgroupd xiangqingbg" ng-style="styles">
+  <div class="container center-block mainbox">
+    <div class="row" ng-show="!vm.data.file_path">
+      <div class="col-md-12 col-lg-12">
+        <h3 class="text-center">{{vm.data.duty}}</h3>
+      </div>
+      <div class="col-md-12" style="text-align: center;margin: 20px 0;">
+        <img src="{{vm.data.meetingPhoto}}" width="450px" enlarge-pic>
+      </div>
+      <div class="col-md-12 col-lg-12">
+        <p style="width: 100%;text-indent: 2em;font-size: 16px" >
+          {{vm.data.quest}}
+        </p>
+      </div>
+    </div>
+    <div class="row" ng-show="vm.data.file_path">
+      <div class="com-md-12 col-lg-12">
+        <!--<div ng-include="vm.data.file_path" class="myiframe" onload="expression()"></div>-->
+        <iframe src="{{vm.data.file_path}}" frameborder="0" width="100%;" class="myiframe"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="mask" close-pic style="display: none;">
+    <div class="mask-box"></div>
+    <div class="big-pic-wrap" style="top:40%;text-align: center">
+      <img src="" alt="" class="bigPic"/>
+      <span class="close-pic"><i class="glyphicon glyphicon-remove"></i></span>
+    </div>
+  </div>
+  <div ng-include="'/modules/core/client/views/footers.client.view.html'" class="footers" ng-show="vm.show"></div>
+</section>

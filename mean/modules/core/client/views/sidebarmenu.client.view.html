@@ -1,0 +1,98 @@
+<style>
+  .menu_zi{
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .avtive{
+    background-image: url(/modules/core/client/img/header/02.png);
+    background-size: 100% 100%;
+  }
+</style>
+<div ng-controller="SidebarMenuController as vm">
+  <div class="sidebar-menu" ng-if="!menus.leftMenusCollapsed && authentication.user;">
+    <ul class="nav" ng-if="authentication.basicMsg">
+      <li style="height: 43px;line-height: 43px;font-size: 16px;font-weight: bold;">
+        <button type="button" class="btn btn-info btn-lg btn-block" ng-click="vm.changemues(1)">基础信息管理 <span class="caret" ></span></button>
+      </li>
+    </ul>
+    <ul class="nav" ng-if="sidemenu.shouldRender(authentication.user);" style="margin-bottom: 0;" ng-show="showmuse1">
+      <li ng-repeat="item in sidemenu.items | orderBy: 'position'"
+          ng-if="item.shouldRender(authentication.user);"
+          ng-switch="item.type"
+          class="{{item.class}}"
+          ng-class="{'selected': item.isSelected}">
+        <a ng-switch-when="dropdown" ng-click="vm.toggleMenuItem(item);" role="button" style="{{ item.isCollapsed ? vm.aaa : vm.iii}}">
+          <div class="row">
+            <!--<div class="col-sm-3 col-xs-3" style="width: 12%">-->
+            <!--<img ng-src="{{item.isSelected ? item.icon2 : item.icon1}}" alt="">-->
+            <!--</div>-->
+            <div class="com-sm-9 col-xs-9 menu_zi" style="width: 81%">
+              {{::item.title}}
+            </div>
+          </div>
+          <!--<i class="icon-arrow glyphicon"-->
+          <!--ng-class="{true: 'glyphicon-chevron-right', false: 'glyphicon-chevron-down'}[item.isCollapsed]">-->
+          <!--</i>-->
+        </a>
+        <ul ng-switch-when="dropdown" uib-collapse="item.isCollapsed" class="nav navbar submenu">
+          <li ng-repeat="subitem in item.items | orderBy: 'position'"
+              ng-if="subitem.shouldRender(authentication.user);" ng-class="{'selected': subitem.isSelected}">
+            <a ui-sref="{{subitem.state}}({{subitem.params}})" ui-sref-opts="{reload: true}" ng-click="vm.clickMenuItem(subitem);" ng-bind="subitem.title" role="button"></a>
+          </li>
+        </ul>
+        <a ng-switch-default ui-sref="{{item.state}}({{item.params}})" ui-sref-opts="{reload: true}" ng-click="vm.clickMenuItem(item);" role="button" style="{{ item.isCollapsed ? vm.aaa : vm.iii}}">
+          <div class="row">
+            <!--<div class="col-sm-3 col-xs-3">-->
+            <!--<img ng-src="{{item.isSelected?item.icon2:item.icon1}}" alt="">-->
+            <!--</div>-->
+            <div class="com-sm-9 col-xs-9 menu_zi" >
+              {{item.title}}
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <ul class="nav" ng-if="!!authentication.user2">
+      <li style="height: 43px;line-height: 43px;font-size: 16px;font-weight: bold;">
+        <button type="button" class="btn btn-info btn-lg btn-block" ng-click="vm.changemues(2)">城市基层党建 <span class="caret" ></span></button>
+      </li>
+    </ul>
+    <ul class="nav" ng-if="sidemenu.shouldRender(authentication.user2);" style="margin-bottom: 20px" ng-show="vm.showmuse2">
+      <li ng-repeat="item in sidemenu.items | orderBy: 'position'"
+          ng-if="item.shouldRender(authentication.user2);"
+          ng-switch="item.type"
+          class="{{item.class}}"
+          ng-class="{'selected': item.isSelected}">
+        <a ng-switch-when="dropdown" ng-click="vm.toggleMenuItem(item);" role="button" style="{{ item.isCollapsed ? vm.aaa : vm.iii}}">
+          <div class="row">
+            <!--<div class="col-sm-3 col-xs-3" style="width: 12%">-->
+            <!--<img ng-src="{{item.isSelected ? item.icon2 : item.icon1}}" alt="">-->
+            <!--</div>-->
+            <div class="com-sm-9 col-xs-9 menu_zi" style="width: 81%">
+              {{::item.title}}
+            </div>
+          </div>
+          <!--<i class="icon-arrow glyphicon"-->
+          <!--ng-class="{true: 'glyphicon-chevron-right', false: 'glyphicon-chevron-down'}[item.isCollapsed]">-->
+          <!--</i>-->
+        </a>
+        <ul ng-switch-when="dropdown" uib-collapse="item.isCollapsed" class="nav navbar submenu">
+          <li ng-repeat="subitem in item.items | orderBy: 'position'"
+              ng-if="subitem.shouldRender(authentication.user2);" ng-class="{'selected': subitem.isSelected}">
+            <a ui-sref="{{subitem.state}}({{subitem.params}})" ui-sref-opts="{reload: true}" ng-click="vm.clickMenuItem(subitem);" ng-bind="subitem.title" role="button"></a>
+          </li>
+        </ul>
+        <a ng-switch-default ui-sref="{{item.state}}({{item.params}})" ui-sref-opts="{reload: true}" ng-click="vm.clickMenuItem(item);" role="button" style="{{ item.isCollapsed ? vm.aaa : vm.iii}}">
+          <div class="row">
+            <!--<div class="col-sm-3 col-xs-3">-->
+            <!--<img ng-src="{{item.isSelected?item.icon2:item.icon1}}" alt="">-->
+            <!--</div>-->
+            <div class="com-sm-9 col-xs-9 menu_zi" >
+              {{item.title}}
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

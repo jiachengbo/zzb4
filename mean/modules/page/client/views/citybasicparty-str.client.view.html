@@ -1,0 +1,209 @@
+<style>
+  ul>li{
+    list-style: none;
+  }
+  .orgpenduty  *, .huiyi{
+    font-family: '微软雅黑' !important;
+    font-weight:normal !important;
+    font-size: 16px !important;
+    line-height: 23pt !important;
+  }
+</style>
+<section class="home-view view-backgroupd" >
+  <div class="container-fluid" >
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row city_str">
+          <div class="col-md-4 citystr_wxy">
+            <div class="patitle" style="padding-bottom: 15px;">
+              <a href="#" style="float: left">
+                <i></i>
+                <span>微心愿</span>
+              </a>
+              <a href="/weixinyuanlist" style="float: right;color: red"><span>查看详情>></span></a>
+            </div>
+            <div class="media" data-ng-repeat="litter in  vm.litterxin track by $index" ng-click="vm.weixingyuan($index)">
+              <a class="media-left" href="#">
+                <img class="media-object" src="/modules/global/client/img/citybuild/xylogo.png"
+                     alt="微心愿">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading">{{litter.littleTitle}}</h4>
+                <p>
+                  {{litter.littleContent}}
+                </p>
+                <span style="float: right;margin-right: 20px">{{litter.littleDate | date: "yyyy-MM-dd"}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-lg-4">
+            <a class="partyjc" href="{{vm.hrefs}}" style="height: 400px;display: block"></a>
+          </div>
+          <div class="col-md-4 citystr_grid">
+            <div class="patitle" style="padding-bottom: 15px;">
+              <a href="#" style="float: left">
+                <i></i>
+                <span>社区党建联合会</span>
+              </a>
+            </div>
+            <ul style="height: 310px; overflow-y: auto">
+              <li data-ng-repeat="community in  vm.community"><a class="button" href="/page/citybasicparty-comm?id={{community.communityId}}&street={{community.streetID}}">{{community.communityName}}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row partymiddle">
+          <div class="col-md-8">
+            <div class="patitle" style="padding-bottom: 15px;">
+              <a href="#" style="float: left">
+                <i></i>
+                <span>组织设置</span>
+              </a>
+              <a href="/page/org-set-details?orgId={{vm.orgid}}&street={{vm.orgid - 3}}" style="float: right;color: red"><span>查看详情>></span></a>
+            </div>
+            <div class="citystr_lxh">
+              <span style="background: url('/modules/page/client/img/xiangmu/组.png') no-repeat;background-size: 100% 100%;color:#fff;font-size: 16px">街道联席会</span>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-lg-8">
+                <div class="row">
+                  <div class="col-md-3 col-lg-3" data-ng-repeat="OrgPerson in vm.OrgPerson">
+                    <ul>
+                      <li style="height: 160px"><img src="{{ OrgPerson.CommitteePhotoPath}}" alt="" style="height: 100%"></li>
+                      <li class="button" style="width: 144px">{{OrgPerson.CommitteeName}}</li>
+                      <li class="button" style="width: 144px">{{OrgPerson.CommitteePostion}}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-lg-4">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div
+                      style="width: 100px;height: 30px;line-height:30px;padding-left:10px;background: url('/modules/page/client/img/xiangmu/组.png') no-repeat;background-size: 100% 100%;color: white;font-size: 16px">
+                      工作职责
+                    </div>
+                    <p class="orgpenduty">
+                      {{vm.dataorgset.duty}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div
+                      style="width: 100px;height: 30px;line-height:30px;padding-left:10px;background: url('/modules/page/client/img/xiangmu/组.png') no-repeat;background-size: 100% 100%;color: white;font-size: 16px">
+                      会议情况
+                    </div>
+                    <p class="huiyi">
+                      {{vm.dataorgset.quest}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="patitle" style="padding-bottom: 15px;">
+              <a href="#" style="float: left">
+                <i></i>
+                <span>党建项目</span>
+              </a>
+              <a href="/page/partyprojectlist?grade={{vm.grade}}&streetID={{vm.streetID}}&role={{vm.roleId}}" style="float: right;color: red"><span>查看详情>></span></a>
+            </div>
+            <div class="citystr_xm">
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>logo</th>
+                  <th>项目介绍</th>
+                  <th>结束时间</th>
+                </tr>
+                </thead>
+                <tbody >
+                <!--<tr data-ng-repeat="project in vm.project track by $index" class="caitiao1" ng-click="vm.projects($index)">
+                  <td><a href=""><img src="{{project.ProjectLogo}}"></a></td>
+                  <td><a href=""><p>{{project.ProjectName}}</p></a></td>
+                  <td><a href="">{{project.createDate | date:'yyyy-MM-dd HH:mm'}}</a></td>
+                </tr>-->
+                <tr data-ng-repeat="project in vm.project track by $index" class="caitiao1"  ng-click="vm.projects($index)" ng-if="!project.ProjectTable">
+                  <td><a href=""><img src="{{project.ProjectLogo}}"></a></td>
+                  <td><a href=""><p>{{project.ProjectName}}</p></a></td>
+                  <td><a href="">{{project.FinishTime | date:'yyyy-MM-dd HH:mm'}}</a></td>
+                </tr>
+                <tr data-ng-repeat="project in vm.project track by $index" class="caitiao1"  ng-click="vm.projects($index)" ng-if="project.ProjectTable">
+                  <td><a href=""><img src="{{project.ProjectTable.ProjectLogo}}"></a></td>
+                  <td><a href=""><p>{{project.ProjectTable.ProjectName}}</p></a></td>
+                  <td><a href="">{{project.ProjectTable.FinishTime | date:'yyyy-MM-dd HH:mm'}}</a></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row partymiddle">
+          <div class="col-md-6">
+            <div class="patitle" style="padding-bottom: 15px;">
+              <a href="#" style="float: left">
+                <i></i>
+                <span>共驻共建</span>
+              </a>
+              <!--<a href="#" style="float: right;color: red"><span>查看详情>></span></a>-->
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div id="slider">
+                  <div style="height: 400px">
+                    <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                      <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                        <img ng-src="{{slide.image}}" style="margin:auto;height: 400px;width: 100%;">
+                        <div class="carousel-caption">
+                          <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{slide.text}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 citystr_gzgj">
+                <table class="table table-hover">
+                  <tbody>
+                  <tr data-ng-repeat="gognzhu in vm.gzgj track by $index" ng-click="vm.gongj($index)" class="shou caitiao1">
+                    <td><a href=""><p>{{gognzhu.title}}</p></a></td>
+                    <td><a href="">{{gongzhu.sbtime}}</a></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="patitle" style="padding-bottom: 15px;">
+              <a href="#" style="float: left">
+                <i></i>
+                <span>问题墙</span>
+              </a>
+              <a href="/wentixq?grade={{vm.grade}}&streetID={{vm.streetID}}" style="float: right;color: red"><span>查看详情>></span></a>
+            </div>
+            <div class="citystr_wtq">
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>标题</th>
+                  <th>问题内容</th>
+                  <th>上报组织</th>
+                  <th>处理平台</th>
+                </tr>
+                </thead>
+                <tbody style="position: relative;" class="prowalllnbo" ng-click="vm.proll($event)">
+                <tr data-ng-repeat="prowall in vm.prowall track by $index" class="caitiao1" id="{{$index}}" style="text-align: center">
+                  <td><a href=""><p>{{prowall.wtTitle}}</p></a></td>
+                  <td><a href=""><p>{{prowall.wtContent}}</p></a></td>
+                  <td><a href=""><span>{{prowall.superName}}</span></a></td>
+                  <td><a href=""><span>{{prowall.pt}}</span></a></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

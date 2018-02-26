@@ -1,0 +1,445 @@
+<section class="home-view view-backgroupd" auto-height="-0.05" ng-show="vm.fullpagemapF"
+         style="width:100%;position: fixed;bottom:20px;left: 15px;z-index: 10000000000000;height: 100%;">
+  <div class="container-fluid" style="height: 100%;background: #FFFAE6;">
+    <div class="row" style="height: 100%;margin-top: 30px;margin-bottom: 15px;">
+      <div class="col-md-12 col-lg-12" style="height: 100%;padding-left: 0;padding-right: 0;">
+        <div class="col-md-2 col-lg-2" style="height: 100%;">
+          <div class="strMapSearch button" id="-1" ng-click="vm.fullesc()" style="margin-top: 0px;">退出全屏</div>
+          <div class="strMapSearch button" id="0" ng-click="vm.search($event)" style="margin-top: 10px;">全部街道</div>
+          <div class="strMapSearch button" id="3" ng-click="vm.search($event)">青年路街道</div>
+          <div class="strMapSearch button" id="4" ng-click="vm.search($event)">北院门街道</div>
+          <div class="strMapSearch button" id="1" ng-click="vm.search($event)">环西街道</div>
+          <div class="strMapSearch button" id="6" ng-click="vm.search($event)">西关街道</div>
+          <div class="strMapSearch button" id="7" ng-click="vm.search($event)">土门街道</div>
+          <div class="strMapSearch button" id="9" ng-click="vm.search($event)">红庙坡街道</div>
+          <div class="strMapSearch button" id="2" ng-click="vm.search($event)">桃园路街道</div>
+          <div class="strMapSearch button" id="8" ng-click="vm.search($event)">枣园街道</div>
+          <div class="strMapSearch button" id="5" ng-click="vm.search($event)">北关街道</div>
+        </div>
+        <div class="col-md-10 col-lg-10" style="height: 100%;">
+          <div id="homemap2" style="height: 100%;margin-top: -30px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="home-view view-backgroupd" ng-show="!vm.fullpagemapF">
+  <div class="shouyeshang">
+    <div class="partygk">
+      <div class="patitle">
+        <a href="#" style="float: left">
+          <i></i>
+          <span>区情概况</span>
+        </a>
+        <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+      </div>
+      <div style="margin: 0 20px;height: 430px;overflow: hidden;" ng-mouse-wheel-down="vm.mousewheeldown(e)"
+           ng-mouse-wheel-up="vm.mousewheelup(e)">
+        <img src="{{vm.surver.imgFile}}" class="imgg"
+             style="float: left;width: 60%;height:60%;padding-right: 5px;position: relative;z-index: 20;" enlarge-pic>
+        <p class="surveyp" style="line-height: 27px;text-indent: 2em;position: relative;;right: 0;top: 0;">
+          {{vm.surver.content}}
+        </p>
+      </div>
+    </div>
+    <div class="partyjc">
+    </div>
+    <div class="partywj">
+      <div class="patitle">
+        <a href="#" style="float: left">
+          <i></i>
+          <span>通知文件</span>
+        </a>
+        <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+      </div>
+      <div style="margin: 0 20px">
+        <ul class="inform">
+          <li ng-repeat="v in vm.noticeData" class="caitiao1">
+            <span class="informtitle" ng-click="vm.tocontent(v.file_path)">{{v.title}}</span>
+            <span style="float: right">{{v.sbtime}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="shouyexia">
+    <div class="wentuhd1" style="width: 50%;">
+      <div class="patitle">
+        <a href="#" style="float: left">
+          <i></i>
+          <span>党建动态</span>
+        </a>
+        <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-6">
+          <div id="slider">
+            <div style="height: 400px">
+              <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                  <img ng-src="{{slide.image}}" style="margin:auto;height: 400px;width: 100%;">
+                  <div class="carousel-caption">
+                    <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{slide.text}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <ul class="inform" style="list-style: none;">
+            <li ng-repeat="v in vm.partyBuildingData track by $index" ng-click="vm.partydynamic($index)"
+                class="shou caitiao1">
+              <span class="informtitle">{{v.appealTitle}}</span>
+              <span style="float: right">{{v.sbtime}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="banzicy" style="width: 23%;padding-right: 15px;padding-bottom: 15px;">
+      <div class="patitle">
+        <a style="float: left">
+          <i></i>
+          <span>党委</span>
+        </a>
+        <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+      </div>
+      <div>
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <div class="ditem button" ng-repeat="v in vm.dj_PartyOrganization" ng-if="v.comType === 1 ? true : false">
+              <a href="/page/basicmsg-org?id={{v.typeID}}">{{v.typeName}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="banzicy" style="width: 23%;padding-left: 15px;">
+      <div class="patitle">
+        <a style="float: left">
+          <i></i>
+          <span>党工委</span>
+        </a>
+        <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+      </div>
+      <div>
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <!--<div class="ditem button" ng-repeat="v in vm.dj_PartyOrganization" ng-if="v.comType === 2 ? true : false">-->
+            <!--<a href="/page/basicmsg-org?id={{v.typeID}}">{{v.typeName}}</a>-->
+            <!--</div>-->
+            <div class="ditem button">
+              <a href="/page/basicmsg-org?id=1">青年路街道党工委</a>
+            </div>
+            <div class="ditem button">
+              <a href="/page/basicmsg-org?id=2">北院门街道党工委</a>
+            </div>
+            <div class="ditem button">
+              <a href="/page/basicmsg-org?id=7">环西街道党工委</a>
+            </div>
+            <div class="ditem button">
+              <a href="/page/basicmsg-org?id=5">西关街道党工委</a>
+            </div>
+            <div class="ditem button">
+              <a href="/page/basicmsg-org?id=6">土门街道党工委</a>
+            </div>
+            <div class="ditem button">
+              <a href="/page/basicmsg-org?id=4">红庙坡街道党工委</a>
+            </div>
+            <div class="ditem button">
+              <a href="/page/basicmsg-org?id=8">桃园路街道党工委</a>
+            </div>
+            <div class="ditem button">
+              <a href="/page/basicmsg-org?id=9">枣园街道党工委</a>
+            </div>
+            <div class="ditem button">
+              <a href="/page/basicmsg-org?id=3">北关街道党工委</a>
+            </div>
+            <div class="ditem button">
+              <a href="/page/basicmsg-org?id=11">桃园开发区党工委</a>
+            </div>
+            <div class="ditem button">
+              <a href="/page/basicmsg-org?id=12">西大街管委会党工委</a>
+            </div>
+            <div class="ditem button">
+              <a href="/page/basicmsg-org?id=10">机关党工委</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" style="overflow-x: hidden">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>党建地图</span>
+          </a>
+          <!--<a href="#" style="float: right"><span>查看详情>></span></a>-->
+        </div>
+      </div>
+      <div class="col-md-2 col-lg-2">
+        <div class="strMapSearch button" id="-1" ng-click="vm.fullpagemap()" style="margin-top: 0px;">全屏地图</div>
+        <div class="strMapSearch button" id="0" ng-click="vm.search($event)" style="margin-top: 10px;">全部街道</div>
+        <!--<div class="strMapSearch button" ng-repeat="v in vm.street_info track by $index"-->
+        <!--ng-if="v.streetID !== 0 && v.streetID !== 10"-->
+        <!--id="{{v.streetID}}" ng-click="vm.search($event)">{{v.streetName}}-->
+        <!--</div>-->
+        <div class="strMapSearch button" id="3" ng-click="vm.search($event)">青年路街道</div>
+        <div class="strMapSearch button" id="4" ng-click="vm.search($event)">北院门街道</div>
+        <div class="strMapSearch button" id="1" ng-click="vm.search($event)">环西街道</div>
+        <div class="strMapSearch button" id="6" ng-click="vm.search($event)">西关街道</div>
+        <div class="strMapSearch button" id="7" ng-click="vm.search($event)">土门街道</div>
+        <div class="strMapSearch button" id="9" ng-click="vm.search($event)">红庙坡街道</div>
+        <div class="strMapSearch button" id="2" ng-click="vm.search($event)">桃园路街道</div>
+        <div class="strMapSearch button" id="8" ng-click="vm.search($event)">枣园街道</div>
+        <div class="strMapSearch button" id="5" ng-click="vm.search($event)">北关街道</div>
+      </div>
+      <div class="col-md-10 col-lg-10">
+        <div id="homemap" style="height: 570px"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div class="patitle" style="padding-bottom: 15px;">
+          <a href="#" style="float: left">
+            <i></i>
+            <span>统计分析</span>
+          </a>
+          <span style="float: right;cursor: pointer;padding-right:15px;" ng-click="vm.Partysearch()" class="analyza">党员查询</span>
+          <span style="float: right;padding-right: 0px;padding-left: 0;"> | </span>
+          <span style="float: right;padding-right: 15px;cursor: pointer;" ng-click="vm.orgsearch()" class="analyza">党组织查询</span>
+          <span style="float: right;padding-right: 0px;padding-left: 0;"> | </span>
+          <span style="float: right;cursor: pointer;" ng-click="vm.PartyOrganization()" class="analyza">党组织分析</span>
+          <span style="float: right;padding-right: 0px;padding-left: 0;"> | </span>
+          <span style="float: right;padding-right: 15px;cursor: pointer;" ng-click="vm.PartyMember()" class="analyza">党员分析</span>
+
+
+        </div>
+      </div>
+      <!--<div class="row" style="margin-left: 20px" ng-show="!vm.PartyOrganizationF">-->
+      <!--<button class=" btn btn-info" ng-click="vm.analyze('num')">人数分析</button>-->
+      <!--<button class=" btn btn-info" ng-click="vm.analyze('age')">年龄分析</button>-->
+      <!--<button class=" btn btn-info" ng-click="vm.analyze('sex')">性别分析</button>-->
+      <!--<button class=" btn btn-info" ng-click="vm.analyze('jointime')">入党时间分析</button>-->
+      <!--</div>-->
+      <!--<div class="row" style="margin-left: 20px" ng-show="vm.PartyOrganizationF">-->
+      <!--<button class=" btn btn-info" ng-click="vm.analyze('orgnum')">组织个数</button>-->
+      <!--<button class=" btn btn-info" ng-click="vm.analyze('unitclass')">单位类别分析</button>-->
+      <!--<button class=" btn btn-info" ng-click="vm.analyze('orgpersonnum')">党员人数分析</button>-->
+      <!--<button class=" btn btn-info" ng-click="vm.analyze('orgclass')">组织类别分析</button>-->
+      <!--</div>-->
+      <div class="row">
+        <div class="col-md-12 col-lg-12" ng-show="false">
+          <div class="btn-group" uib-dropdown is-open="status.isopen" style="margin-left: 15px;">
+            <button id="btnmenu" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled"
+                    style=" min-width: 160px;">
+              党员分析类型<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+              <li role="menuitem"><a ng-click="vm.analyze('sex')">性别</a></li>
+              <li role="menuitem"><a ng-click="vm.analyze('nation')">民族</a></li>
+              <li role="menuitem"><a ng-click="vm.analyze('age')">年龄</a></li>
+              <li role="menuitem"><a ng-click="vm.analyze('PartyPlace')">籍贯</a></li>
+              <li role="menuitem"><a ng-click="vm.analyze('Category')">党员类型</a></li>
+              <li role="menuitem"><a ng-click="vm.analyze('jointime')">入党时间</a></li>
+              <li role="menuitem"><a ng-click="vm.analyze('education')">学历</a></li>
+              <li role="menuitem"><a ng-click="vm.analyze('personcategory')">人员类别</a></li>
+              <li role="menuitem"><a ng-click="vm.analyze('street')">所属街道</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="false">
+          <div class="btn-group" uib-dropdown is-open="status2.isopen" style="margin-left: 15px;">
+            <button id="btnmenu2" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled"
+                    style=" min-width: 160px;">党组织分析类型<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+              <li role="menuitem"><a ng-click="vm.analyze('OrganizationNum')">党组织人数</a></li>
+              <li role="menuitem"><a ng-click="vm.analyze('Relations')">隶属关系</a></li>
+              <li role="menuitem"><a ng-click="vm.analyze('streetorg')">所属街道</a></li>
+              <li role="menuitem"><a ng-click="vm.analyze('orgclass')">组织类别</a></li>
+              <li role="menuitem"><a ng-click="vm.analyze('unitclass')">单位类别</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="vm.PartysearchF" style="padding-left: 15px;">
+          <div class="row" style="margin-bottom: 10px;">
+            <div class="col-lg-6" style="padding-left: 30px;">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for..." ng-model="vm.key">
+                <span class="input-group-btn">
+                 <button type="button" class="btn btn-default" ng-click="vm.searchPartyMeber(1, 'searchPartyMeber')">
+  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索
+</button>
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <div class="form-control">共{{vm.searchmembercount}}人</div>
+            </div>
+          </div>
+          <div class="row tabledata1" style="margin: 0 15px;">
+            <div class="col-md-1 col-lg-1">姓名</div>
+            <div class="col-md-1 col-lg-1">性别</div>
+            <div class="col-md-1 col-lg-1">民族</div>
+            <div class="col-md-2 col-lg-2">身份证号</div>
+            <div class="col-md-2 col-lg-2">工作单位</div>
+            <div class="col-md-1 col-lg-1">联系电话</div>
+            <div class="col-md-1 col-lg-1">党员类别</div>
+            <div class="col-md-2 col-lg-2">所属支部</div>
+            <div class="col-md-1 col-lg-1">入党时间</div>
+          </div>
+          <div class="tablebox" style="cursor: pointer;margin-bottom: 15px;">
+            <div class="tableboxinner">
+              <div class="row tabledata" ng-repeat="v in vm.partymemberdata track by $index" style="margin: 0 15px;" ng-click="vm.memeberone($index)">
+                <div class="col-md-1 col-lg-1">{{v.PartyName}}</div>
+                <div class="col-md-1 col-lg-1">{{v.PartySex}}</div>
+                <div class="col-md-1 col-lg-1">{{v.PartyNation}}</div>
+                <div class="col-md-2 col-lg-2">{{v.IDNumber}}</div>
+                <div class="col-md-2 col-lg-2" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                  {{v.WorkPlace}}
+                </div>
+                <div class="col-md-1 col-lg-1">{{v.TelNumber}}</div>
+                <div class="col-md-1 col-lg-1">{{v.preson_category}}</div>
+                <div class="col-md-2 col-lg-2" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                  {{v.OrganizationName}}
+                </div>
+                <div class="col-md-1 col-lg-1">{{v.JoinTime | date: 'yyyy-MM-dd'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin-left: 0px;">
+            <div class="col-lg-12 col-md-12">
+              <nav aria-label="...">
+                <ul class="pager">
+                  <li ng-click="vm.prevPage()" style="cursor: pointer"><a>上一页</a></li>
+                  <li ng-click="vm.nextPage()" style="cursor: pointer"><a>下一页</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-12" ng-show="vm.orgsearchF" style="padding-left: 15px;">
+          <div class="row" style="margin-bottom: 10px;">
+            <div class="col-lg-6" style="padding-left: 30px;">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for..." ng-model="vm.key">
+                <span class="input-group-btn">
+                 <button type="button" class="btn btn-default" ng-click="vm.searchPartyMeber(1, 'searchPartyOrg')">
+  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索
+</button>
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <div class="form-control">共 {{vm.searchorgcount}} 个</div>
+            </div>
+          </div>
+          <div class="row tabledata1" style="margin: 0 15px;">
+            <div class="col-md-2 col-lg-2">党组织名称</div>
+            <div class="col-md-1 col-lg-1">党员人数</div>
+            <div class="col-md-1 col-lg-1">书记</div>
+            <div class="col-md-1 col-lg-1">党务专干</div>
+            <div class="col-md-1 col-lg-1">所属街道</div>
+            <div class="col-md-1 col-lg-1">联系电话</div>
+            <div class="col-md-2 col-lg-2">联系地址</div>
+            <div class="col-md-1 col-lg-1">组织类别</div>
+            <div class="col-md-1 col-lg-1">单位类别</div>
+            <div class="col-md-1 col-lg-1">成立时间</div>
+          </div>
+          <div class="tablebox" style="cursor: pointer;">
+            <div class="tableboxinner">
+              <div class="row tabledata" ng-repeat="v in vm.partyorgdata track by $index" id="{{$index}}"
+                   style="margin: 0 15px;" ng-click="vm.branchone($index)">
+                <div class="col-md-2 col-lg-2" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                  {{v.OrganizationName}}
+                </div>
+                <div class="col-md-1 col-lg-1" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                  {{v.OrganizationNum}}
+                </div>
+                <div class="col-md-1 col-lg-1" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                  {{v.Secretary}}
+                </div>
+                <div class="col-md-1 col-lg-1" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                  {{v.Head}}
+                </div>
+                <div class="col-md-1 col-lg-1" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                  {{v.streetName}}
+                </div>
+                <div class="col-md-1 col-lg-1" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                  {{v.TelNumber}}
+                </div>
+                <div class="col-md-2 col-lg-2" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                  {{v.Address}}
+                </div>
+                <div class="col-md-1 col-lg-1" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                  {{v.OrganizationCategory}}
+                </div>
+                <div class="col-md-1 col-lg-1" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                  {{v.Category}}
+                </div>
+                <div class="col-md-1 col-lg-1" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                  {{v.OrganizationTime}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin-left: 0px;">
+            <div class="col-lg-12 col-md-12">
+              <nav aria-label="...">
+                <ul class="pager">
+                  <li ng-click="vm.prevPage()" style="cursor: pointer;"><a>上一页</a></li>
+                  <li ng-click="vm.nextPage()" style="cursor: pointer;"><a>下一页</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin: 20px auto" ng-show="vm.PartyMemberF">
+        <div class="col-md-7" id="main1" style="height:600px;"></div>
+        <div class="col-md-5" id="main11" style="height:600px;"></div>
+        <div class="col-md-7" id="main2" style="height:600px;"></div>
+        <div class="col-md-5" id="main22" style="height:600px;"></div>
+        <div class="col-md-7" id="main3" style="height:600px;"></div>
+        <div class="col-md-5" id="main33" style="height:600px;"></div>
+        <div class="col-md-7" id="main4" style="height:600px;"></div>
+        <div class="col-md-5" id="main44" style="height:600px;"></div>
+        <div class="col-md-7" id="main5" style="height:600px;"></div>
+        <div class="col-md-5" id="main55" style="height:600px;"></div>
+        <div class="col-md-7" id="main6" style="height:600px;"></div>
+        <div class="col-md-5" id="main66" style="height:600px;"></div>
+        <div class="col-md-7" id="main7" style="height:600px;"></div>
+        <div class="col-md-5" id="main77" style="height:600px;"></div>
+        <div class="col-md-7" id="main8" style="height:600px;"></div>
+        <div class="col-md-5" id="main88" style="height:600px;"></div>
+        <div class="col-md-7" id="main9" style="height:600px;"></div>
+        <div class="col-md-5" id="main99" style="height:600px;"></div>
+      </div>
+      <div class="row" style="margin: 20px auto" ng-show="vm.PartyOrganizationF">
+        <div class="col-md-7" id="maina" style="height:600px;"></div>
+        <div class="col-md-5" id="mainaa" style="height:600px;"></div>
+        <div class="col-md-7" id="mainb" style="height:600px;"></div>
+        <div class="col-md-5" id="mainbb" style="height:600px;"></div>
+        <div class="col-md-7" id="mainc" style="height:600px;"></div>
+        <div class="col-md-5" id="maincc" style="height:600px;"></div>
+        <div class="col-md-7" id="maind" style="height:600px;"></div>
+        <div class="col-md-5" id="maindd" style="height:600px;"></div>
+        <div class="col-md-7" id="maine" style="height:600px;"></div>
+        <div class="col-md-5" id="mainee" style="height:600px;"></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="mask" close-pic style="display: none;">
+    <div class="mask-box"></div>
+    <div class="big-pic-wrap" style="top:60%;margin-top: -360px;">
+      <img src="" alt="" class="bigPic mybigPic"/>
+      <span class="close-pic"><i class="glyphicon glyphicon-remove"></i></span>
+    </div>
+  </div>
+</section>
